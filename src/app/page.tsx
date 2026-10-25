@@ -1,153 +1,134 @@
 import BlurFade from "@/components/magicui/blur-fade";
-import BlurFadeText from "@/components/magicui/blur-fade-text";
-import { ProjectCard } from "@/components/features/project-card";
-import { Carousel } from "@/components/features/carousel";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { FlagshipCard } from "@/components/features/flagship-card";
+import { RepositoryCard } from "@/components/features/repository-card";
 import { Icons } from "@/components/icons";
-import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
-import {
-  Tooltip,
-  TooltipContent,
-  TooltipTrigger,
-} from "@/components/ui/tooltip";
 import { PORTFOLIO } from "@/data/portfolio";
+import {
+  ArrowDownRight,
+  Code2,
+  Cpu,
+  Database,
+  FileText,
+  Globe,
+  Layers,
+  Mail,
+  ShieldCheck,
+  Terminal,
+} from "lucide-react";
+import Image from "next/image";
 import Link from "next/link";
-
-const BLUR_FADE_DELAY = 0.04;
-
-function renderActionLink({
-  href,
-  label,
-  variant = "default",
-  external,
-  download,
-  className,
-}: {
-  href: string;
-  label: string;
-  variant?: "default" | "outline";
-  external?: boolean;
-  download?: boolean;
-  className?: string;
-}) {
-  if (external || href.startsWith("mailto:")) {
-    return (
-      <Button
-        key={label}
-        asChild
-        variant={variant}
-        className={className}
-      >
-        <a
-          href={href}
-          download={download ? "resume.pdf" : undefined}
-          rel="noopener noreferrer"
-          target="_blank"
-        >
-          {label}
-        </a>
-      </Button>
-    );
-  }
-
-  return (
-    <Button key={label} asChild variant={variant} className={className}>
-      <Link href={href}>{label}</Link>
-    </Button>
-  );
-}
 
 export default function Page() {
   return (
-    <main className="mx-auto flex min-h-[100dvh] max-w-5xl flex-col gap-16 px-4 pb-24 pt-8 sm:px-6 lg:px-8">
-      <section
-        id="hero"
-        className="grid gap-8 lg:grid-cols-[1.35fr_0.85fr] lg:items-start"
-      >
-        <div className="space-y-8">
-          <div className="space-y-6">
-            <BlurFade delay={BLUR_FADE_DELAY}>
-              <div className="inline-flex rounded-full border border-primary/20 bg-primary/10 px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.24em] text-primary">
-                {PORTFOLIO.hero.availabilityLabel}
+    <main className="mx-auto flex min-h-screen max-w-6xl flex-col gap-20 px-4 pb-28 pt-8 sm:px-6 lg:px-8">
+      {/* ========================================================
+          HERO SECTION
+          ======================================================== */}
+      <section id="about" className="pt-4">
+        <BlurFade delay={0.04}>
+          <div className="flex flex-col gap-8 lg:flex-row lg:items-start lg:justify-between">
+            {/* Left: Avatar + Identity + Actions */}
+            <div className="flex flex-col gap-6 sm:flex-row sm:items-start">
+              {/* Avatar with Live Beacon */}
+              <div className="relative shrink-0">
+                <div className="relative size-28 overflow-hidden rounded-2xl border-2 border-white/10 bg-card shadow-2xl ring-1 ring-white/5 sm:size-32">
+                  <Image
+                    src={PORTFOLIO.site.avatarUrl}
+                    alt={PORTFOLIO.site.name}
+                    fill
+                    priority
+                    className="object-cover"
+                  />
+                </div>
+                {/* Emerald Live Beacon */}
+                <span className="absolute -bottom-1 -right-1 flex size-4 items-center justify-center rounded-full bg-background p-0.5">
+                  <span className="relative flex size-3">
+                    <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75" />
+                    <span className="relative inline-flex size-3 rounded-full bg-emerald-500 shadow-[0_0_8px_rgba(16,185,129,0.8)]" />
+                  </span>
+                </span>
               </div>
-            </BlurFade>
-            <div className="space-y-4">
-              <BlurFadeText
-                delay={BLUR_FADE_DELAY}
-                as="h1"
-                className="text-4xl font-bold tracking-normal sm:text-6xl"
-                yOffset={8}
-                text={PORTFOLIO.hero.title}
-              />
-              <BlurFadeText
-                className="max-w-3xl text-xl text-foreground/90 sm:text-2xl"
-                delay={BLUR_FADE_DELAY}
-                text={PORTFOLIO.hero.subtitle}
-              />
-              <BlurFade delay={BLUR_FADE_DELAY * 2}>
-                <p className="text-sm font-medium uppercase tracking-[0.2em] text-muted-foreground">
-                  {PORTFOLIO.hero.stack}
+
+              {/* Bio & Details */}
+              <div className="space-y-3">
+                {/* Kicker */}
+                <p className="font-mono text-xs uppercase tracking-[0.22em] text-muted-foreground/80 font-medium">
+                  {PORTFOLIO.hero.kicker}
                 </p>
-              </BlurFade>
-              <BlurFade delay={BLUR_FADE_DELAY * 3}>
-                <p className="max-w-3xl text-base leading-7 text-muted-foreground sm:text-lg">
+
+                {/* Name */}
+                <h1 className="font-sans text-4xl font-extrabold tracking-tight text-foreground sm:text-5xl lg:text-6xl">
+                  {PORTFOLIO.hero.title}
+                </h1>
+
+                {/* Subtitle / Philosophy */}
+                <p className="max-w-2xl text-base leading-relaxed text-muted-foreground sm:text-lg">
+                  <span className="font-medium text-foreground">
+                    {PORTFOLIO.hero.subtitle}
+                  </span>{" "}
                   {PORTFOLIO.hero.summary}
                 </p>
-              </BlurFade>
-            </div>
-            <BlurFade delay={BLUR_FADE_DELAY * 4}>
-              <div className="flex flex-wrap gap-3">
-                {PORTFOLIO.heroActions.map((action) =>
-                  renderActionLink({
-                    ...action,
-                    variant: action.variant === "default" ? "default" : "outline",
-                    className:
-                      "rounded-full px-5 shadow-sm shadow-primary/10 hover:shadow-primary/20",
-                  })
-                )}
-              </div>
-            </BlurFade>
-          </div>
-        </div>
-        <BlurFade delay={BLUR_FADE_DELAY * 5}>
-          <div className="glass gradient-border space-y-6 rounded-[2rem] p-6 sm:p-8">
-            <div className="flex items-center gap-4">
-              <div className="relative">
-                <div className="absolute -inset-1 rounded-full bg-gradient-to-br from-primary/30 via-accent/20 to-primary/10 blur-md animate-glow-pulse" />
-                <Avatar className="relative size-24 border-2 border-primary/30 ring-2 ring-primary/10 ring-offset-2 ring-offset-background">
-                  <AvatarImage
-                    alt={PORTFOLIO.site.name}
-                    src={PORTFOLIO.site.avatarUrl}
-                  />
-                  <AvatarFallback>{PORTFOLIO.site.initials}</AvatarFallback>
-                </Avatar>
-              </div>
-            <div className="space-y-1">
-                <h2 className="text-xl font-semibold tracking-tight">
-                  {PORTFOLIO.site.name}
-                </h2>
-                <p className="text-sm text-muted-foreground">
-                  {PORTFOLIO.site.location}
-                </p>
-              </div>
-            </div>
-            <div className="space-y-4">
-              <p className="text-sm font-medium uppercase tracking-[0.18em] text-primary">
-                Value snapshot
-              </p>
-              <div className="grid gap-3 text-sm text-foreground/90">
-                <div className="flex items-start gap-3">
-                  <span className="mt-2 size-1.5 shrink-0 rounded-full bg-primary" />
-                  <span>Projects cover AI integrations, REST APIs, authentication, and database-backed features.</span>
+
+                {/* Technical CTA Action Strip */}
+                <div className="flex flex-wrap items-center gap-2.5 pt-2">
+                  {/* Resume PDF Button (Amber accented) */}
+                  <a
+                    href={PORTFOLIO.site.resumeUrl}
+                    download="Vaibhav_Saini_Resume.pdf"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-2 rounded-xl border border-amber-500/40 bg-amber-500/10 px-4 py-2 font-mono text-xs font-semibold uppercase tracking-wider text-amber-600 dark:text-amber-400 shadow-sm transition-all hover:bg-amber-500/20 hover:border-amber-500 active:scale-[0.98]"
+                  >
+                    <FileText className="size-3.5" />
+                    <span>RESUME .PDF</span>
+                  </a>
+
+                  {/* GitHub */}
+                  <a
+                    href={PORTFOLIO.socialLinks.github.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-2 rounded-xl border border-border/70 bg-card/60 px-4 py-2 font-mono text-xs uppercase tracking-wider text-foreground transition-all hover:border-foreground/30 hover:bg-muted dark:hover:border-white/30 dark:hover:bg-white/[0.04] active:scale-[0.98]"
+                  >
+                    <Icons.github className="size-3.5" />
+                    <span>GITHUB</span>
+                  </a>
+
+                  {/* LinkedIn */}
+                  <a
+                    href={PORTFOLIO.socialLinks.linkedin.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-2 rounded-xl border border-border/70 bg-card/60 px-4 py-2 font-mono text-xs uppercase tracking-wider text-foreground transition-all hover:border-foreground/30 hover:bg-muted dark:hover:border-white/30 dark:hover:bg-white/[0.04] active:scale-[0.98]"
+                  >
+                    <Icons.linkedin className="size-3.5" />
+                    <span>LINKEDIN</span>
+                  </a>
+
+                  {/* Direct Email */}
+                  <a
+                    href={PORTFOLIO.socialLinks.email.href}
+                    className="flex items-center gap-2 rounded-xl border border-border/70 bg-card/60 px-4 py-2 font-mono text-xs text-muted-foreground transition-all hover:border-foreground/30 hover:bg-muted hover:text-foreground dark:hover:border-white/30 dark:hover:bg-white/[0.04] active:scale-[0.98]"
+                  >
+                    <Mail className="size-3.5" />
+                    <span>{PORTFOLIO.site.email}</span>
+                  </a>
                 </div>
-                <div className="flex items-start gap-3">
-                  <span className="mt-2 size-1.5 shrink-0 rounded-full bg-primary" />
-                  <span>Source code shows authentication, input validation, rate limiting, and API documentation.</span>
+              </div>
+            </div>
+
+            {/* Right: Availability Status Card */}
+            <div className="shrink-0">
+              <div className="rounded-2xl border border-border/70 bg-card/60 p-4 backdrop-blur-xl shadow-lg shadow-black/20">
+                <div className="font-mono text-[10px] uppercase tracking-[0.2em] text-muted-foreground mb-1.5">
+                  AVAILABILITY STATUS
                 </div>
-                <div className="flex items-start gap-3">
-                  <span className="mt-2 size-1.5 shrink-0 rounded-full bg-primary" />
-                  <span>All projects have public source code and live demos where possible.</span>
+                <div className="flex items-center gap-2 font-mono text-sm font-semibold text-emerald-400">
+                  <span className="relative flex size-2">
+                    <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75" />
+                    <span className="relative inline-flex size-2 rounded-full bg-emerald-500" />
+                  </span>
+                  <span>{PORTFOLIO.hero.availabilityLabel}</span>
                 </div>
               </div>
             </div>
@@ -155,265 +136,279 @@ export default function Page() {
         </BlurFade>
       </section>
 
-
-      <section id="about" className="space-y-6">
-        <BlurFade delay={BLUR_FADE_DELAY * 7} inView>
-          <div className="space-y-4">
-            <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl">
-              About
-            </h2>
-          </div>
-        </BlurFade>
-        <div className="grid gap-4 lg:grid-cols-[1fr_1.4fr]">
-          <BlurFade delay={BLUR_FADE_DELAY * 8} inView>
-            <div className="glass rounded-[2rem] border border-border/50 p-6">
-              <h3 className="text-lg font-semibold">{PORTFOLIO.about.focusTitle}</h3>
-              <p className="mt-3 text-sm leading-7 text-muted-foreground">
-                {PORTFOLIO.about.focusDescription}
-              </p>
-            </div>
-          </BlurFade>
-          <div className="space-y-4">
-            {PORTFOLIO.about.paragraphs.map((paragraph, index) => (
-              <BlurFade
-                key={paragraph}
-                delay={BLUR_FADE_DELAY * 9 + index * 0.05}
-                inView
+      {/* ========================================================
+          TELEMETRY & ENGINEERING METRICS STRIP
+          ======================================================== */}
+      <section id="telemetry">
+        <BlurFade delay={0.08}>
+          <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
+            {PORTFOLIO.engineeringMetrics.map((metric) => (
+              <div
+                key={metric.label}
+                className="group relative overflow-hidden rounded-2xl border border-border/70 bg-card/50 p-5 backdrop-blur-xl transition-all duration-300 hover:border-border hover:bg-card/75 hover:shadow-lg hover:shadow-black/20"
               >
-                <div className="glass rounded-[2rem] border border-border/50 p-6">
-                  <p className="text-base leading-8 text-muted-foreground">
-                    {paragraph}
-                  </p>
+                <div className="mb-2 font-mono text-[11px] uppercase tracking-[0.18em] text-muted-foreground">
+                  {metric.label}
                 </div>
-              </BlurFade>
+                <div className="flex items-baseline gap-2">
+                  <div
+                    className={`font-mono text-3xl font-extrabold tracking-tight ${metric.highlightClass}`}
+                  >
+                    {metric.prefix && (
+                      <span className="mr-1 inline-block text-xl">
+                        {metric.prefix}
+                      </span>
+                    )}
+                    {metric.value}
+                  </div>
+                </div>
+                <p className="mt-2 text-xs leading-relaxed text-muted-foreground">
+                  {metric.description}
+                </p>
+                <div className="absolute right-0 top-0 h-full w-24 bg-gradient-to-l from-white/[0.02] to-transparent pointer-events-none" />
+              </div>
             ))}
           </div>
-        </div>
+        </BlurFade>
       </section>
 
-      <section id="projects" className="space-y-10">
-        <BlurFade delay={BLUR_FADE_DELAY * 10} inView>
-          <div className="space-y-3 text-center">
-            <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl">
-              {PORTFOLIO.projectsContent.title}
+      {/* ========================================================
+          FLAGSHIP SHIPPED SYSTEMS
+          ======================================================== */}
+      <section id="projects" className="space-y-6">
+        <BlurFade delay={0.12}>
+          <div className="flex flex-col justify-between gap-2 border-b border-border/60 pb-4 sm:flex-row sm:items-center">
+            <h2 className="font-mono text-sm font-bold uppercase tracking-wider text-foreground sm:text-base">
+              FLAGSHIP SHIPPED SYSTEMS
             </h2>
-            <p className="mx-auto max-w-2xl text-base text-muted-foreground sm:text-lg">
-              {PORTFOLIO.projectsContent.description}
-            </p>
-          </div>
-        </BlurFade>
-        <div className="mx-auto w-full max-w-2xl lg:max-w-4xl">
-          <BlurFade delay={BLUR_FADE_DELAY * 11} inView>
-            <Carousel autoPlayInterval={3000}>
-              {PORTFOLIO.featuredProjects.map((project, index) => (
-                <ProjectCard
-                  key={project.name}
-                  name={project.name}
-                  tagline={project.tagline}
-                  year={project.year}
-                  description={project.description}
-                  technologies={project.technologies}
-                  outcomes={project.outcomes}
-                  image={project.image}
-                  links={project.links}
-                />
-              ))}
-            </Carousel>
-          </BlurFade>
-        </div>
-
-        {PORTFOLIO.otherProjects && PORTFOLIO.otherProjects.length > 0 && (
-          <div className="mt-16 border-t border-border/30 pt-10">
-            <div className="mb-8 text-center">
-              <h3 className="text-2xl font-bold">Other Projects</h3>
+            <div className="font-mono text-xs uppercase tracking-widest text-muted-foreground">
+              {PORTFOLIO.featuredProjects.length} FLAGSHIP REPOSITORIES
             </div>
-            <BlurFade delay={BLUR_FADE_DELAY * 11} inView>
-              <Carousel autoPlayInterval={4000}>
-                {PORTFOLIO.otherProjects.map((project, slideIndex) => (
-                  <div key={slideIndex} className="h-full px-2 py-1">
-                    <a
-                      href={project.links?.find(l => l.kind === "source")?.href}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="glass flex h-full mx-auto max-w-md cursor-pointer flex-col rounded-[1.5rem] border border-border/40 p-5 transition-all duration-300 hover:-translate-y-1 hover:border-primary/30 hover:shadow-lg hover:shadow-primary/10"
-                    >
-                      <div className="mb-4 flex items-center justify-between">
-                        <div className="text-primary opacity-80 transition-transform duration-300 hover:scale-110">
-                          <Icons.folder className="size-8" />
-                        </div>
-                        {project.links?.filter(l => l.kind === "source" && l.href).map(link => (
-                          <span
-                            key={link.label}
-                            className="text-muted-foreground transition-colors duration-200 hover:text-primary"
-                            aria-label={`${project.name} on GitHub`}
-                          >
-                            <Icons.github className="size-5" />
-                          </span>
-                        ))}
-                      </div>
-                      <h4 className="mb-1 font-semibold">{project.name}</h4>
-                      {project.tagline && <p className="mb-2 text-sm text-muted-foreground">{project.tagline}</p>}
-                      {project.description && <p className="mb-4 text-xs leading-relaxed text-foreground/70">{project.description}</p>}
-                      <div className="mt-auto flex flex-wrap gap-1.5">
-                        {project.technologies.map(tag => (
-                          <Badge key={tag} className="rounded-full bg-secondary/50 px-2 py-0.5 text-[10px]" variant="secondary">
-                            {tag}
-                          </Badge>
-                        ))}
-                      </div>
-                    </a>
-                  </div>
-                ))}
-              </Carousel>
-            </BlurFade>
-          </div>
-        )}
-      </section>
-
-      <section id="skills" className="space-y-8">
-        <BlurFade delay={BLUR_FADE_DELAY * 12} inView>
-          <div className="space-y-2">
-            <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl">
-              Technical depth across the stack
-            </h2>
           </div>
         </BlurFade>
-        <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
-          {PORTFOLIO.skillGroups.map((group, index) => (
-            <BlurFade
-              key={group.title}
-              delay={BLUR_FADE_DELAY * 13 + index * 0.05}
-              inView
-            >
-              <div className="glass h-full rounded-[2rem] border border-border/50 p-6">
-                <h3 className="text-lg font-semibold">{group.title}</h3>
-                <div className="mt-4 flex flex-wrap gap-2">
-                  {group.items.map((skill) => {
-                    const isInteractive = !!skill.usedIn;
-                    const badge = (
-                      <Badge
-                        key={skill.name}
-                        variant="secondary"
-                        className={`rounded-full px-3 py-1 text-xs transition-all duration-300 ${
-                          isInteractive
-                            ? "cursor-pointer border-primary/30 bg-primary/10 hover:scale-105 hover:bg-primary/20 hover:shadow-sm hover:shadow-primary/20"
-                            : "opacity-80"
-                        }`}
-                      >
-                        {skill.name}
-                      </Badge>
-                    );
 
-                    if (!skill.usedIn) return badge;
-
-                    return (
-                      <Tooltip key={skill.name}>
-                        <TooltipTrigger asChild>{badge}</TooltipTrigger>
-                        <TooltipContent className="border-primary/20 bg-background px-3 py-1.5 text-xs text-muted-foreground shadow-xl">
-                          Used in: <span className="font-medium text-foreground">{skill.usedIn.join(", ")}</span>
-                        </TooltipContent>
-                      </Tooltip>
-                    );
-                  })}
-                </div>
-              </div>
+        {/* 3-Column Flagship Project Grid */}
+        <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+          {PORTFOLIO.featuredProjects.map((project, idx) => (
+            <BlurFade key={project.slug} delay={0.14 + idx * 0.05}>
+              <FlagshipCard project={project} />
             </BlurFade>
           ))}
         </div>
       </section>
 
-      <section id="proof">
-        <BlurFade delay={BLUR_FADE_DELAY * 14} inView>
-          <div className="glass gradient-border rounded-[2rem] p-6 sm:p-8">
-            <div className="space-y-4">
-              <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl">
-                {PORTFOLIO.proof.title}
-              </h2>
-              <div className="grid gap-3 md:grid-cols-3">
-                {PORTFOLIO.proof.details.map((detail, index) => {
-                  const content = (
-                    <div className="flex h-full items-start justify-between gap-4">
-                      <span className="text-sm leading-6 text-muted-foreground">{detail.text}</span>
-                      {detail.href && (
-                        <Icons.arrowRight className="mt-1 size-4 shrink-0 text-primary opacity-70 transition-transform group-hover:translate-x-1" />
-                      )}
-                    </div>
-                  );
+      {/* ========================================================
+          OTHER SHIPPED SYSTEMS & REPOSITORIES
+          ======================================================== */}
+      {PORTFOLIO.otherProjects && PORTFOLIO.otherProjects.length > 0 && (
+        <section id="repositories" className="space-y-6">
+          <BlurFade delay={0.2}>
+            <div className="flex flex-col justify-between gap-2 border-b border-border/60 pb-4 sm:flex-row sm:items-center">
+              <h3 className="font-mono text-sm font-bold uppercase tracking-wider text-foreground sm:text-base">
+                OTHER SHIPPED SYSTEMS & REPOSITORIES
+              </h3>
+              <div className="font-mono text-xs uppercase tracking-widest text-muted-foreground">
+                {PORTFOLIO.otherProjects.length} REPOSITORIES
+              </div>
+            </div>
+          </BlurFade>
 
-                  const baseClass = "group rounded-2xl border border-border/50 bg-background/30 p-4 transition-all duration-300 hover:-translate-y-1 hover:bg-primary/5 hover:border-primary/30 hover:shadow-md hover:shadow-primary/5";
+          {/* 4x2 Repository Grid */}
+          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
+            {PORTFOLIO.otherProjects.map((project, idx) => (
+              <BlurFade key={project.slug} delay={0.22 + idx * 0.03}>
+                <RepositoryCard project={project} />
+              </BlurFade>
+            ))}
+          </div>
+        </section>
+      )}
 
-                  if (detail.href) {
-                    return (
-                      <a
-                        key={index}
-                        href={detail.href}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className={baseClass}
+      {/* ========================================================
+          TECHNICAL STACK & COMPETENCIES
+          ======================================================== */}
+      <section id="skills" className="space-y-6">
+        <BlurFade delay={0.26}>
+          <div className="flex flex-col justify-between gap-2 border-b border-border/60 pb-4 sm:flex-row sm:items-center">
+            <h2 className="font-mono text-sm font-bold uppercase tracking-wider text-foreground sm:text-base">
+              TECHNICAL STACK & COMPETENCIES
+            </h2>
+            <div className="font-mono text-xs font-semibold tracking-wider text-emerald-400">
+              PRODUCTION VERIFIED
+            </div>
+          </div>
+        </BlurFade>
+
+        {/* 4 Group Columns */}
+        <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-4">
+          {PORTFOLIO.skillGroups.map((group, groupIdx) => {
+            // Icon mapping for high technical clarity
+            let GroupIcon = Code2;
+            if (group.title.includes("FRONTEND")) GroupIcon = Globe;
+            if (group.title.includes("BACKEND")) GroupIcon = Cpu;
+            if (group.title.includes("DATABASES") || group.title.includes("INFRA"))
+              GroupIcon = Database;
+
+            return (
+              <BlurFade key={group.title} delay={0.28 + groupIdx * 0.04}>
+                <div className="group h-full rounded-2xl border border-border/70 bg-card/50 p-5 backdrop-blur-xl transition-all duration-300 hover:border-amber-500/30 hover:bg-card/70 hover:shadow-lg hover:shadow-black/20">
+                  <div className="mb-4 flex items-center gap-2 border-b border-border/40 pb-3">
+                    <GroupIcon className="size-4 text-amber-500/90" />
+                    <h3 className="font-mono text-xs font-bold uppercase tracking-wider text-foreground">
+                      {group.title}
+                    </h3>
+                  </div>
+
+                  <div className="flex flex-wrap gap-1.5">
+                    {group.items.map((skill) => (
+                      <span
+                        key={skill.name}
+                        className="rounded-lg border border-border/60 bg-muted/60 dark:bg-white/[0.03] px-2.5 py-1 font-mono text-xs text-muted-foreground transition-all duration-200 hover:border-amber-500/40 hover:bg-amber-500/10 hover:text-amber-700 dark:hover:text-amber-200"
                       >
-                        {content}
-                      </a>
-                    );
-                  }
+                        {skill.name}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              </BlurFade>
+            );
+          })}
+        </div>
+      </section>
 
-                  return (
-                    <div key={index} className={baseClass}>
-                      {content}
-                    </div>
-                  );
-                })}
+      {/* ========================================================
+          ENGINEERING STANDARDS & PROOF STRIP
+          ======================================================== */}
+      <section id="proof" className="space-y-4">
+        <BlurFade delay={0.32}>
+          <div className="rounded-2xl border border-border/70 bg-card/40 p-6 backdrop-blur-xl">
+            <div className="mb-4 flex items-center justify-between">
+              <div className="flex items-center gap-2 font-mono text-xs font-bold uppercase tracking-wider text-foreground">
+                <ShieldCheck className="size-4 text-emerald-400" />
+                <span>{PORTFOLIO.proof.title}</span>
+              </div>
+              <span className="font-mono text-[10px] uppercase tracking-wider text-muted-foreground">
+                VERIFIABLE ARTIFACTS
+              </span>
+            </div>
+
+            <div className="grid grid-cols-1 gap-3 md:grid-cols-3">
+              {PORTFOLIO.proof.details.map((detail, idx) => (
+                <a
+                  key={idx}
+                  href={detail.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group flex items-start justify-between gap-3 rounded-xl border border-border/60 bg-muted/40 dark:bg-white/[0.02] p-3.5 transition-all hover:border-amber-500/40 hover:bg-amber-500/5 dark:hover:bg-white/[0.04]"
+                >
+                  <span className="text-xs leading-relaxed text-muted-foreground transition-colors group-hover:text-foreground">
+                    {detail.text}
+                  </span>
+                  <ArrowDownRight className="size-3.5 shrink-0 text-muted-foreground/60 transition-transform group-hover:translate-x-0.5 group-hover:translate-y-0.5 group-hover:text-amber-600 dark:group-hover:text-amber-400" />
+                </a>
+              ))}
+            </div>
+          </div>
+        </BlurFade>
+      </section>
+
+      {/* ========================================================
+          GET IN TOUCH · OPEN TO BUILD
+          ======================================================== */}
+      <section id="contact" className="space-y-6">
+        <BlurFade delay={0.36}>
+          <div className="relative overflow-hidden rounded-2xl border border-border/70 bg-card/60 p-6 backdrop-blur-xl shadow-xl shadow-black/20 sm:p-8">
+            <div className="flex flex-col gap-6 lg:flex-row lg:items-center lg:justify-between">
+              <div className="space-y-2">
+                <h2 className="font-mono text-base font-bold uppercase tracking-wider text-foreground sm:text-lg">
+                  GET IN TOUCH · OPEN TO BUILD
+                </h2>
+                <p className="max-w-xl text-sm leading-relaxed text-muted-foreground">
+                  {PORTFOLIO.contact.description}
+                </p>
+              </div>
+
+              {/* Action Buttons */}
+              <div className="flex flex-wrap items-center gap-2.5">
+                {/* Email Button */}
+                <a
+                  href={PORTFOLIO.socialLinks.email.href}
+                  className="flex items-center gap-2 rounded-xl border border-amber-500/40 bg-amber-500/10 px-5 py-2.5 font-mono text-xs font-semibold uppercase tracking-wider text-amber-600 dark:text-amber-400 shadow-sm transition-all hover:bg-amber-500/20 hover:border-amber-500 active:scale-[0.98]"
+                >
+                  <Mail className="size-3.5" />
+                  <span>EMAIL</span>
+                </a>
+
+                {/* LinkedIn */}
+                <a
+                  href={PORTFOLIO.socialLinks.linkedin.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-2 rounded-xl border border-border/70 bg-muted/60 dark:bg-white/[0.03] px-4 py-2.5 font-mono text-xs uppercase tracking-wider text-foreground transition-all hover:border-foreground/30 hover:bg-muted dark:hover:border-white/30 dark:hover:bg-white/[0.06] active:scale-[0.98]"
+                >
+                  <Icons.linkedin className="size-3.5" />
+                  <span>LINKEDIN</span>
+                </a>
+
+                {/* GitHub */}
+                <a
+                  href={PORTFOLIO.socialLinks.github.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-2 rounded-xl border border-border/70 bg-muted/60 dark:bg-white/[0.03] px-4 py-2.5 font-mono text-xs uppercase tracking-wider text-foreground transition-all hover:border-foreground/30 hover:bg-muted dark:hover:border-white/30 dark:hover:bg-white/[0.06] active:scale-[0.98]"
+                >
+                  <Icons.github className="size-3.5" />
+                  <span>GITHUB</span>
+                </a>
+
+                {/* Resume */}
+                <a
+                  href={PORTFOLIO.site.resumeUrl}
+                  download="Vaibhav_Saini_Resume.pdf"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-2 rounded-xl border border-border/70 bg-muted/60 dark:bg-white/[0.03] px-4 py-2.5 font-mono text-xs uppercase tracking-wider text-foreground transition-all hover:border-foreground/30 hover:bg-muted dark:hover:border-white/30 dark:hover:bg-white/[0.06] active:scale-[0.98]"
+                >
+                  <FileText className="size-3.5" />
+                  <span>RESUME</span>
+                </a>
               </div>
             </div>
+
+            {/* Subtle glow background */}
+            <div className="pointer-events-none absolute -right-16 -top-16 size-48 rounded-full bg-amber-500/5 blur-3xl" />
           </div>
         </BlurFade>
       </section>
 
-      <section id="opportunities">
-        <BlurFade delay={BLUR_FADE_DELAY * 14} inView>
-          <div className="glass gradient-border rounded-[2rem] p-6 sm:p-8">
-            <div className="space-y-4">
-              <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl">
-                {PORTFOLIO.opportunity.title}
-              </h2>
-              <div className="flex flex-wrap gap-3">
-                {PORTFOLIO.opportunity.details.map((detail) => (
-                  <Badge
-                    key={detail}
-                    variant="secondary"
-                    className="rounded-full px-4 py-1.5 text-sm"
-                  >
-                    {detail}
-                  </Badge>
-                ))}
-              </div>
+      {/* ========================================================
+          FOOTER & TELEMETRY STATUS
+          ======================================================== */}
+      <footer className="border-t border-border/50 pt-8 pb-4">
+        <BlurFade delay={0.4}>
+          <div className="flex flex-col items-center justify-between gap-4 font-mono text-xs text-muted-foreground sm:flex-row">
+            <div>
+              © 2026 {PORTFOLIO.site.name}
             </div>
-          </div>
-        </BlurFade>
-      </section>
 
-      <section id="contact">
-        <BlurFade delay={BLUR_FADE_DELAY * 15} inView>
-          <div className="grid gap-6 rounded-[2rem] border border-border/50 bg-gradient-to-br from-primary/10 via-background to-background p-6 shadow-lg shadow-primary/5 sm:p-8 lg:grid-cols-[1.2fr_0.8fr] lg:items-end">
-            <div className="space-y-4">
-              <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl">
-                {PORTFOLIO.contact.title}
-              </h2>
-              <p className="max-w-2xl text-base leading-7 text-muted-foreground sm:text-lg">
-                {PORTFOLIO.contact.description}
-              </p>
-            </div>
-            <div className="flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:justify-end">
-              {PORTFOLIO.contact.actions.map((action) =>
-                renderActionLink({
-                  ...action,
-                  variant: action.variant === "default" ? "default" : "outline",
-                  className: "rounded-full px-5",
-                })
-              )}
+            <div className="flex items-center gap-3">
+              <span className="flex items-center gap-1.5 text-[11px] text-emerald-400 font-medium">
+                <span className="size-1.5 rounded-full bg-emerald-400 shadow-[0_0_6px_rgba(52,211,153,0.8)]" />
+                SYSTEM 100% OPERATIONAL
+              </span>
+              <span>·</span>
+              <a
+                href={PORTFOLIO.socialLinks.github.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:text-amber-400 transition-colors uppercase tracking-wider text-[11px]"
+              >
+                DELHI, INDIA · GITHUB.COM/VBHVX
+              </a>
             </div>
           </div>
         </BlurFade>
-      </section>
+      </footer>
     </main>
   );
 }

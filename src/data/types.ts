@@ -30,6 +30,8 @@ export interface FeaturedProject {
   year: string;
   description: string;
   longDescription?: string;
+  architecture?: string;
+  category?: string;
   technologies: readonly string[];
   outcomes: readonly string[];
   image: string;
@@ -42,9 +44,11 @@ export interface OtherProject {
   tagline?: string;
   description?: string;
   longDescription?: string;
+  architecture?: string;
+  category?: string;
   technologies: readonly string[];
   image?: string;
-  links?: readonly ProjectLink[];
+  links: readonly ProjectLink[];
 }
 
 interface SkillItem {
@@ -60,4 +64,12 @@ export interface ProofDetail {
 export interface SkillGroup {
   title: string;
   items: readonly SkillItem[];
+}
+
+export interface EngineeringMetric {
+  label: string;
+  value: string;
+  prefix?: string;
+  description: string;
+  highlightClass: string;
 }

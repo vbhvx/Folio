@@ -33,7 +33,7 @@ next-env.d.ts
 .env.*
 !.env.example
 
-# logs and local diagnostics
+# logs and diagnostics
 *.log
 npm-debug.log*
 yarn-debug.log*
@@ -51,19 +51,39 @@ build_error.txt
 
 # editors and OS files
 .DS_Store
-Thumbs.db
+.DS_Store?
+._*
+[Tt]humbs.db
+ehthumbs.db
 .idea/
 .vscode/
 *.pem
 *.swp
 *.swo
 
-# local uploads and temp files
+# local temporary, recordings, and scratch files
+scratch/
+temp/
+tmp/
 uploads/
 media/
-tmp/
-temp/
 
-# git and tooling metadata
+# media and document files
+*.jpeg
+*.jpg
+*.png
+*.gif
+*.webp
+*.avif
+*.pdf
+*.mp4
+*.webm
+*.mov
+
+# preserve required static assets in public/
+!public/**
+
+# tooling and agent metadata
 .git-history/
 .gemini/
+.agents/

@@ -7,18 +7,20 @@ export const featuredProjects: readonly FeaturedProject[] = [
     name: "Buildra",
     tagline: "AI-powered code generation platform",
     year: "2026",
+    category: "AI Agent Platform",
+    architecture: "Iterative Gemini Agent Loop + E2B Cloud Micro-VMs with real-time SSE streaming (▼ -60% latency)",
     description:
       "Users describe web applications in natural language and receive working Next.js applications inside cloud sandboxes. Built with an AI agent loop using Gemini, event-driven pipelines via Inngest, and real-time token streaming via Server-Sent Events.",
     longDescription:
       "Buildra is an AI code generation platform where users describe what they want in plain English, and the system generates a fully functional Next.js application. The generated code runs inside E2B cloud sandboxes with a live preview, file explorer, and real-time streaming. I built an iterative AI agent loop that generates code, detects errors, and self-corrects — all orchestrated through Inngest event-driven pipelines for reliability and observability.",
-    technologies: ["Next.js", "TypeScript", "React 19", "Inngest", "E2B", "Gemini AI", "Prisma", "PostgreSQL", "Clerk Auth", "SSE"],
+    technologies: ["Next.js", "TypeScript", "React 19", "Inngest", "E2B", "Gemini AI", "Prisma", "PostgreSQL", "SSE"],
     outcomes: [
       "Architected an AI agent loop using Gemini and Inngest that iteratively generates, validates, and corrects code across multiple files.",
       "Integrated E2B cloud sandboxes for secure code execution with real-time preview and file system exploration.",
       "Implemented Server-Sent Events for token-by-token streaming, reducing perceived latency by ~60% compared to batch responses.",
       "Built with Clerk authentication, Prisma ORM, and React 19 Server Components.",
     ],
-    image: `${BASE_PATH}/projects/buildra.png`,
+    image: `${BASE_PATH}/images/projects/buildra.png`,
     links: [
       { label: "GitHub", kind: "source", href: "https://github.com/vbhvx/Buildra" },
     ],
@@ -28,6 +30,8 @@ export const featuredProjects: readonly FeaturedProject[] = [
     name: "Orbit",
     tagline: "Multi-tenant collaborative platform",
     year: "2026",
+    category: "Distributed Architecture",
+    architecture: "Multi-tenant PostgreSQL schema with Org-Scoped RBAC + Fractional Indexing (< O(1) reorder)",
     description:
       "A multi-tenant task management platform with organization-level data isolation, tRPC for end-to-end type safety, and fractional indexing for O(1) drag-and-drop reordering. Designed with Drizzle ORM and PostgreSQL.",
     longDescription:
@@ -39,7 +43,7 @@ export const featuredProjects: readonly FeaturedProject[] = [
       "Built fractional indexing for Kanban board task reordering — O(1) position updates without rewriting adjacent rows.",
       "Created an invitation system with secure org-scoped invite links and role assignment on join.",
     ],
-    image: `${BASE_PATH}/projects/orbit.png`,
+    image: `${BASE_PATH}/images/projects/orbit.png`,
     links: [
       { label: "GitHub", kind: "source", href: "https://github.com/vbhvx/Orbit" },
     ],
@@ -49,18 +53,20 @@ export const featuredProjects: readonly FeaturedProject[] = [
     name: "StackAudit",
     tagline: "AI-powered SaaS cost optimizer",
     year: "2026",
+    category: "Financial Analytics & SaaS",
+    architecture: "3-Tier Resilient Degradation Pipeline (Claude → OpenAI → template) with OpenGraph reporting",
     description:
       "A SaaS tool that audits AI/software spending and generates 12-15 actionable optimization recommendations. Features a resilient LLM pipeline (Claude → OpenAI → template fallback), shareable public report URLs, and a lead-capture funnel.",
     longDescription:
       "StackAudit helps teams reduce their AI and SaaS spending. Users input their current tool stack and spending, and the platform generates a detailed audit report with specific cost reduction recommendations. I built a rules-based audit engine that produces 12-15 recommendations, backed by a resilient LLM summary pipeline that degrades gracefully: Claude API → OpenAI API → template fallback. Reports are persisted in Supabase, accessible via public URLs with OpenGraph metadata for social sharing, and include a lead capture form for follow-up.",
-    technologies: ["Next.js", "TypeScript", "Supabase", "Claude API", "OpenAI API", "Tailwind"],
+    technologies: ["Next.js", "TypeScript", "Supabase", "Claude API", "OpenAI API", "Tailwind", "PostgreSQL"],
     outcomes: [
       "Built a rules-based audit engine that generates 12-15 specific cost optimization recommendations per report.",
       "Designed a resilient LLM summary pipeline with three-tier degradation: Claude → OpenAI → template fallback.",
       "Implemented shareable public report URLs with auto-generated OpenGraph metadata for social preview.",
       "Created a lead-capture funnel with email collection and report download.",
     ],
-    image: `${BASE_PATH}/projects/stackaudit.png`,
+    image: `${BASE_PATH}/images/projects/stackaudit.png`,
     links: [
       { label: "GitHub", kind: "source", href: "https://github.com/vbhvx/StackAudit" },
     ],
@@ -77,6 +83,7 @@ export const otherProjects: readonly OtherProject[] = [
     longDescription:
       "This project automates the process of reading and categorizing customer complaints for manufacturing and pharmaceutical industries. It uses a FastAPI server and passes long-running AI tasks to Celery background workers. The LangGraph AI pipeline extracts details, assesses risk, detects duplicates via pgvector similarity search, and generates CAPA recommendations.",
     technologies: ["Python", "FastAPI", "Celery", "LangGraph", "PostgreSQL", "Redis", "React 19"],
+    image: `${BASE_PATH}/images/projects/nexus-cms.png`,
     links: [
       { label: "GitHub", kind: "source", href: "https://github.com/vbhvx/Nexus-CMS" },
     ],
@@ -90,6 +97,7 @@ export const otherProjects: readonly OtherProject[] = [
     longDescription:
       "StackAuth is a deliberate exercise in understanding what ORMs abstract away. All database queries use parameterized SQL via the pg driver with connection pooling. Features JWT authentication with httpOnly cookies, role-based access control, Zod validation on every endpoint, auto-bootstrapping schema, and interactive Swagger documentation.",
     technologies: ["Node.js", "Express.js", "PostgreSQL", "JWT", "bcrypt", "Zod", "Swagger"],
+    image: `${BASE_PATH}/images/projects/stackauth.png`,
     links: [
       { label: "GitHub", kind: "source", href: "https://github.com/vbhvx/StackAuth" },
     ],
@@ -168,6 +176,7 @@ export const otherProjects: readonly OtherProject[] = [
     longDescription:
       "This project is a React dashboard that shows course progress. It fetches data from Supabase and uses Next.js Server Components with a clean Bento grid layout and fluid animations.",
     technologies: ["Next.js", "Supabase", "Tailwind CSS", "Framer Motion"],
+    image: `${BASE_PATH}/images/projects/learningdashboard.png`,
     links: [
       { label: "GitHub", kind: "source", href: "https://github.com/vbhvx/NextGen-Learning-Dashboard" },
     ],

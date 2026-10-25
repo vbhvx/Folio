@@ -2,7 +2,7 @@
 
 # vaibhavdev.online
 
-**Full-Stack Developer Portfolio — AI, SaaS & Web Engineering**
+**Systems Architecture · Backend Infrastructure · AI Agent Platforms**
 
 [![Live Site](https://img.shields.io/badge/Live-vaibhavdev.online-0A0A0A?style=for-the-badge&logo=vercel&logoColor=white)](https://vaibhavdev.online/)
 [![GitHub](https://img.shields.io/badge/GitHub-vbhvx-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/vbhvx)
@@ -24,9 +24,9 @@
 
 ## Overview
 
-A personal portfolio site designed to showcase 12 production-grade full-stack projects across TypeScript, Python, and Flutter. Built with a data-driven architecture where all content is managed through centralized TypeScript files — no CMS, no database, zero overhead.
+A modern, high-performance personal portfolio designed with a financial technology and Web3 trading terminal aesthetic (inspired by Polymarket, Hyperliquid, and Coinbase). Showcases 11 verified engineering systems across TypeScript, Python, and Dart with documented architecture decisions, honest trade-offs, and live operational status.
 
-The site is optimized for recruiter readability, fast load times, and SEO — serving as the central hub that connects GitHub, LinkedIn, X, and a downloadable resume into a single professional presence.
+Built with Next.js App Router and a centralized data architecture where all site content is managed through type-safe TypeScript data files — zero CMS overhead, zero database queries at request time, and 100% static export portability.
 
 ---
 
@@ -34,16 +34,16 @@ The site is optimized for recruiter readability, fast load times, and SEO — se
 
 | Feature | Details |
 |---------|---------|
-| **Data-Driven Content** | All projects, skills, and copy managed in `src/data/` — update one file, site rebuilds |
-| **Featured + Other Projects** | Two-tier project showcase with detailed descriptions, tech tags, and external links |
-| **Dark / Light Mode** | System-aware theme toggle via `next-themes` with smooth transitions |
-| **Smooth Animations** | Section reveals, hover effects, and page transitions powered by Framer Motion |
-| **Responsive Design** | Mobile-first layout with adaptive navigation and touch-friendly interactions |
-| **SEO Optimized** | Dynamic meta tags, Open Graph metadata, semantic HTML, and structured headings |
-| **Vercel Analytics** | Built-in `@vercel/analytics` integration for visitor and engagement tracking |
-| **Resume Download** | One-click PDF resume download from the navbar and contact section |
-| **Accessible UI** | Radix UI primitives (Avatar, Tooltip, Slot) for keyboard navigation and screen readers |
-| **Static Export** | Fully static output via `next build` — deployable anywhere (Vercel, GitHub Pages, Cloudflare) |
+| **Fintech & Web3 Theme** | Minimalist technical blueprint styling with high-contrast typography, amber accents, and technical borders |
+| **Adaptive Dual Themes** | Dark obsidian theme with subtle white grid lines; Light mode with pure white canvas and crisp black technical grid lines |
+| **Command Strip Navbar** | Sticky frosted glass navbar with live ticking Delhi, India clock (`Asia/Kolkata`), mobile drawer, and status beacon |
+| **Telemetry Metrics Banner** | Highlights engineering benchmarks: shipped systems count, SSE streaming latency reduction, and O(1) fractional indexing |
+| **Two-Tier Architecture Showcase** | 3 Flagship systems with architectural callouts and deep-dive bullets + 8 specialized builds in a compact repository grid |
+| **Individual Deep-Dive Pages** | Dedicated dynamic routes for all 11 projects (`/projects/[slug]`) with system specifications, screenshots, and source code links |
+| **Smooth Micro-Interactions** | Non-blocking entrance reveals and fluid transitions powered by Framer Motion |
+| **Static Export (`output: 'export'`)** | Generates zero-dependency static HTML/CSS/JS (`out/`) deployable anywhere (Vercel, GitHub Pages, Cloudflare) |
+| **SEO & OpenGraph Ready** | Dynamic meta tags, OpenGraph social sharing preview cards, canonical URLs, and structured heading hierarchy |
+| **Resume & Verified Artifacts** | Direct downloadable resume PDF and links to public source code and automated QA suites |
 
 ---
 
@@ -52,14 +52,15 @@ The site is optimized for recruiter readability, fast load times, and SEO — se
 | Layer | Technology |
 |-------|-----------|
 | **Framework** | [Next.js 14](https://nextjs.org/) (App Router, Static Export) |
-| **Language** | [TypeScript](https://www.typescriptlang.org/) |
+| **Language** | [TypeScript 5](https://www.typescriptlang.org/) |
 | **Styling** | [Tailwind CSS](https://tailwindcss.com/) + [tailwindcss-animate](https://github.com/jamiebuilds/tailwindcss-animate) |
-| **UI Components** | [shadcn/ui](https://ui.shadcn.com/) + [Radix UI](https://www.radix-ui.com/) primitives |
+| **Typography** | [Outfit](https://fonts.google.com/specimen/Outfit) (Sans) + [JetBrains Mono](https://fonts.google.com/specimen/JetBrains+Mono) (Monospace) |
+| **UI Primitives** | [Radix UI](https://www.radix-ui.com/) (Tooltip, Slot) |
 | **Animations** | [Framer Motion](https://www.framer.com/motion/) |
-| **Icons** | [Lucide React](https://lucide.dev/) + custom SVG icon components |
-| **Theming** | [next-themes](https://github.com/pacocoursey/next-themes) |
+| **Icons** | [Lucide React](https://lucide.dev/) + Custom SVG icon components |
+| **Theming** | [next-themes](https://github.com/pacocoursey/next-themes) (Class-based dark/light mode) |
 | **Analytics** | [Vercel Analytics](https://vercel.com/analytics) |
-| **Image Optimization** | [Sharp](https://sharp.pixelplumbing.com/) |
+| **Image Processing** | [Sharp](https://sharp.pixelplumbing.com/) |
 | **Package Manager** | [pnpm](https://pnpm.io/) |
 
 ---
@@ -69,26 +70,37 @@ The site is optimized for recruiter readability, fast load times, and SEO — se
 ```
 portfolio/
 ├── public/
-│   ├── documents/          # Resume PDF and downloadable assets
-│   ├── profile/            # Profile image (avatar)
-│   ├── projects/           # Project thumbnail images
-│   └── favicon.png         # Site favicon
+│   ├── documents/          # Resume PDF (Vaibhav_Saini_Resume.pdf)
+│   ├── images/projects/    # Canonical project screenshots (Buildra, Orbit, StackAudit, etc.)
+│   ├── profile/            # Profile avatar (profile.jpg)
+│   ├── favicon.png         # Modern geometric fintech squircle favicon
+│   └── og.png              # OpenGraph 1200x630 social share card
 ├── src/
-│   ├── app/                # Next.js App Router — layouts, pages, metadata
+│   ├── app/                # Next.js App Router
+│   │   ├── globals.css     # Design system, grid styles, dark/light tokens
+│   │   ├── layout.tsx      # Root layout, fonts, theme provider, metadata
+│   │   ├── page.tsx        # Homepage (Hero, Telemetry, Flagships, Repos, Skills, Contact)
+│   │   └── projects/
+│   │       ├── page.tsx    # All projects engineering index
+│   │       └── [slug]/     # Project deep-dive pages (SSG pre-rendered)
 │   ├── components/
-│   │   ├── icons/          # Modular SVG icon components (tech logos, social)
-│   │   └── layout/         # Navbar, theme toggle, footer
-│   ├── data/               # ← All site content lives here
-│   │   ├── portfolio.ts    # Centralized content export (single import)
-│   │   ├── projects.ts     # Featured + other projects array
-│   │   ├── site.ts         # Site config, hero copy, navigation, social links
-│   │   ├── skills.ts       # Grouped technical skills
+│   │   ├── features/       # FlagshipCard, RepositoryCard components
+│   │   ├── icons/          # Modular SVG icons (GitHub, LinkedIn, X, Globe, Folder)
+│   │   ├── layout/         # Navbar, LiveClock, ModeToggle, ThemeProvider
+│   │   ├── magicui/        # BlurFade, BlurFadeText entrance animations
+│   │   └── ui/             # Radix-based Button, Tooltip primitives
+│   ├── data/               # ← Centralized Content Layer
+│   │   ├── portfolio.ts    # Centralized barrel export
+│   │   ├── projects.ts     # Flagship (3) + Additional (8) project definitions
+│   │   ├── site.ts         # Site config, telemetry metrics, hero copy, social links
+│   │   ├── skills.ts       # 4 verified technical competency columns
 │   │   └── types.ts        # Shared TypeScript interfaces
-│   └── lib/                # Utility functions (cn, etc.)
-├── .github/                # GitHub Actions workflow (Pages deployment)
+│   └── lib/                # Utility functions (cn tailwind-merge helper)
+├── .github/                # GitHub Actions workflow (Automated Pages deployment)
 ├── .env.example            # Environment variable template
-├── tailwind.config.ts      # Extended Tailwind theme
-├── next.config.mjs         # Next.js configuration
+├── LICENSE                 # MIT License
+├── tailwind.config.ts      # Extended Tailwind theme (colors, fonts, animations)
+├── next.config.mjs         # Next.js configuration (static export, unoptimized images)
 └── package.json            # Scripts, dependencies
 ```
 
@@ -98,8 +110,8 @@ portfolio/
 
 ### Prerequisites
 
-- **Node.js** ≥ 18
-- **pnpm** ≥ 8 (recommended) — `npm install -g pnpm`
+- **Node.js** ≥ 18 (Node 24 recommended)
+- **pnpm** ≥ 8 — `npm install -g pnpm`
 
 ### Installation
 
@@ -115,7 +127,7 @@ pnpm install
 cp .env.example .env
 ```
 
-### Development
+### Local Development
 
 ```bash
 pnpm dev
@@ -123,64 +135,68 @@ pnpm dev
 
 Open [http://localhost:3000](http://localhost:3000) in your browser.
 
-### Production Build
+### Quality Assurance & Validation
 
 ```bash
-pnpm build
-pnpm start
+# Type check without emitting files
+pnpm typecheck
+
+# Run ESLint validation
+pnpm lint
 ```
 
-### Type Checking & Linting
+### Production Build & Preview
 
 ```bash
-pnpm typecheck    # TypeScript type validation
-pnpm lint         # ESLint
+# Build the production static export (outputs to ./out)
+pnpm build
+
+# Preview the static export locally
+npx serve out
 ```
 
 ---
 
 ## 📝 Content Management
 
-All portfolio content is centralized in `src/data/` — no CMS needed. Edit these files and the site rebuilds automatically:
+All portfolio content is maintained in `src/data/` with strict TypeScript typing:
 
 ### `site.ts` — Global Configuration
+- **`siteConfig`**: Name, email, location, avatar path, resume URL, meta description.
+- **`socialLinks`**: GitHub, LinkedIn, X, and direct mailto links.
+- **`navigation`**: Top navigation items and anchor links.
+- **`engineeringMetrics`**: Key benchmarks displayed in the telemetry strip.
+- **`heroContent` / `contactContent`**: Headings, kickers, and copy.
 
-| Export | What It Controls |
-|--------|-----------------|
-| `siteConfig` | Name, email, location, avatar, resume URL, meta description |
-| `socialLinks` | GitHub, LinkedIn, X, email hrefs |
-| `navigation` | Navbar links and anchor targets |
-| `heroContent` | Hero section copy (title, subtitle, summary, CTA) |
-| `aboutContent` | About section paragraphs and focus description |
-| `proofContent` | "How I Build" section — engineering standards with links |
-| `contactContent` | Contact section heading, description, action links |
+### `projects.ts` — Systems & Repositories
+Projects are divided into two structured collections:
+- **`featuredProjects`**: 3 flagship architectures displayed side-by-side with architecture callouts, key outcomes, and tags.
+- **`otherProjects`**: 8 supporting repositories displayed in a compact 4-column grid.
 
-### `projects.ts` — Project Showcase
-
-Each project entry contains:
-
+Schema definition:
 ```typescript
-{
-  slug: string;           // URL-safe identifier
-  name: string;           // Display name
-  tagline: string;        // One-line description
-  year: string;           // Year built
-  description: string;    // Short description (card view)
-  longDescription: string; // Expanded description (detail view)
-  technologies: string[]; // Tech stack tags
-  outcomes: string[];     // Key achievements / bullet points
-  image: string;          // Thumbnail path
-  links: ActionLink[];    // GitHub, live demo, etc.
+interface Project {
+  slug: string;             // URL identifier (/projects/[slug])
+  name: string;             // Project name
+  tagline: string;          // One-line summary
+  year?: string;            // Release year
+  category?: string;        // System category
+  architecture?: string;    // Core architectural blueprint
+  description: string;      // Short summary (grid view)
+  longDescription?: string; // Comprehensive technical deep-dive
+  technologies: string[];   // Technology tags
+  outcomes?: string[];      // Verified implementation outcomes
+  image?: string;           // Screenshot preview path
+  links: ProjectLink[];     // GitHub source code, live URLs
 }
 ```
 
-Projects are split into two arrays:
-- **`featuredProjects`** — Top 3 showcased prominently (Buildra, Orbit, StackAudit)
-- **`otherProjects`** — Supporting projects in a compact grid
-
-### `skills.ts` — Technical Skills
-
-Skills are organized by category (Languages, Frontend, Backend, Databases, Tools) with icon mappings.
+### `skills.ts` — Verified Competencies
+Organized into 4 verified technical domains:
+1. `LANGUAGES & CORE` (TypeScript, Python, JavaScript, SQL, HTML/CSS, Dart)
+2. `FRONTEND & RUNTIMES` (Next.js, React 19, Tailwind CSS, tRPC, DnD Kit, Flutter)
+3. `BACKEND & AGENTS` (Node.js, Express.js, FastAPI, Inngest, Celery, SSE, LangGraph, JWT/RBAC)
+4. `DATABASES & INFRA` (PostgreSQL, Supabase, Prisma, Drizzle ORM, Docker, E2B Cloud Sandboxes, Postman/CI)
 
 ---
 
@@ -190,19 +206,15 @@ Skills are organized by category (Languages, Frontend, Backend, Databases, Tools
 
 [![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/vbhvx/Portfolio)
 
-Push to `main` and Vercel handles the rest. No additional configuration needed.
+Push to `main` and Vercel automatically detects Next.js, executes `pnpm build`, and serves the static output with zero configuration.
 
 ### GitHub Pages
 
-1. Set `NEXT_PUBLIC_BASE_PATH` in `.env` to your repo name:
+1. If deploying to a subpath repository URL, set `NEXT_PUBLIC_BASE_PATH`:
    ```bash
    NEXT_PUBLIC_BASE_PATH=/Portfolio
    ```
-2. The included `.github/workflows/` action builds and deploys the static export automatically on push.
-
-### Other Platforms (Netlify, Cloudflare Pages)
-
-The site exports as fully static HTML — compatible with any static hosting provider. Run `pnpm build` and deploy the `out/` directory.
+2. The included [`.github/workflows/nextjs.yml`](.github/workflows/nextjs.yml) workflow builds and deploys `./out` automatically upon every push to `main`.
 
 ---
 
@@ -216,6 +228,4 @@ The site exports as fully static HTML — compatible with any static hosting pro
 
 ## 📄 License
 
-This project is open source and available under the [MIT License](LICENSE). 
-
-</div>
+This project is open source and available under the [MIT License](LICENSE).

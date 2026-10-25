@@ -2,62 +2,50 @@ import type { SkillGroup } from "@/data/types";
 
 export const skillGroups: readonly SkillGroup[] = [
   {
-    title: "Languages",
+    title: "LANGUAGES & CORE",
     items: [
       { name: "TypeScript" },
-      { name: "JavaScript" },
+      { name: "JavaScript (ES6+)" },
       { name: "Python" },
       { name: "SQL" },
+      { name: "HTML5 / CSS3" },
       { name: "Dart" },
     ],
   },
   {
-    title: "Frontend",
+    title: "FRONTEND & RUNTIMES",
     items: [
-      { name: "Next.js" },
-      { name: "React" },
+      { name: "Next.js (App Router)" },
+      { name: "React 19" },
       { name: "Tailwind CSS" },
+      { name: "tRPC" },
+      { name: "DnD Kit" },
       { name: "Flutter" },
     ],
   },
   {
-    title: "Backend",
+    title: "BACKEND & AGENTS",
     items: [
       { name: "Node.js" },
       { name: "Express.js" },
-      { name: "NestJS" },
       { name: "FastAPI" },
-      { name: "tRPC" },
+      { name: "Inngest" },
       { name: "Celery" },
+      { name: "SSE Streaming" },
+      { name: "LangGraph" },
+      { name: "JWT / RBAC" },
     ],
   },
   {
-    title: "Databases & ORMs",
+    title: "DATABASES & INFRA",
     items: [
       { name: "PostgreSQL" },
+      { name: "Supabase" },
       { name: "Prisma" },
       { name: "Drizzle ORM" },
-      { name: "Supabase" },
-      { name: "MongoDB" },
-    ],
-  },
-  {
-    title: "Auth & Security",
-    items: [
-      { name: "JWT" },
-      { name: "Role-Based Access Control (RBAC)" },
-      { name: "bcrypt" },
-    ],
-  },
-  {
-    title: "Tools",
-    items: [
-      { name: "Git" },
       { name: "Docker" },
-      { name: "Postman" },
-      { name: "Cypress" },
-      { name: "Swagger" },
-      { name: "LangGraph" },
+      { name: "E2B Cloud Sandboxes" },
+      { name: "Postman / CI/CD" },
     ],
   },
 ] as const;

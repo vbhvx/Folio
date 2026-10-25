@@ -1,10 +1,11 @@
 import type {
   ActionLink,
+  EngineeringMetric,
   NavigationItem,
   ProofDetail,
 } from "@/data/types";
 
-export const BASE_PATH = "";
+export const BASE_PATH = process.env.NEXT_PUBLIC_BASE_PATH || "";
 
 export const siteConfig = {
   name: "Vaibhav Saini",
@@ -12,9 +13,9 @@ export const siteConfig = {
   url: "https://vaibhavdev.online/",
   location: "Delhi, India",
   email: "vaibhavsaini2409@gmail.com",
-  avatarUrl: `${BASE_PATH}/profile/profile.jpeg`,
+  avatarUrl: `${BASE_PATH}/profile/profile.jpg`,
   resumeUrl: `${BASE_PATH}/documents/resume.pdf`,
-  role: "Software Developer · Web • Backend • AI",
+  role: "Software Dev | Web • Backend • AI",
   metaDescription:
     "Vaibhav Saini — Software developer building projects across web, backend, and AI. Featuring AI applications, multi-tenant platforms, and SaaS solutions.",
 } as const;
@@ -34,7 +35,7 @@ export const socialLinks = {
   },
   x: {
     label: "X",
-    href: "https://x.com/vbhvdev",
+    href: "https://x.com/vaibhxdev",
   },
   resume: {
     label: "Resume",
@@ -59,11 +60,34 @@ export const navigation: readonly NavigationItem[] = [
 export const heroContent = {
   availabilityLabel: "Open to Build",
   title: "Vaibhav Saini",
+  kicker: "SYSTEMS ARCHITECTURE · BACKEND INFRASTRUCTURE · AI AGENT PLATFORMS",
   subtitle: "Taking software apart. Building it back.",
   stack: "TypeScript · Python · Next.js · FastAPI · PostgreSQL",
   summary:
     "Software developer working across web, backend, and AI. Each project has documented architecture decisions, real technical trade-offs, and honest engineering.",
 } as const;
+
+export const engineeringMetrics: readonly EngineeringMetric[] = [
+  {
+    label: "SHIPPED SYSTEMS",
+    value: "3 Flagship",
+    description: "Full-stack AI agents, multi-tenancy, and SaaS cost optimization",
+    highlightClass: "text-foreground",
+  },
+  {
+    label: "STREAMING LATENCY",
+    value: "-60%",
+    prefix: "▼",
+    description: "Server-Sent Events token streaming vs batch generation in Buildra",
+    highlightClass: "text-emerald-400",
+  },
+  {
+    label: "INDEXING COMPLEXITY",
+    value: "O(1) Updates",
+    description: "Fractional floating-point indexing without rewriting adjacent rows",
+    highlightClass: "text-sky-400",
+  },
+] as const;
 
 export const heroActions: readonly ActionLink[] = [
   { label: "View Projects", href: "/projects", variant: "default" },
@@ -133,7 +157,7 @@ export const opportunityContent = {
 export const contactContent = {
   title: "Get in Touch",
   description:
-    "Open to internship and full-time opportunities. Let's build something meaningful together.",
+    "Looking for something crazy to build. Let's build something meaningful together.",
   actions: [
     {
       label: "Email",

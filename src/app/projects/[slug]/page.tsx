@@ -1,17 +1,19 @@
 import BlurFade from "@/components/magicui/blur-fade";
-import BlurFadeText from "@/components/magicui/blur-fade-text";
-import { Badge } from "@/components/ui/badge";
 import { Icons } from "@/components/icons";
 import { getAllProjectSlugs, getProjectBySlug } from "@/data/portfolio";
+import type { FeaturedProject, OtherProject } from "@/data/types";
+import { ArrowLeft, ArrowUpRight, Cpu, Layers, ShieldCheck, Terminal } from "lucide-react";
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 
-const BLUR_FADE_DELAY = 0.04;
-
 interface PageProps {
   params: { slug: string };
+}
+
+function isFeaturedProject(project: FeaturedProject | OtherProject): project is FeaturedProject {
+  return "outcomes" in project && Array.isArray(project.outcomes);
 }
 
 export async function generateStaticParams() {
@@ -23,7 +25,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   if (!project) return { title: "Project Not Found" };
 
   return {
-    title: project.name,
+    title: `${project.name} | Systems Architecture & Implementation`,
     description: project.description,
   };
 }
@@ -32,89 +34,75 @@ export default function ProjectDetailPage({ params }: PageProps) {
   const project = getProjectBySlug(params.slug);
   if (!project) notFound();
 
-  const isFeatured = "outcomes" in project && Array.isArray((project as any).outcomes);
-  const outcomes = isFeatured ? (project as any).outcomes as readonly string[] : [];
-  const year = isFeatured ? (project as any).year as string : undefined;
+  const isFeatured = isFeaturedProject(project);
+  const outcomes: readonly string[] = isFeatured ? project.outcomes : [];
+  const year: string = isFeatured ? project.year : "2026";
+  const architecture = project.architecture;
+  const category = project.category || "Systems Engineering";
 
   return (
-    <main className="mx-auto flex min-h-[100dvh] max-w-5xl flex-col gap-16 px-4 pb-24 pt-8 sm:px-6 lg:px-8">
-      {/* Breadcrumb */}
-      <BlurFade delay={BLUR_FADE_DELAY}>
-        <nav className="flex items-center gap-2 pt-4 text-sm text-muted-foreground">
+    <main className="mx-auto flex min-h-screen max-w-5xl flex-col gap-12 px-4 pb-28 pt-8 sm:px-6 lg:px-8">
+      {/* Breadcrumb Navigation */}
+      <BlurFade delay={0.04}>
+        <nav className="flex items-center gap-2 pt-4 font-mono text-xs text-muted-foreground">
           <Link
             href="/"
-            className="transition-colors hover:text-foreground"
+            className="flex items-center gap-1 transition-colors hover:text-amber-400"
           >
-            Home
+            <ArrowLeft className="size-3" />
+            <span>HOME</span>
           </Link>
           <span>/</span>
           <Link
             href="/projects"
-            className="transition-colors hover:text-foreground"
+            className="transition-colors hover:text-amber-400"
           >
-            Projects
+            PROJECTS
           </Link>
           <span>/</span>
-          <span className="font-medium text-foreground">{project.name}</span>
+          <span className="text-foreground">{project.name.toUpperCase()}</span>
         </nav>
       </BlurFade>
 
-      {/* Hero */}
+      {/* Hero Header */}
       <section id="project-hero" className="space-y-6">
         <div className="flex flex-col gap-6 lg:flex-row lg:items-start lg:justify-between">
-          <div className="space-y-4">
-            <BlurFade delay={BLUR_FADE_DELAY * 2}>
-              <div className="flex flex-wrap items-center gap-3">
-                {isFeatured && (
-                  <span className="inline-flex rounded-full border border-primary/30 bg-primary/10 px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.2em] text-primary">
-                    Featured
-                  </span>
-                )}
-                {year && (
-                  <span className="inline-flex rounded-full border border-border/50 px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.2em] text-muted-foreground/80">
-                    {year}
-                  </span>
-                )}
+          <div className="space-y-3">
+            <BlurFade delay={0.08}>
+              <div className="flex flex-wrap items-center gap-2.5">
+                <span className="inline-flex items-center gap-1.5 rounded-lg border border-amber-500/40 bg-amber-500/10 px-2.5 py-1 font-mono text-[10px] font-semibold uppercase tracking-wider text-amber-400">
+                  <Terminal className="size-3" />
+                  <span>{category}</span>
+                </span>
+                <span className="rounded-lg border border-border/60 bg-white/[0.03] px-2.5 py-1 font-mono text-[10px] uppercase tracking-wider text-muted-foreground">
+                  RELEASE: {year}
+                </span>
+                <span className="flex items-center gap-1.5 rounded-lg border border-emerald-500/30 bg-emerald-500/10 px-2.5 py-1 font-mono text-[10px] font-semibold text-emerald-400">
+                  <span className="size-1.5 rounded-full bg-emerald-400 shadow-[0_0_6px_rgba(52,211,153,0.8)]" />
+                  VERIFIED DEPLOYMENT
+                </span>
               </div>
             </BlurFade>
 
-            <BlurFadeText
-              delay={BLUR_FADE_DELAY * 3}
-              as="h1"
-              className="text-4xl font-bold tracking-normal sm:text-5xl lg:text-6xl"
-              yOffset={8}
-              text={project.name}
-            />
+            <BlurFade delay={0.12}>
+              <h1 className="font-sans text-4xl font-extrabold tracking-tight text-foreground sm:text-5xl">
+                {project.name}
+              </h1>
+            </BlurFade>
 
-            <BlurFade delay={BLUR_FADE_DELAY * 4}>
-              <p className="text-lg text-muted-foreground sm:text-xl">
+            <BlurFade delay={0.16}>
+              <p className="max-w-2xl font-mono text-sm text-amber-400/90 sm:text-base">
                 {project.tagline}
               </p>
             </BlurFade>
           </div>
 
-          {/* Action links */}
-          <BlurFade delay={BLUR_FADE_DELAY * 5}>
-            <div className="flex flex-wrap gap-3 lg:flex-col">
+          {/* Action Links */}
+          <BlurFade delay={0.2}>
+            <div className="flex flex-wrap gap-2.5 lg:flex-col">
               {project.links?.map((link) => {
-                if (!link.href) {
-                  return (
-                    <span
-                      key={`${project.name}-${link.label}`}
-                      className="inline-flex cursor-not-allowed items-center gap-2 rounded-full border border-border/50 px-4 py-2 text-sm font-medium opacity-50"
-                    >
-                      {link.kind === "source" ? (
-                        <Icons.github className="size-4" />
-                      ) : (
-                        <Icons.globe className="size-4" />
-                      )}
-                      {link.label}
-                      <span className="text-[10px] text-muted-foreground">
-                        (Coming soon)
-                      </span>
-                    </span>
-                  );
-                }
+                if (!link.href) return null;
+                const isGithub = link.kind === "source" || link.label.toLowerCase().includes("github");
 
                 return (
                   <a
@@ -122,14 +110,15 @@ export default function ProjectDetailPage({ params }: PageProps) {
                     href={link.href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 rounded-full bg-primary px-5 py-2.5 text-sm font-medium text-primary-foreground shadow-sm transition-all hover:shadow-md hover:shadow-primary/20 interactive"
+                    className="flex items-center gap-2 rounded-xl border border-amber-500/40 bg-amber-500/10 px-5 py-2.5 font-mono text-xs font-semibold uppercase tracking-wider text-amber-400 shadow-sm transition-all hover:bg-amber-500/20 hover:border-amber-400 active:scale-[0.98]"
                   >
-                    {link.kind === "source" ? (
+                    {isGithub ? (
                       <Icons.github className="size-4" />
                     ) : (
                       <Icons.globe className="size-4" />
                     )}
-                    {link.label}
+                    <span>{link.label}</span>
+                    <ArrowUpRight className="size-3" />
                   </a>
                 );
               })}
@@ -138,80 +127,94 @@ export default function ProjectDetailPage({ params }: PageProps) {
         </div>
       </section>
 
-      {/* Project image */}
+      {/* Visual Screenshot / Preview */}
       {project.image && (
-        <BlurFade delay={BLUR_FADE_DELAY * 6} inView>
-          <div className="glass gradient-border overflow-hidden rounded-[2rem]">
-            <div className="relative aspect-video w-full overflow-hidden">
-              <Image
-                src={project.image}
-                alt={`${project.name} screenshot`}
-                fill
-                className="object-cover object-top"
-                priority
-              />
-            </div>
+        <BlurFade delay={0.22}>
+          <div className="relative aspect-video w-full overflow-hidden rounded-2xl border border-border/70 bg-card/60 shadow-2xl backdrop-blur-xl">
+            <Image
+              src={project.image}
+              alt={`${project.name} screenshot`}
+              fill
+              className="object-cover object-top"
+              priority
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-background/90 via-transparent to-transparent opacity-60" />
           </div>
         </BlurFade>
       )}
 
-      {/* Description + Tech Stack */}
-      <section className="grid gap-8 lg:grid-cols-[1.5fr_1fr]">
-        <BlurFade delay={BLUR_FADE_DELAY * 7} inView>
-          <div className="glass rounded-[2rem] border border-border/50 p-6 sm:p-8">
-            <h2 className="mb-4 text-xs font-semibold uppercase tracking-[0.2em] text-primary">
-              Overview
+      {/* Architecture Highlight Box */}
+      {architecture && (
+        <BlurFade delay={0.26}>
+          <div className="rounded-2xl border border-amber-500/40 bg-amber-500/10 p-5 backdrop-blur-xl">
+            <div className="mb-2 flex items-center gap-2 font-mono text-xs font-bold uppercase tracking-wider text-amber-400">
+              <Cpu className="size-4 text-amber-400" />
+              <span>CORE ARCHITECTURAL BLUEPRINT</span>
+            </div>
+            <p className="font-sans text-sm leading-relaxed text-amber-200/90 font-medium">
+              {architecture}
+            </p>
+          </div>
+        </BlurFade>
+      )}
+
+      {/* Deep-Dive Overview & Tech Stack */}
+      <section className="grid gap-6 lg:grid-cols-[1.6fr_1fr]">
+        <BlurFade delay={0.3}>
+          <div className="h-full rounded-2xl border border-border/70 bg-card/50 p-6 backdrop-blur-xl space-y-3">
+            <h2 className="flex items-center gap-2 font-mono text-xs font-bold uppercase tracking-wider text-muted-foreground">
+              <Layers className="size-4 text-amber-500" />
+              <span>SYSTEM SPECIFICATION & OVERVIEW</span>
             </h2>
-            <p className="text-base leading-8 text-foreground/90">
+            <p className="text-sm leading-relaxed text-foreground/85">
               {project.longDescription || project.description}
             </p>
           </div>
         </BlurFade>
 
-        <BlurFade delay={BLUR_FADE_DELAY * 8} inView>
-          <div className="glass rounded-[2rem] border border-border/50 p-6 sm:p-8">
-            <h2 className="mb-4 text-xs font-semibold uppercase tracking-[0.2em] text-primary">
-              Tech Stack
+        <BlurFade delay={0.34}>
+          <div className="h-full rounded-2xl border border-border/70 bg-card/50 p-6 backdrop-blur-xl space-y-3">
+            <h2 className="flex items-center gap-2 font-mono text-xs font-bold uppercase tracking-wider text-muted-foreground">
+              <Terminal className="size-4 text-amber-500" />
+              <span>TECH STACK & DEPENDENCIES</span>
             </h2>
-            <div className="flex flex-wrap gap-2">
+            <div className="flex flex-wrap gap-1.5 pt-1">
               {project.technologies.map((tech) => (
-                <Badge
+                <span
                   key={tech}
-                  variant="secondary"
-                  className="rounded-full border-primary/20 bg-primary/5 px-3 py-1.5 text-xs hover:bg-primary/10"
+                  className="rounded-lg border border-border/60 bg-white/[0.03] px-2.5 py-1 font-mono text-xs text-muted-foreground transition-colors hover:border-amber-500/40 hover:text-amber-200"
                 >
                   {tech}
-                </Badge>
+                </span>
               ))}
             </div>
           </div>
         </BlurFade>
       </section>
 
-      {/* Outcomes (featured projects only) */}
+      {/* Engineering Outcomes */}
       {isFeatured && outcomes.length > 0 && (
-        <section id="outcomes">
-          <BlurFade delay={BLUR_FADE_DELAY * 9} inView>
-            <div className="glass gradient-border rounded-[2rem] p-6 sm:p-8">
-              <h2 className="mb-6 text-xs font-semibold uppercase tracking-[0.2em] text-primary">
-                Key Outcomes
-              </h2>
-              <div className="grid gap-4 sm:grid-cols-2">
+        <section id="outcomes" className="space-y-4">
+          <BlurFade delay={0.38}>
+            <div className="rounded-2xl border border-border/70 bg-card/50 p-6 backdrop-blur-xl">
+              <div className="mb-4 flex items-center gap-2 font-mono text-xs font-bold uppercase tracking-wider text-muted-foreground">
+                <ShieldCheck className="size-4 text-emerald-400" />
+                <span>TECHNICAL OUTCOMES & IMPLEMENTATION DECISIONS</span>
+              </div>
+
+              <div className="grid gap-3 sm:grid-cols-2">
                 {outcomes.map((outcome, index) => (
-                  <BlurFade
-                    key={outcome}
-                    delay={BLUR_FADE_DELAY * 10 + index * 0.05}
-                    inView
+                  <div
+                    key={index}
+                    className="flex items-start gap-3 rounded-xl border border-border/50 bg-white/[0.02] p-4 transition-all hover:border-amber-500/30 hover:bg-white/[0.04]"
                   >
-                    <div className="group flex items-start gap-3 rounded-2xl border border-border/30 bg-background/30 p-4 transition-all hover:border-primary/20 hover:bg-primary/5">
-                      <div className="mt-1.5 flex size-6 shrink-0 items-center justify-center rounded-full bg-primary/10 text-[10px] font-bold text-primary">
-                        {index + 1}
-                      </div>
-                      <p className="text-sm leading-relaxed text-foreground/80">
-                        {outcome}
-                      </p>
+                    <div className="mt-0.5 flex size-5 shrink-0 items-center justify-center rounded bg-amber-500/10 font-mono text-xs font-bold text-amber-400">
+                      {index + 1}
                     </div>
-                  </BlurFade>
+                    <p className="text-xs leading-relaxed text-foreground/85">
+                      {outcome}
+                    </p>
+                  </div>
                 ))}
               </div>
             </div>
@@ -219,23 +222,24 @@ export default function ProjectDetailPage({ params }: PageProps) {
         </section>
       )}
 
-      {/* Navigation */}
+      {/* Bottom Nav Bar */}
       <section id="project-nav">
-        <BlurFade delay={BLUR_FADE_DELAY * 12} inView>
-          <div className="flex flex-col items-center gap-4 rounded-[2rem] border border-border/50 bg-gradient-to-br from-primary/10 via-background to-background p-8 shadow-lg shadow-primary/5 sm:flex-row sm:justify-between">
+        <BlurFade delay={0.42}>
+          <div className="flex flex-col items-center justify-between gap-4 rounded-2xl border border-border/70 bg-card/60 p-6 backdrop-blur-xl sm:flex-row">
             <Link
               href="/projects"
-              className="inline-flex items-center gap-2 rounded-full border border-border/50 px-5 py-2.5 text-sm font-medium transition-all hover:border-primary/20 hover:bg-primary/5"
+              className="flex items-center gap-2 rounded-xl border border-border/70 bg-white/[0.03] px-5 py-2.5 font-mono text-xs uppercase tracking-wider text-foreground transition-all hover:border-white/30 hover:bg-white/[0.06]"
             >
-              <Icons.arrowRight className="size-3 rotate-180" />
-              All Projects
+              <ArrowLeft className="size-3" />
+              <span>ALL PROJECTS</span>
             </Link>
+
             <Link
               href="/#contact"
-              className="inline-flex items-center gap-2 rounded-full bg-primary px-5 py-2.5 text-sm font-medium text-primary-foreground shadow-sm transition-all hover:shadow-md hover:shadow-primary/20"
+              className="flex items-center gap-2 rounded-xl border border-amber-500/40 bg-amber-500/10 px-5 py-2.5 font-mono text-xs font-semibold uppercase tracking-wider text-amber-400 transition-all hover:bg-amber-500/20 hover:border-amber-400"
             >
-              Get in Touch
-              <Icons.arrowRight className="size-3" />
+              <span>GET IN TOUCH</span>
+              <ArrowUpRight className="size-3" />
             </Link>
           </div>
         </BlurFade>

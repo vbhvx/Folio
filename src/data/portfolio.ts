@@ -9,6 +9,7 @@ import {
   projectsContent,
   siteConfig,
   socialLinks,
+  engineeringMetrics,
 } from "@/data/site";
 import { featuredProjects, otherProjects, allProjects, getProjectBySlug, getAllProjectSlugs } from "@/data/projects";
 import { skillGroups } from "@/data/skills";
@@ -18,6 +19,7 @@ export const PORTFOLIO = {
   navigation,
   hero: heroContent,
   heroActions,
+  engineeringMetrics,
   about: aboutContent,
   projectsContent,
   featuredProjects,

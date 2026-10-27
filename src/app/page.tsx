@@ -195,18 +195,13 @@ export default function Page() {
           ======================================================== */}
       <section id="projects" className="space-y-6">
         <BlurFade delay={0.12}>
-          <div className="flex flex-col justify-between gap-2 border-b border-border/60 pb-4 sm:flex-row sm:items-center">
-            <div>
-              <h2 className="font-mono text-sm font-bold uppercase tracking-wider text-foreground sm:text-base">
-                FLAGSHIP SHIPPED SYSTEMS
-              </h2>
-              <p className="text-xs text-muted-foreground mt-0.5">
-                Runnable demos, architecture trade-offs, and complete case studies
-              </p>
-            </div>
-            <div className="font-mono text-xs uppercase tracking-widest text-muted-foreground">
-              {PORTFOLIO.featuredProjects.length} REPOSITORIES
-            </div>
+          <div className="border-b border-border/60 pb-4">
+            <h2 className="font-mono text-sm font-bold uppercase tracking-wider text-foreground sm:text-base">
+              FLAGSHIP SHIPPED SYSTEMS
+            </h2>
+            <p className="text-xs text-muted-foreground mt-0.5">
+              Runnable demos, architecture trade-offs, and complete case studies
+            </p>
           </div>
         </BlurFade>
 
@@ -386,18 +381,13 @@ export default function Page() {
       {PORTFOLIO.otherProjects && PORTFOLIO.otherProjects.length > 0 && (
         <section id="repositories" className="space-y-6">
           <BlurFade delay={0.3}>
-            <div className="flex flex-col justify-between gap-2 border-b border-border/60 pb-4 sm:flex-row sm:items-center">
-              <div>
-                <h3 className="font-mono text-sm font-bold uppercase tracking-wider text-foreground sm:text-base">
-                  OTHER SHIPPED SYSTEMS & REPOSITORIES
-                </h3>
-                <p className="text-xs text-muted-foreground mt-0.5">
-                  Specialized backends, test harnesses, and infrastructure implementations
-                </p>
-              </div>
-              <div className="font-mono text-xs uppercase tracking-widest text-muted-foreground">
-                {PORTFOLIO.otherProjects.length} REPOSITORIES
-              </div>
+            <div className="border-b border-border/60 pb-4">
+              <h3 className="font-mono text-sm font-bold uppercase tracking-wider text-foreground sm:text-base">
+                OTHER SHIPPED SYSTEMS & REPOSITORIES
+              </h3>
+              <p className="text-xs text-muted-foreground mt-0.5">
+                Specialized backends, test harnesses, and infrastructure implementations
+              </p>
             </div>
           </BlurFade>
 

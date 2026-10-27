@@ -5,6 +5,7 @@ import { LiveClock } from "@/components/layout/live-clock";
 import { buttonVariants } from "@/components/ui/button";
 import { PORTFOLIO } from "@/data/portfolio";
 import { Icons } from "@/components/icons";
+import { FileText } from "lucide-react";
 import { cn } from "@/lib/utils";
 import Link from "next/link";
 import Image from "next/image";
@@ -100,6 +101,20 @@ export default function Navbar() {
             </div>
 
             <div className="flex items-center gap-1 border-l border-border/40 pl-2">
+              <a
+                href={PORTFOLIO.site.resumeUrl}
+                download="Vaibhav_Saini_Resume.pdf"
+                rel="noopener noreferrer"
+                target="_blank"
+                className={cn(
+                  buttonVariants({ variant: "ghost", size: "icon" }),
+                  "size-8 rounded-lg text-muted-foreground hover:bg-muted dark:hover:bg-white/[0.06] hover:text-foreground"
+                )}
+                aria-label="Download Resume (PDF)"
+                title="Download Resume (PDF)"
+              >
+                <FileText className="size-4" />
+              </a>
               <a
                 href={PORTFOLIO.socialLinks.linkedin.href}
                 rel="noopener noreferrer"

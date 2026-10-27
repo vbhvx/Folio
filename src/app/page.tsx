@@ -471,17 +471,6 @@ export default function Page() {
                   <span>BOOK 20-MIN CALL</span>
                 </a>
 
-                {/* LinkedIn */}
-                <a
-                  href={PORTFOLIO.socialLinks.linkedin.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center gap-2 rounded-xl border border-border/70 bg-muted/60 dark:bg-white/[0.03] px-4 py-2.5 font-mono text-xs uppercase tracking-wider text-foreground transition-all hover:border-foreground/30 hover:bg-muted dark:hover:border-white/30 dark:hover:bg-white/[0.06] active:scale-[0.98]"
-                >
-                  <Icons.linkedin className="size-3.5" />
-                  <span>LINKEDIN</span>
-                </a>
-
                 {/* Resume PDF */}
                 <a
                   href={PORTFOLIO.site.resumeUrl}
@@ -492,6 +481,17 @@ export default function Page() {
                 >
                   <FileText className="size-3.5" />
                   <span>RESUME</span>
+                </a>
+
+                {/* LinkedIn */}
+                <a
+                  href={PORTFOLIO.socialLinks.linkedin.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-2 rounded-xl border border-border/70 bg-muted/60 dark:bg-white/[0.03] px-4 py-2.5 font-mono text-xs uppercase tracking-wider text-foreground transition-all hover:border-foreground/30 hover:bg-muted dark:hover:border-white/30 dark:hover:bg-white/[0.06] active:scale-[0.98]"
+                >
+                  <Icons.linkedin className="size-3.5" />
+                  <span>LINKEDIN</span>
                 </a>
               </div>
             </div>

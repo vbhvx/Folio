@@ -83,17 +83,6 @@ export default function Page() {
                     <span>VIEW PROJECTS</span>
                     <ArrowDownRight className="size-3.5" />
                   </a>
-
-                  {/* Book 20-min Call */}
-                  <a
-                    href={PORTFOLIO.socialLinks.cal.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center gap-2 rounded-xl border border-border/70 bg-card/60 px-4 py-2 font-mono text-xs uppercase tracking-wider text-foreground transition-all hover:border-foreground/30 hover:bg-muted dark:hover:border-white/30 dark:hover:bg-white/[0.04] active:scale-[0.98]"
-                  >
-                    <Calendar className="size-3.5 text-muted-foreground" />
-                    <span>BOOK CALL</span>
-                  </a>
                 </div>
               </div>
             </div>

@@ -39,7 +39,7 @@ export const socialLinks = {
   },
   cal: {
     label: "Book 20-min Call",
-    href: "https://cal.com/vaibhavsaini",
+    href: "https://cal.com/vaibhavdev/intro",
   },
   resume: {
     label: "Resume",
@@ -203,7 +203,7 @@ export const contactContent = {
     },
     {
       label: "Book 20-min Call",
-      href: "https://cal.com/vaibhavsaini",
+      href: "https://cal.com/vaibhavdev/intro",
       variant: "outline",
       external: true,
     },

@@ -8,7 +8,6 @@ import { Icons } from "@/components/icons";
 import { FileText } from "lucide-react";
 import { cn } from "@/lib/utils";
 import Link from "next/link";
-import Image from "next/image";
 import { useState, useEffect, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
@@ -41,61 +40,34 @@ export default function Navbar() {
     <header className="sticky top-3 z-50 mx-auto w-full max-w-6xl px-3 sm:px-6 lg:px-8">
       <div className="glass rounded-2xl border border-border/60 bg-card/75 px-3 py-2.5 shadow-xl shadow-black/20 backdrop-blur-xl sm:px-4">
         <div className="flex items-center justify-between gap-3">
-          {/* Brand + Nav on Left/Center */}
-          <div className="flex items-center gap-6">
-            <Link
-              href="/"
-              className="group flex items-center gap-2.5 font-mono text-xs font-semibold tracking-[0.2em] uppercase text-foreground transition-colors hover:text-amber-400"
-            >
-              <div className="relative size-6 overflow-hidden rounded-md border border-white/20 bg-background/50">
-                <Image
-                  src={PORTFOLIO.site.avatarUrl}
-                  alt={PORTFOLIO.site.name}
-                  fill
-                  className="object-cover"
-                />
-              </div>
-              <span className="relative flex h-2 w-2">
-                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75" />
-                <span className="relative inline-flex h-2 w-2 rounded-full bg-emerald-500" />
-              </span>
-              <span className="hidden sm:inline font-mono tracking-[0.18em]">
-                {PORTFOLIO.site.name}
-              </span>
-              <span className="sm:hidden font-mono tracking-[0.18em]">
-                {PORTFOLIO.site.initials}
-              </span>
-            </Link>
-
-            {/* Desktop Nav Links */}
-            <nav className="hidden items-center gap-1 md:flex">
-              {PORTFOLIO.navigation.map((item) =>
-                item.external ? (
-                  <a
-                    key={item.label}
-                    href={item.href}
-                    download={item.download ? "Vaibhav_Saini_Resume.pdf" : undefined}
-                    rel="noopener noreferrer"
-                    target="_blank"
-                    className="rounded-lg px-2.5 py-1 font-mono text-xs uppercase tracking-wider text-muted-foreground transition-all duration-200 hover:bg-muted dark:hover:bg-white/[0.04] hover:text-foreground"
-                  >
-                    {item.label}
-                  </a>
-                ) : (
-                  <Link
-                    key={item.label}
-                    href={item.href}
-                    className="rounded-lg px-2.5 py-1 font-mono text-xs uppercase tracking-wider text-muted-foreground transition-all duration-200 hover:bg-muted dark:hover:bg-white/[0.04] hover:text-foreground"
-                  >
-                    {item.label}
-                  </Link>
-                )
-              )}
-            </nav>
-          </div>
+          {/* Desktop Nav Links */}
+          <nav className="hidden items-center gap-1 md:flex">
+            {PORTFOLIO.navigation.map((item) =>
+              item.external ? (
+                <a
+                  key={item.label}
+                  href={item.href}
+                  download={item.download ? "Vaibhav_Saini_Resume.pdf" : undefined}
+                  rel="noopener noreferrer"
+                  target="_blank"
+                  className="rounded-lg px-2.5 py-1 font-mono text-xs uppercase tracking-wider text-muted-foreground transition-all duration-200 hover:bg-muted dark:hover:bg-white/[0.04] hover:text-foreground"
+                >
+                  {item.label}
+                </a>
+              ) : (
+                <Link
+                  key={item.label}
+                  href={item.href}
+                  className="rounded-lg px-2.5 py-1 font-mono text-xs uppercase tracking-wider text-muted-foreground transition-all duration-200 hover:bg-muted dark:hover:bg-white/[0.04] hover:text-foreground"
+                >
+                  {item.label}
+                </Link>
+              )
+            )}
+          </nav>
 
           {/* Right: Live Clock + Socials + Theme Toggle + Mobile Menu Button */}
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-2 ml-auto md:ml-0">
             <div className="hidden sm:block">
               <LiveClock />
             </div>

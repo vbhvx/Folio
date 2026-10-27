@@ -429,13 +429,13 @@ export const otherProjects: readonly OtherProject[] = [
   {
     slug: "vibeperfume",
     name: "VibePerfume",
-    tagline: "Frontend e-commerce storefront prototype",
+    tagline: "Haute Parfumerie E-Commerce Experience & Scent Profiler",
     category: "Full-Stack",
     description:
-      "Frontend e-commerce storefront prototype featuring dynamic catalog filtering, lightbox photo gallery, real-time client reviews, and responsive cart state.",
+      "Luxury fragrance storefront engineered around a zero-risk \"Test First\" discovery model. Features interactive 3-tier pyramid note previews, synchronous variant price-per-ml calculations, an interactive olfactory matching quiz, and full cart & wishlist state management.",
     longDescription:
-      "VibePerfume is a modern luxury perfume storefront prototype built with React and TypeScript. Features client-side price and brand filtering, interactive photo gallery modal lightbox, review submission with rating distributions, and fluid responsive design across mobile and desktop.",
-    technologies: ["React", "TypeScript", "Tailwind CSS", "Express.js"],
+      "VibePerfume is a luxury fragrance storefront engineered around a zero-risk 'Test First' discovery model. Features interactive 3-tier pyramid note previews, synchronous variant price-per-ml calculations, an interactive olfactory matching quiz, review distributions, and full client-side cart and wishlist state management.",
+    technologies: ["React", "TypeScript", "Vite", "CSS3", "Vitest"],
     links: [
       { label: "GitHub", kind: "source", href: "https://github.com/vbhvx/VibePerfume" },
     ],

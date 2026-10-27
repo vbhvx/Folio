@@ -52,12 +52,6 @@ export const navigation: readonly NavigationItem[] = [
   { label: "Projects", href: "/#projects" },
   { label: "Skills", href: "/#skills" },
   { label: "Standards", href: "/#standards" },
-  {
-    label: "Resume",
-    href: siteConfig.resumeUrl,
-    external: true,
-    download: true,
-  },
   { label: "Contact", href: "/#contact" },
 ] as const;
 

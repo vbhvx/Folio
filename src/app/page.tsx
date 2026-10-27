@@ -84,18 +84,6 @@ export default function Page() {
                     <ArrowDownRight className="size-3.5" />
                   </a>
 
-                  {/* Resume PDF Button (Amber accented) */}
-                  <a
-                    href={PORTFOLIO.site.resumeUrl}
-                    download="Vaibhav_Saini_Resume.pdf"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center gap-2 rounded-xl border border-border/70 bg-card/60 px-4 py-2 font-mono text-xs font-semibold uppercase tracking-wider text-foreground shadow-sm transition-all hover:border-foreground/30 hover:bg-muted dark:hover:border-white/30 dark:hover:bg-white/[0.04] active:scale-[0.98]"
-                  >
-                    <FileText className="size-3.5 text-muted-foreground" />
-                    <span>RESUME (PDF)</span>
-                  </a>
-
                   {/* Book 20-min Call */}
                   <a
                     href={PORTFOLIO.socialLinks.cal.href}
@@ -105,26 +93,6 @@ export default function Page() {
                   >
                     <Calendar className="size-3.5 text-muted-foreground" />
                     <span>BOOK CALL</span>
-                  </a>
-
-                  {/* GitHub */}
-                  <a
-                    href={PORTFOLIO.socialLinks.github.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center gap-2 rounded-xl border border-border/70 bg-card/60 px-4 py-2 font-mono text-xs uppercase tracking-wider text-foreground transition-all hover:border-foreground/30 hover:bg-muted dark:hover:border-white/30 dark:hover:bg-white/[0.04] active:scale-[0.98]"
-                  >
-                    <Icons.github className="size-3.5 text-muted-foreground" />
-                    <span>GITHUB</span>
-                  </a>
-
-                  {/* Direct Email */}
-                  <a
-                    href={PORTFOLIO.socialLinks.email.href}
-                    className="flex items-center gap-2 rounded-xl border border-border/70 bg-card/60 px-4 py-2 font-mono text-xs text-muted-foreground transition-all hover:border-foreground/30 hover:bg-muted hover:text-foreground dark:hover:border-white/30 dark:hover:bg-white/[0.04] active:scale-[0.98]"
-                  >
-                    <Mail className="size-3.5" />
-                    <span>{PORTFOLIO.site.email}</span>
                   </a>
                 </div>
               </div>

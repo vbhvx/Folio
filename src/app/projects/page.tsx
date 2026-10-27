@@ -1,8 +1,9 @@
 import BlurFade from "@/components/magicui/blur-fade";
 import { FlagshipCard } from "@/components/features/flagship-card";
-import { RepositoryCard } from "@/components/features/repository-card";
+import { ProjectsFilter } from "@/components/features/projects-filter";
 import { PORTFOLIO } from "@/data/portfolio";
 import { ArrowLeft, Terminal, ShieldCheck } from "lucide-react";
+
 import type { Metadata } from "next";
 import Link from "next/link";
 
@@ -48,7 +49,7 @@ export default function ProjectsPage() {
           <BlurFade delay={0.16}>
             <p className="max-w-3xl text-base leading-relaxed text-muted-foreground sm:text-lg">
               Each system highlights real-world technical trade-offs, architecture decisions,
-              type safety, and honest engineering across blockchain, AI agents, and financial infrastructure.
+              type safety, and honest engineering across backend infrastructure, distributed data models, and AI agent platforms.
             </p>
           </BlurFade>
         </div>
@@ -58,9 +59,14 @@ export default function ProjectsPage() {
       <section id="flagship-systems" className="space-y-6">
         <BlurFade delay={0.2}>
           <div className="flex flex-col justify-between gap-2 border-b border-border/60 pb-4 sm:flex-row sm:items-center">
-            <h2 className="font-mono text-sm font-bold uppercase tracking-wider text-foreground sm:text-base">
-              FLAGSHIP ARCHITECTURES
-            </h2>
+            <div>
+              <h2 className="font-mono text-sm font-bold uppercase tracking-wider text-foreground sm:text-base">
+                FLAGSHIP ARCHITECTURES
+              </h2>
+              <p className="text-xs text-muted-foreground mt-0.5">
+                Runnable demos, architecture trade-offs, and complete case studies
+              </p>
+            </div>
             <div className="font-mono text-xs uppercase tracking-widest text-muted-foreground">
               {PORTFOLIO.featuredProjects.length} REPOSITORIES
             </div>
@@ -81,22 +87,23 @@ export default function ProjectsPage() {
         <section id="all-repositories" className="space-y-6">
           <BlurFade delay={0.28}>
             <div className="flex flex-col justify-between gap-2 border-b border-border/60 pb-4 sm:flex-row sm:items-center">
-              <h3 className="font-mono text-sm font-bold uppercase tracking-wider text-foreground sm:text-base">
-                ADDITIONAL BUILDS & SPECIALIZED SERVICES
-              </h3>
+              <div>
+                <h3 className="font-mono text-sm font-bold uppercase tracking-wider text-foreground sm:text-base">
+                  ADDITIONAL BUILDS & SPECIALIZED SERVICES
+                </h3>
+                <p className="text-xs text-muted-foreground mt-0.5">
+                  Filter by backend, AI agent, full-stack, and QA architectures
+                </p>
+              </div>
               <div className="font-mono text-xs uppercase tracking-widest text-muted-foreground">
                 {PORTFOLIO.otherProjects.length} REPOSITORIES
               </div>
             </div>
           </BlurFade>
 
-          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
-            {PORTFOLIO.otherProjects.map((project, idx) => (
-              <BlurFade key={project.slug} delay={0.3 + idx * 0.03}>
-                <RepositoryCard project={project} />
-              </BlurFade>
-            ))}
-          </div>
+          <BlurFade delay={0.3}>
+            <ProjectsFilter projects={PORTFOLIO.otherProjects} />
+          </BlurFade>
         </section>
       )}
 
@@ -107,14 +114,14 @@ export default function ProjectsPage() {
             <div className="mx-auto max-w-xl space-y-4">
               <div className="inline-flex items-center gap-2 font-mono text-xs uppercase tracking-wider text-emerald-400">
                 <ShieldCheck className="size-4" />
-                <span>OPEN TO WORK & CO-FOUNDING INITIATIVES</span>
+                <span>OPEN TO FULL-TIME ROLES & INTERNSHIPS</span>
               </div>
               <h3 className="font-sans text-2xl font-bold tracking-tight text-foreground sm:text-3xl">
                 Interested in building real-world systems together?
               </h3>
               <p className="text-sm leading-relaxed text-muted-foreground">
-                I am actively exploring opportunities across blockchain, Web3 infrastructure,
-                fintech, AI agents, and high-performance backend systems.
+                I am actively exploring opportunities across backend engineering,
+                distributed architectures, and AI agent platforms. Available in Delhi or Remote.
               </p>
               <div className="flex flex-wrap justify-center gap-3 pt-2">
                 <Link
@@ -137,3 +144,4 @@ export default function ProjectsPage() {
     </main>
   );
 }
+

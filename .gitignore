@@ -67,6 +67,9 @@ temp/
 tmp/
 uploads/
 media/
+Resume.tex
+The_*.md
+
 
 # media and document files
 *.jpeg
@@ -82,6 +85,8 @@ media/
 
 # preserve required static assets in public/
 !public/**
+**/.DS_Store
+*.tiff
 
 # tooling and agent metadata
 .git-history/

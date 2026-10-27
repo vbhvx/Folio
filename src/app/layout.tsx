@@ -81,9 +81,40 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const personSchema = {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    name: PORTFOLIO.site.name,
+    url: PORTFOLIO.site.url,
+    jobTitle: PORTFOLIO.site.role,
+    alumniOf: {
+      "@type": "EducationalOrganization",
+      name: "G.B. Pant DSEU Campus-I",
+    },
+    sameAs: [
+      PORTFOLIO.socialLinks.github.href,
+      PORTFOLIO.socialLinks.linkedin.href,
+      PORTFOLIO.socialLinks.x.href,
+    ],
+    knowsAbout: [
+      "Backend Architecture",
+      "AI Agent Systems",
+      "PostgreSQL",
+      "TypeScript",
+      "Python",
+      "Next.js",
+      "FastAPI",
+      "Distributed Systems",
+    ],
+  };
+
   return (
     <html lang="en" suppressHydrationWarning>
       <body className={`min-h-screen bg-background font-sans antialiased ${outfit.variable} ${jetbrainsMono.variable}`}>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(personSchema) }}
+        />
         <ThemeProvider attribute="class" defaultTheme="dark">
           <TooltipProvider delayDuration={0}>
             <div className="relative min-h-screen overflow-x-hidden bg-grid-tech selection:bg-amber-500/20 selection:text-amber-200">
@@ -98,3 +129,4 @@ export default function RootLayout({
     </html>
   );
 }
+

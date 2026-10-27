@@ -7,7 +7,7 @@
 [![Live Site](https://img.shields.io/badge/Live-vaibhavdev.online-0A0A0A?style=for-the-badge&logo=vercel&logoColor=white)](https://vaibhavdev.online/)
 [![GitHub](https://img.shields.io/badge/GitHub-vbhvx-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/vbhvx)
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-vaibhavsaini2-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://linkedin.com/in/vaibhavsaini2/)
-[![X](https://img.shields.io/badge/X-@vbhvdev-000000?style=for-the-badge&logo=x&logoColor=white)](https://x.com/vbhvdev)
+[![X](https://img.shields.io/badge/X-@vaibhxdev-000000?style=for-the-badge&logo=x&logoColor=white)](https://x.com/vaibhxdev)
 
 &nbsp;
 
@@ -87,7 +87,7 @@ portfolio/
 │   │   ├── features/       # FlagshipCard, RepositoryCard components
 │   │   ├── icons/          # Modular SVG icons (GitHub, LinkedIn, X, Globe, Folder)
 │   │   ├── layout/         # Navbar, LiveClock, ModeToggle, ThemeProvider
-│   │   ├── magicui/        # BlurFade, BlurFadeText entrance animations
+│   │   ├── magicui/        # BlurFade entrance animations
 │   │   └── ui/             # Radix-based Button, Tooltip primitives
 │   ├── data/               # ← Centralized Content Layer
 │   │   ├── portfolio.ts    # Centralized barrel export
@@ -117,8 +117,8 @@ portfolio/
 
 ```bash
 # Clone the repository
-git clone https://github.com/vbhvx/Portfolio.git
-cd Portfolio
+git clone https://github.com/vbhvx/Folio.git
+cd Folio
 
 # Install dependencies
 pnpm install
@@ -204,7 +204,7 @@ Organized into 4 verified technical domains:
 
 ### Vercel (Recommended)
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/vbhvx/Portfolio)
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/vbhvx/Folio)
 
 Push to `main` and Vercel automatically detects Next.js, executes `pnpm build`, and serves the static output with zero configuration.
 

@@ -130,23 +130,18 @@ export default function Page() {
               </div>
             </div>
 
-            {/* Right: The Next Chapter Card */}
+            {/* Right: Availability Status Card */}
             <div className="shrink-0">
-              <div className="rounded-2xl border border-border/70 bg-card/60 p-4 backdrop-blur-xl shadow-lg shadow-black/20 space-y-1.5 sm:min-w-[260px]">
-                <div className="flex items-center justify-between gap-3">
-                  <div className="font-mono text-[10px] uppercase tracking-[0.2em] text-muted-foreground">
-                    THE NEXT CHAPTER
-                  </div>
+              <div className="rounded-2xl border border-border/70 bg-card/60 p-4 backdrop-blur-xl shadow-lg shadow-black/20">
+                <div className="font-mono text-[10px] uppercase tracking-[0.2em] text-muted-foreground mb-1.5">
+                  AVAILABILITY STATUS
+                </div>
+                <div className="flex items-center gap-2 font-mono text-xs font-semibold text-emerald-400">
                   <span className="relative flex size-2">
                     <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75" />
-                    <span className="relative inline-flex size-2 rounded-full bg-emerald-500 shadow-[0_0_8px_rgba(16,185,129,0.8)]" />
+                    <span className="relative inline-flex size-2 rounded-full bg-emerald-500" />
                   </span>
-                </div>
-                <div className="font-sans text-xs font-semibold text-foreground">
-                  Building what&apos;s next, together.
-                </div>
-                <div className="font-mono text-[11px] font-medium text-emerald-400">
-                  Full-time roles &amp; internships
+                  <span>{PORTFOLIO.hero.availabilityLabel}</span>
                 </div>
               </div>
             </div>

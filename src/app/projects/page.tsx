@@ -104,7 +104,7 @@ export default function ProjectsPage() {
             <div className="mx-auto max-w-xl space-y-4">
               <div className="inline-flex items-center gap-2 font-mono text-xs uppercase tracking-wider text-emerald-400">
                 <ShieldCheck className="size-4" />
-                <span>OPEN TO FULL-TIME ROLES & INTERNSHIPS</span>
+                <span>OPEN TO INTERNSHIPS & FULL-TIME ROLES</span>
               </div>
               <h3 className="font-sans text-2xl font-bold tracking-tight text-foreground sm:text-3xl">
                 Interested in building real-world systems together?

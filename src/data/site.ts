@@ -62,9 +62,7 @@ export const navigation: readonly NavigationItem[] = [
 ] as const;
 
 export const heroContent = {
-  chapterTitle: "THE NEXT CHAPTER",
-  chapterTagline: "Building what's next, together.",
-  availabilityLabel: "Full-time roles & internships",
+  availabilityLabel: "Open to Internships & Full-time roles",
   title: "Vaibhav Saini",
   kicker: "FULL-STACK ENGINEER · BACKEND ARCHITECTURE · AI AGENT SYSTEMS",
   subtitle: "Taking software apart. Building it back.",
@@ -72,7 +70,6 @@ export const heroContent = {
   summary:
     "I build backend-heavy products and AI agent systems, and document every trade-off. Three shipped systems, each with an architecture write-up, tests, and public source.",
 } as const;
-
 
 export const engineeringMetrics: readonly EngineeringMetric[] = [
   {
@@ -196,7 +193,7 @@ export const contactContent = {
   headline: "Hiring for backend, full-stack, or AI agent systems?",
   description:
     "I reply within 24 hours. Open to full-time software engineering roles and summer internships. Located in Delhi, India — available for local or remote teams worldwide.",
-  availability: "Available Immediately · Delhi / Remote",
+  availability: "Open to Internships & Full-time roles",
   actions: [
     {
       label: "Email Direct",

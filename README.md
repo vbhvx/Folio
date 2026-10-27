@@ -71,7 +71,7 @@ Built with Next.js App Router and a centralized data architecture where all site
 portfolio/
 ├── public/
 │   ├── documents/          # Resume PDF (Vaibhav_Saini_Resume.pdf)
-│   ├── images/projects/    # Canonical project screenshots (Buildra, Orbit, StackAudit, etc.)
+│   ├── images/projects/    # Canonical project screenshots (Shipshape, Orbit, StackAudit, etc.)
 │   ├── profile/            # Profile avatar (profile.jpg)
 │   ├── favicon.png         # Modern geometric fintech squircle favicon
 │   └── og.png              # OpenGraph 1200x630 social share card

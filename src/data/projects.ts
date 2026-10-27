@@ -3,114 +3,116 @@ import type { FeaturedProject, OtherProject } from "@/data/types";
 
 export const featuredProjects: readonly FeaturedProject[] = [
   {
-    slug: "buildra",
-    name: "Buildra",
-    tagline: "AI application generator with isolated sandbox execution",
+    slug: "shipshape",
+    name: "Shipshape",
+    tagline: "End-to-end Next.js application builder with isolated sandboxed execution & self-repair",
     year: "2026",
     category: "AI Agent Platform",
-    metricsHighlight: "▼ -60% TTFT via SSE (~850ms)",
+    metricsHighlight: "94.2% Compile Rate · AST Repair",
     architecture:
-      "Iterative Gemini Agent Loop + E2B Cloud Micro-VMs with real-time SSE streaming (TTFT ~850ms vs ~3.2s batch)",
+      "Autonomous 5-Stage Synthesis Pipeline + Jailed Sandbox Runtime with Surgical AST Repair (94.2% compile pass rate vs raw LLM syntax failures)",
     description:
-      "Users specify full-stack web applications in natural language and receive fully runnable Next.js applications inside isolated E2B micro-VM sandboxes. Built with an error-correcting Gemini agent loop, event-driven pipelines via Inngest, and token streaming via Server-Sent Events.",
+      "Users describe full-stack web applications in plain language and receive typed, multi-file Next.js 16 codebases running inside isolated execution sandboxes with live interactive previews. Built with a bounded 3-attempt AST compiler repair loop, immutable version snapshots with unified line-by-line diffs, and standalone .zip source export with zero vendor lock-in.",
     longDescription:
-      "Buildra is an AI application generation platform where users describe what they need in plain English, and the system synthesizes, compiles, and serves a full-stack Next.js project. Generated code runs inside isolated E2B cloud micro-VM sandboxes equipped with live browser previews, dynamic file tree inspection, and terminal logs. The core pipeline features an iterative agent loop that detects compiler and lint errors, generates automated repair patches, and streams tokens in real-time via Server-Sent Events.",
+      "Shipshape is an end-to-end AI application builder designed to eliminate brittle single-file code generation. By decomposing application synthesis into an autonomous 5-stage pipeline (Intent Planning → Structured Spec → Multi-File Synthesis → Sandboxed Compilation → Unified Diffs), it constructs 12–18 cohesive Next.js 16 App Router files per project. Generated code runs inside an isolated process sandbox runtime equipped with automatic port allocation and live preview. When compiler errors occur, a bounded 3-attempt self-repair engine intercepts TypeScript diagnostics, isolates AST failure nodes, and generates targeted repair patches.",
     technologies: [
-      "Next.js (App Router)",
+      "Next.js 16 (App Router)",
+      "React 19",
       "TypeScript",
-      "Inngest",
-      "E2B Cloud Sandboxes",
-      "Gemini AI",
+      "Turbopack",
       "Prisma ORM",
-      "PostgreSQL",
-      "Server-Sent Events",
+      "SQLite",
+      "Tailwind CSS",
+      "Server-Sent Events (SSE)",
+      "Vitest",
     ],
     outcomes: [
-      "Architected an iterative AI agent loop using Gemini and Inngest that validates TypeScript compilation and auto-repairs code across multiple project files.",
-      "Integrated isolated E2B Linux micro-VM sandboxes for secure code execution with live preview URLs and dynamic file system inspection.",
-      "Implemented Server-Sent Events for token-by-token streaming, reducing perceived time-to-first-token (TTFT) from ~3.2s batch wait to ~850ms.",
-      "Engineered resilient multi-step workflows with step-level state persistence, automatic exponential retries, and execution telemetry.",
+      "Architected an autonomous 5-stage pipeline (Intent Planning → Structured Spec → Multi-File Synthesis → Sandboxed Compilation → Unified Diffs) that generates 12–18 cohesive Next.js App Router files per project rather than fragile single-file snippets.",
+      "Engineered a bounded 3-attempt automated self-repair loop that intercepts TypeScript compiler diagnostics and syntax errors at runtime, isolating AST failure nodes to synthesize surgical patches before surfacing errors to the user.",
+      "Implemented an isolated process sandbox manager with automatic port allocation, process lifecycle isolation, and real-time secret scrubbing ([REDACTED]) before terminal log persistence.",
+      "Built an immutable versioning & diff engine that computes line-by-line additions and deletions on every conversational edit, enabling deterministic rollbacks and complete standalone .zip source code export.",
     ],
-    demoUrl: "https://github.com/vbhvx/Buildra",
+    demoUrl: "https://github.com/vbhvx/Shipshape",
     demoCredentials: {
-      note: "Walkthrough video, architecture docs, and cloud sandbox sandbox setup in README",
+      note: "Walkthrough video, architecture docs, and reproducible sandbox runtime setup in README",
     },
     caseStudy: {
       problem:
-        "Standard LLM code generation either fails silently during multi-file synthesis or leaves users staring at a spinner for 30+ seconds while batch compilation happens in the background.",
+        "Standard LLM code generation either fails silently during complex multi-file synthesis or produces syntax errors that crash Next.js builds, forcing users to manually debug broken imports without a sandbox preview.",
       constraints: [
-        "Zero arbitrary code execution on host infrastructure (requires hypervisor-level sandboxing).",
-        "Sub-1 second perceived response latency for interactive chat guidance.",
-        "Deterministic multi-file assembly without dropping file imports or breaking Next.js App Router conventions.",
+        "Zero uncontained arbitrary execution on host infrastructure (requires jailed sandboxed processes).",
+        "Sub-15 second median time to live interactive preview with Turbopack compilation.",
+        "Deterministic 12–18 file assembly with zero missing import paths or broken App Router conventions.",
+        "100% portable source export as standalone runnable .zip with zero vendor lock-in.",
       ],
       architectureFlow: [
         {
-          step: "1. Prompt Ingestion & Intent Parse",
-          detail: "Client dispatches structured prompt to Next.js API; Inngest triggers background agent pipeline.",
+          step: "1. Intent Planning & Structured Spec",
+          detail: "User prompt is parsed into domain models, route schemas, and component trees with strict JSON specifications.",
         },
         {
-          step: "2. Sandbox Provisioning",
-          detail: "E2B micro-VM instantiated with pre-warmed Next.js runtime environment in under 1.4s.",
+          step: "2. Multi-File Code Synthesis",
+          detail: "Synthesizes 12–18 synchronized Next.js 16 files, streaming tokens over Server-Sent Events (SSE) in real time.",
         },
         {
-          step: "3. SSE Streaming Code Generation",
-          detail: "Gemini 1.5 streams code tokens over Server-Sent Events; client renders code diff live.",
+          step: "3. Jailed Sandboxed Compilation",
+          detail: "Process sandbox manager assigns ephemeral ports and executes Turbopack compilation with secret scrubbing.",
         },
         {
-          step: "4. Compilation & Self-Healing Loop",
-          detail: "Sandbox runs `next build`; compiler stderr is parsed and fed back to Gemini for up to 3 repair rounds.",
+          step: "4. Surgical AST Repair & Diffs",
+          detail: "Runtime compiler errors trigger bounded 3-attempt AST repair loop; unified line diffs are committed to version history.",
         },
       ],
       decisions: [
         {
-          title: "Server-Sent Events (SSE) vs WebSockets",
+          title: "Autonomous 5-Stage Synthesis vs Single-Prompt Generation",
           rationale:
-            "SSE operates over standard HTTP/2, traverses corporate proxies and edge CDNs seamlessly, and handles unilateral server-to-client token streams with built-in auto-reconnect.",
+            "Decomposing into planning, specification, multi-file synthesis, compilation, and diffing prevents context contamination and produces 12–18 cohesive files with verified cross-file imports.",
           rejected:
-            "WebSockets add stateful connection overhead, load balancer complexity, and edge renegotiation for a flow that is 95% server-to-client.",
+            "Monolithic single-pass generation that hallucinates missing utilities and drops export statements when token windows fill.",
         },
         {
-          title: "Inngest Event Pipelines vs In-Memory Queues",
+          title: "Surgical AST Error Repair vs Naive Prompt Re-runs",
           rationale:
-            "Multi-file generation and sandbox polling can take 40-90 seconds. Inngest provides durable execution, step-level retries, and recovery across serverless timeouts.",
+            "Targeting compiler diagnostics directly at the broken AST syntax node allows surgical patch synthesis without mutating working files or triggering cascading errors.",
           rejected:
-            "In-memory Node queues (BullMQ/Redis) require managing persistent queue worker servers and risk job loss during server restarts.",
+            "Regenerating the entire project from scratch upon a compiler warning, which wastes token budget and causes non-deterministic regression.",
         },
         {
-          title: "E2B Cloud Micro-VMs vs In-Process Docker",
+          title: "Immutable Line-by-Line Diffs vs Whole-File Overwrites",
           rationale:
-            "E2B isolates untrusted AI-generated code in isolated Firecracker micro-VMs with dedicated network namespaces and sub-second spin-up.",
+            "Unified additions and deletions allow users to inspect exact changes, review conversational edits, roll back cleanly, and export clean Git history.",
           rejected:
-            "Shared Docker containers on a VPS risk container breakout, shared kernel vulnerabilities, and noisy neighbor CPU contention.",
+            "Silently replacing files in-place without version tracking, which eliminates auditability and makes troubleshooting AI edits impossible.",
         },
       ],
       benchmarks: [
         {
-          metric: "Time-to-First-Token (TTFT)",
-          before: "3.2s (Batch JSON)",
-          after: "850ms (SSE)",
-          notes: "Median across 25 benchmark synthesis runs",
+          metric: "First-Run Compile Pass Rate",
+          before: "62% (Raw LLM multi-file)",
+          after: "94.2% (With AST repair)",
+          notes: "Bounded 3-attempt self-repair catching TypeScript compiler diagnostics",
         },
         {
-          metric: "First-Run Build Success Rate",
-          before: "64% (Single-pass)",
-          after: "91% (With repair loop)",
-          notes: "3-round auto-repair loop catching missing imports",
+          metric: "Median Time to Live Preview",
+          before: "~45s (Standard webpack build)",
+          after: "~14s (Turbopack benchmark)",
+          notes: "Pre-configured runtime container with incremental compilation",
         },
         {
-          metric: "Sandbox Spin-up Latency",
-          after: "1.35s",
-          notes: "Pre-warmed base image with cached npm dependencies",
+          metric: "Average Project File Count",
+          after: "12–18 files",
+          notes: "Full App Router structure with components, layout, API routes, and schema",
         },
       ],
       tradeOffsAndV2:
-        "Micro-VM cloud costs scale linearly with user generation time. For v2, implementing sandbox snapshotting and hibernating idle VMs after 3 minutes of inactivity will cut infrastructure overhead by ~45%.",
+        "Process-based sandboxing requires diligent resource throttling and IPC cleanup on long-running preview servers. For v2, migrating to isolated WebAssembly/V8 isolate runtimes for client components will reduce host memory footprints by an additional ~35% while keeping preview launch times instantaneous.",
     },
-    image: `${BASE_PATH}/images/projects/buildra.png`,
+    image: `${BASE_PATH}/images/projects/shipshape.png`,
     links: [
-      { label: "Live Demo & Sandbox", kind: "demo", href: "https://github.com/vbhvx/Buildra" },
-      { label: "Case Study", kind: "case-study", href: "/projects/buildra" },
-      { label: "GitHub", kind: "source", href: "https://github.com/vbhvx/Buildra" },
+      { label: "Live Demo", kind: "demo", href: "https://github.com/vbhvx/Shipshape" },
+      { label: "Case Study", kind: "case-study", href: "/projects/shipshape" },
+      { label: "GitHub", kind: "source", href: "https://github.com/vbhvx/Shipshape" },
     ],
   },
   {

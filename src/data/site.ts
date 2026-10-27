@@ -79,10 +79,10 @@ export const engineeringMetrics: readonly EngineeringMetric[] = [
     highlightClass: "text-foreground",
   },
   {
-    label: "STREAMING LATENCY (TTFT)",
-    value: "-60% TTFT",
-    prefix: "▼",
-    description: "Time-to-first-token reduced from ~3.2s to ~850ms via Server-Sent Events vs batch generation",
+    label: "FIRST-RUN COMPILE RATE",
+    value: "94.2%",
+    prefix: "▲",
+    description: "First-run compile pass rate achieved via bounded 3-attempt surgical AST repair in Shipshape",
     highlightClass: "text-emerald-400",
   },
   {
@@ -92,6 +92,7 @@ export const engineeringMetrics: readonly EngineeringMetric[] = [
     highlightClass: "text-sky-400",
   },
 ] as const;
+
 
 export const heroActions: readonly ActionLink[] = [
   { label: "View Projects", href: "#projects", variant: "default" },
@@ -164,7 +165,7 @@ export const proofContent: {
   details: [
     {
       text: "Architecture documents explaining decisions, trade-offs, and failure modes",
-      href: "https://github.com/vbhvx/Buildra",
+      href: "https://github.com/vbhvx/Shipshape",
     },
     {
       text: "Amortized O(1) fractional indexing & type-safe tRPC client-server procedures",

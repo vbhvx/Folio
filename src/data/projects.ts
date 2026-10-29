@@ -410,7 +410,6 @@ export const otherProjects: readonly OtherProject[] = [
       "VibePerfume is a luxury fragrance storefront engineered around a zero-risk 'Test First' discovery model. Features interactive 3-tier pyramid note previews, synchronous variant price-per-ml calculations, an interactive olfactory matching quiz, review distributions, and full client-side cart and wishlist state management.",
     technologies: ["React", "TypeScript", "Vite", "CSS3", "Vitest"],
     links: [
-      { label: "Demo", kind: "demo", href: "https://vibeperfume.vaibhavdev.online/" },
       { label: "Source", kind: "source", href: "https://github.com/vbhvx/VibePerfume" },
     ],
   },

@@ -205,32 +205,20 @@ export function ArchiveTable({
                         </div>
                       </td>
 
-                      {/* Links */}
+                      {/* Links - GitHub Source Code Only for Tier 3 */}
                       <td className="px-4 py-3.5 text-right whitespace-nowrap">
-                        <div className="flex items-center justify-end gap-2 font-mono text-xs">
-                          {demoLink?.href && (
-                            <a
-                              href={demoLink.href}
-                              target="_blank"
-                              rel="noopener noreferrer"
-                              className="inline-flex items-center gap-1 rounded border border-amber-500/40 bg-amber-500/10 px-2 py-1 text-[11px] font-semibold text-amber-400 hover:bg-amber-500/20 hover:border-amber-400 transition-all"
-                              title="Open Live Deployment"
-                            >
-                              <span>DEMO</span>
-                              <ArrowUpRight className="size-2.5" />
-                            </a>
-                          )}
-
+                        <div className="flex items-center justify-end font-mono text-xs">
                           {sourceLink?.href && (
                             <a
                               href={sourceLink.href}
                               target="_blank"
                               rel="noopener noreferrer"
-                              className="inline-flex items-center gap-1 rounded border border-border/60 bg-muted/60 dark:bg-white/[0.04] px-2 py-1 text-[11px] text-foreground hover:bg-muted dark:hover:bg-white/[0.08] transition-all"
+                              className="inline-flex items-center gap-1.5 rounded-lg border border-border/70 bg-card/80 px-2.5 py-1 text-[11px] font-semibold text-foreground hover:bg-muted dark:hover:bg-white/[0.06] hover:border-foreground/30 transition-all font-mono active:scale-[0.98]"
                               title="View GitHub Repository"
                             >
-                              <Icons.github className="size-3" />
-                              <span className="hidden sm:inline">CODE</span>
+                              <Icons.github className="size-3 text-muted-foreground" />
+                              <span>CODE</span>
+                              <ArrowUpRight className="size-2.5 text-muted-foreground" />
                             </a>
                           )}
                         </div>
@@ -315,24 +303,23 @@ export function ArchiveTable({
                 </div>
               </div>
 
-              {/* Modal Actions */}
+              {/* Modal Actions - GitHub Source Only */}
               <div className="pt-2 flex items-center justify-end gap-2 border-t border-border/40">
-                {activeModalProject.links.map((link) => (
-                  <a
-                    key={link.label}
-                    href={link.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className={`inline-flex items-center gap-1.5 rounded-xl px-4 py-2 font-mono text-xs font-semibold uppercase tracking-wider transition-all ${
-                      link.kind === "demo"
-                        ? "border border-amber-500/50 bg-amber-500/20 text-amber-400 hover:bg-amber-500/30"
-                        : "border border-border/80 bg-muted/60 text-foreground hover:bg-muted"
-                    }`}
-                  >
-                    <span>{link.label}</span>
-                    <ArrowUpRight className="size-3.5" />
-                  </a>
-                ))}
+                {activeModalProject.links
+                  .filter((l) => l.kind !== "demo")
+                  .map((link) => (
+                    <a
+                      key={link.label}
+                      href={link.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-2 rounded-xl border border-border/80 bg-card/80 px-4 py-2 font-mono text-xs font-semibold uppercase tracking-wider text-foreground hover:bg-muted dark:hover:bg-white/[0.06] hover:border-foreground/30 transition-all active:scale-[0.98]"
+                    >
+                      <Icons.github className="size-3.5 text-muted-foreground" />
+                      <span>View GitHub Code</span>
+                      <ArrowUpRight className="size-3 text-muted-foreground" />
+                    </a>
+                  ))}
               </div>
             </motion.div>
           </div>
@@ -341,3 +328,4 @@ export function ArchiveTable({
     </div>
   );
 }
+

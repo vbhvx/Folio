@@ -168,28 +168,41 @@ export default function ProjectDetailPage({ params }: PageProps) {
       {/* Guest Demo Credentials Box (if available) */}
       {demoCredentials && (
         <BlurFade delay={0.24}>
-          <div className="rounded-2xl border border-emerald-500/30 bg-emerald-500/10 p-5 backdrop-blur-xl">
-            <div className="flex items-center gap-2 font-mono text-xs font-bold uppercase tracking-wider text-emerald-400 mb-2">
-              <KeyRound className="size-4" />
-              <span>LIVE DEMO ACCESS & SEEDED TEST ENVIRONMENT</span>
+          <div className="rounded-2xl border border-emerald-500/30 bg-emerald-500/10 p-5 backdrop-blur-xl flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+            <div>
+              <div className="flex items-center gap-2 font-mono text-xs font-bold uppercase tracking-wider text-emerald-400 mb-2">
+                <KeyRound className="size-4" />
+                <span>LIVE DEMO ACCESS & SEEDED TEST ENVIRONMENT</span>
+              </div>
+              <div className="text-xs text-foreground/90 font-mono space-y-1">
+                {demoCredentials.email && (
+                  <div>
+                    <span className="text-muted-foreground">Demo Account: </span>
+                    <span className="font-semibold text-emerald-300">{demoCredentials.email}</span>
+                  </div>
+                )}
+                {demoCredentials.password && (
+                  <div>
+                    <span className="text-muted-foreground">Password: </span>
+                    <span className="font-semibold text-emerald-300">{demoCredentials.password}</span>
+                  </div>
+                )}
+                {demoCredentials.note && (
+                  <p className="text-xs text-muted-foreground pt-1">{demoCredentials.note}</p>
+                )}
+              </div>
             </div>
-            <div className="text-xs text-foreground/90 font-mono space-y-1">
-              {demoCredentials.email && (
-                <div>
-                  <span className="text-muted-foreground">Demo Account: </span>
-                  <span className="font-semibold text-emerald-300">{demoCredentials.email}</span>
-                </div>
-              )}
-              {demoCredentials.password && (
-                <div>
-                  <span className="text-muted-foreground">Password: </span>
-                  <span className="font-semibold text-emerald-300">{demoCredentials.password}</span>
-                </div>
-              )}
-              {demoCredentials.note && (
-                <p className="text-xs text-muted-foreground pt-1">{demoCredentials.note}</p>
-              )}
-            </div>
+            {isFeatured && project.demoUrl && (
+              <a
+                href={project.demoUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center justify-center gap-2 rounded-xl border border-emerald-500/50 bg-emerald-500/20 px-4 py-2.5 font-mono text-xs font-semibold uppercase tracking-wider text-emerald-300 transition-all hover:bg-emerald-500/30 hover:border-emerald-400 shrink-0"
+              >
+                <span>OPEN LIVE APP</span>
+                <ArrowUpRight className="size-3.5" />
+              </a>
+            )}
           </div>
         </BlurFade>
       )}

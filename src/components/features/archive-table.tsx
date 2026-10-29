@@ -224,12 +224,6 @@ export function ArchiveTable({
                       l.label.toLowerCase().includes("github") ||
                       l.label.toLowerCase().includes("source")
                   );
-                  const isTier3 = 'tier' in project && project.tier === 3;
-                  const demoLink = !isTier3
-                    ? project.links.find(
-                        (l) => l.kind === "demo" || l.label.toLowerCase().includes("demo")
-                      )
-                    : undefined;
 
                   const keyResult =
                     ('result' in project && project.result)
@@ -285,18 +279,6 @@ export function ArchiveTable({
                       {/* 6. Links */}
                       <td className="px-4 py-3.5 text-right whitespace-nowrap align-top">
                         <div className="flex items-center justify-end gap-1.5 font-mono text-xs">
-                          {demoLink?.href && (
-                            <a
-                              href={demoLink.href}
-                              target="_blank"
-                              rel="noopener noreferrer"
-                              className="inline-flex items-center gap-1 rounded border border-amber-500/40 bg-amber-500/10 px-2 py-1 text-[11px] font-semibold text-amber-500 dark:text-amber-300 hover:bg-amber-500/20 hover:border-amber-400 transition-all active:scale-[0.98]"
-                              title="Open Live Deployment"
-                            >
-                              <span>DEMO</span>
-                              <ArrowUpRight className="size-2.5" />
-                            </a>
-                          )}
                           {sourceLink?.href && (
                             <a
                               href={sourceLink.href}
@@ -408,26 +390,24 @@ export function ArchiveTable({
 
               {/* Modal Actions */}
               <div className="pt-2 flex items-center justify-end gap-2 border-t border-border/40">
-                {activeModalProject.links.map((link) => {
-                  const isDemo = link.kind === "demo";
-                  return (
-                    <a
-                      key={link.label}
-                      href={link.href}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className={`inline-flex items-center gap-1.5 rounded-xl border px-4 py-2 font-mono text-xs font-semibold uppercase tracking-wider transition-all active:scale-[0.98] ${
-                        isDemo
-                          ? "border-amber-500/40 bg-amber-500/15 text-amber-500 dark:text-amber-300 hover:bg-amber-500/25 hover:border-amber-400"
-                          : "border-border/80 bg-card/80 text-foreground hover:bg-muted dark:hover:bg-white/[0.06] hover:border-foreground/30"
-                      }`}
-                    >
-                      {!isDemo && <Icons.github className="size-3.5 text-muted-foreground" />}
-                      <span>{link.label}</span>
-                      <ArrowUpRight className="size-3 text-muted-foreground" />
-                    </a>
-                  );
-                })}
+                {activeModalProject.links
+                  .filter((link) => link.kind !== "demo" && !link.label.toLowerCase().includes("demo"))
+                  .map((link) => {
+                    const isCaseStudy = link.kind === "case-study";
+                    return (
+                      <a
+                        key={link.label}
+                        href={link.href}
+                        target={isCaseStudy ? undefined : "_blank"}
+                        rel={isCaseStudy ? undefined : "noopener noreferrer"}
+                        className="inline-flex items-center gap-1.5 rounded-xl border border-border/80 bg-card/80 px-4 py-2 font-mono text-xs font-semibold uppercase tracking-wider text-foreground hover:bg-muted dark:hover:bg-white/[0.06] hover:border-foreground/30 transition-all active:scale-[0.98]"
+                      >
+                        {!isCaseStudy && <Icons.github className="size-3.5 text-muted-foreground" />}
+                        <span>{link.label}</span>
+                        <ArrowUpRight className="size-3 text-muted-foreground" />
+                      </a>
+                    );
+                  })}
               </div>
             </motion.div>
           </div>

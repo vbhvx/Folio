@@ -461,7 +461,6 @@ export const otherProjects: readonly OtherProject[] = [
   {
     slug: "teamly",
     name: "Teamly",
-    year: "2026",
     tier: 3,
     tagline: "Versioned REST API with RBAC & rate limiting",
     category: "Backend",
@@ -473,6 +472,23 @@ export const otherProjects: readonly OtherProject[] = [
     technologies: ["Node.js", "Express.js", "MongoDB", "JWT", "Swagger", "Zod"],
     links: [
       { label: "Source", kind: "source", href: "https://github.com/vbhvx/Teamly" },
+    ],
+  },
+  {
+    slug: "learningdashboard",
+    name: "LearningDashboard",
+    tier: 3,
+    tagline: "Course progress & student telemetry dashboard",
+    category: "Full-Stack",
+    result: "Bento grid telemetry with Supabase PostgreSQL persistence & Framer Motion",
+    description:
+      "Student learning analytics dashboard with Bento grid layout, Supabase PostgreSQL data persistence, and fluid Framer Motion interactions.",
+    longDescription:
+      "Interactive learning telemetry dashboard built with Next.js Server Components and Supabase. Visualizes syllabus completion, active study streaks, and quiz benchmarks within a modular technical Bento grid.",
+    technologies: ["Next.js (App Router)", "TypeScript", "Supabase", "Tailwind CSS", "Framer Motion"],
+    image: `${BASE_PATH}/images/projects/learningdashboard.png`,
+    links: [
+      { label: "Source", kind: "source", href: "https://github.com/vbhvx/LearningDashboard" },
     ],
   },
 ] as const;

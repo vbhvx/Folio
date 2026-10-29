@@ -238,8 +238,7 @@ export default function Page() {
       <section id="archive-preview" className="space-y-4">
         <BlurFade delay={0.2}>
           <ArchiveTable
-            projects={PORTFOLIO.archiveProjects}
-            limit={5}
+            projects={PORTFOLIO.allProjects}
             showFilters={false}
             showSearch={false}
             title="ENGINEERING ARCHIVE & REPERTOIRE"

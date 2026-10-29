@@ -1,14 +1,15 @@
 "use client";
 
 import { Icons } from "@/components/icons";
-import type { OtherProject } from "@/data/types";
+import type { FeaturedProject, OtherProject } from "@/data/types";
 import { ArrowUpRight, Search, X } from "lucide-react";
-import Link from "next/link";
-import { useState, useMemo } from "react";
+import { useState, useMemo, useRef, useCallback, useEffect } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 
+type AnyProject = FeaturedProject | OtherProject;
+
 interface ArchiveTableProps {
-  projects: readonly OtherProject[];
+  projects: readonly AnyProject[];
   showFilters?: boolean;
   showSearch?: boolean;
   limit?: number;
@@ -26,7 +27,19 @@ export function ArchiveTable({
 }: ArchiveTableProps) {
   const [selectedFilter, setSelectedFilter] = useState<string>("All");
   const [searchQuery, setSearchQuery] = useState<string>("");
-  const [activeModalProject, setActiveModalProject] = useState<OtherProject | null>(null);
+  const [activeModalProject, setActiveModalProject] = useState<AnyProject | null>(null);
+
+  const scrollContainerRef = useRef<HTMLDivElement>(null);
+  const [isScrolledToEnd, setIsScrolledToEnd] = useState(false);
+
+  // Monitor scroll position to toggle the subtle bottom fade hint
+  const checkScrollPosition = useCallback(() => {
+    const el = scrollContainerRef.current;
+    if (!el) return;
+    // Check if scrolled within 8px of the bottom or if content does not overflow
+    const atBottom = el.scrollHeight - el.scrollTop - el.clientHeight <= 8;
+    setIsScrolledToEnd(atBottom);
+  }, []);
 
   // Extract unique categories
   const categories = useMemo(() => {
@@ -37,9 +50,14 @@ export function ArchiveTable({
     return ["All", ...Array.from(set)];
   }, [projects]);
 
-  // Filter and search logic
+  // Filter, search, and sort newest first
   const filteredProjects = useMemo(() => {
-    let list = [...projects];
+    // Sort newest first by year
+    let list = [...projects].sort((a, b) => {
+      const yearA = parseInt(a.year || "2026", 10);
+      const yearB = parseInt(b.year || "2026", 10);
+      return yearB - yearA;
+    });
 
     if (selectedFilter !== "All") {
       list = list.filter((p) => p.category === selectedFilter);
@@ -53,7 +71,7 @@ export function ArchiveTable({
           p.description?.toLowerCase().includes(q) ||
           p.technologies.some((t) => t.toLowerCase().includes(q)) ||
           p.category?.toLowerCase().includes(q) ||
-          p.result?.toLowerCase().includes(q)
+          ('result' in p && p.result?.toLowerCase().includes(q))
       );
     }
 
@@ -64,9 +82,15 @@ export function ArchiveTable({
     return list;
   }, [projects, selectedFilter, searchQuery, limit]);
 
+  useEffect(() => {
+    checkScrollPosition();
+    window.addEventListener("resize", checkScrollPosition);
+    return () => window.removeEventListener("resize", checkScrollPosition);
+  }, [checkScrollPosition, filteredProjects]);
+
   return (
     <div className="space-y-4">
-      {/* Optional Section Header */}
+      {/* Section Header with 'Showing 5 of N · scroll for more' indicator */}
       {(title || subtitle) && (
         <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-3 border-b border-border/60 pb-4">
           <div>
@@ -80,19 +104,21 @@ export function ArchiveTable({
             )}
           </div>
 
-          {limit && projects.length > limit && (
-            <Link
-              href="/projects#archive"
-              className="inline-flex items-center gap-1 font-mono text-xs uppercase tracking-wider text-amber-500 hover:text-amber-400 transition-colors"
-            >
-              <span>EXPLORE ALL ARCHIVE BUILDS ({projects.length})</span>
-              <ArrowUpRight className="size-3.5" />
-            </Link>
-          )}
+          {/* Small non-intrusive status indicator */}
+          <div className="flex items-center gap-2 font-mono text-[11px] text-muted-foreground shrink-0">
+            <span className="inline-flex items-center gap-1.5 rounded-full border border-border/60 bg-muted/40 dark:bg-white/[0.03] px-2.5 py-1 text-muted-foreground">
+              <span className="size-1.5 rounded-full bg-amber-400 animate-pulse" />
+              <span>
+                {filteredProjects.length > 5
+                  ? `Showing 5 of ${filteredProjects.length} · scroll for more`
+                  : `Showing ${filteredProjects.length} of ${filteredProjects.length}`}
+              </span>
+            </span>
+          </div>
         </div>
       )}
 
-      {/* Filter and Search Bar */}
+      {/* Filter and Search Bar (when enabled) */}
       {(showFilters || showSearch) && (
         <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
           {showFilters && (
@@ -139,22 +165,65 @@ export function ArchiveTable({
         </div>
       )}
 
-      {/* Responsive Table Container */}
-      <div className="overflow-hidden rounded-2xl border border-border/70 bg-card/50 backdrop-blur-xl">
-        <div className="overflow-x-auto">
-          <table className="w-full text-left font-mono text-xs">
+      {/* Outer Box Container - Exact same outer dimensions, border, radius */}
+      <div className="relative overflow-hidden rounded-2xl border border-border/70 bg-card/50 backdrop-blur-xl">
+        {/* Scrollable Viewport - Fixed max-height (~5 rows rendered), thin custom scrollbar */}
+        <div
+          ref={scrollContainerRef}
+          onScroll={checkScrollPosition}
+          tabIndex={0}
+          role="region"
+          aria-label="Engineering archive and projects repertoire"
+          className="max-h-[350px] overflow-y-auto overflow-x-auto custom-scrollbar focus:outline-none focus-visible:ring-2 focus-visible:ring-amber-500/60 focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+        >
+          <table className="w-full min-w-[700px] text-left font-mono text-xs border-collapse">
             <thead>
-              <tr className="border-b border-border/60 bg-muted/30 text-[11px] uppercase tracking-wider text-muted-foreground">
-                <th className="px-4 py-3 font-semibold">System</th>
-                <th className="px-4 py-3 font-semibold">Engineering Focus & Key Outcome</th>
-                <th className="px-4 py-3 font-semibold hidden md:table-cell">Core Stack</th>
-                <th className="px-4 py-3 font-semibold text-right">Source</th>
+              <tr className="border-b border-border/60 bg-muted/40 text-[11px] uppercase tracking-wider text-muted-foreground">
+                <th
+                  scope="col"
+                  className="sticky top-0 z-10 bg-card/95 backdrop-blur-md px-4 py-3 font-semibold shadow-[0_1px_0_0_hsl(var(--border)/0.6)]"
+                >
+                  YEAR
+                </th>
+                <th
+                  scope="col"
+                  className="sticky top-0 z-10 bg-card/95 backdrop-blur-md px-4 py-3 font-semibold shadow-[0_1px_0_0_hsl(var(--border)/0.6)]"
+                >
+                  SYSTEM
+                </th>
+                <th
+                  scope="col"
+                  className="sticky top-0 z-10 bg-card/95 backdrop-blur-md px-4 py-3 font-semibold shadow-[0_1px_0_0_hsl(var(--border)/0.6)]"
+                >
+                  ENGINEERING FOCUS & ONE-LINER
+                </th>
+                <th
+                  scope="col"
+                  className="sticky top-0 z-10 bg-card/95 backdrop-blur-md px-4 py-3 font-semibold hidden md:table-cell shadow-[0_1px_0_0_hsl(var(--border)/0.6)]"
+                >
+                  KEY RESULT
+                </th>
+                <th
+                  scope="col"
+                  className="sticky top-0 z-10 bg-card/95 backdrop-blur-md px-4 py-3 font-semibold hidden lg:table-cell shadow-[0_1px_0_0_hsl(var(--border)/0.6)]"
+                >
+                  CORE STACK
+                </th>
+                <th
+                  scope="col"
+                  className="sticky top-0 z-10 bg-card/95 backdrop-blur-md px-4 py-3 font-semibold text-right shadow-[0_1px_0_0_hsl(var(--border)/0.6)]"
+                >
+                  LINKS
+                </th>
               </tr>
             </thead>
             <tbody className="divide-y divide-border/40 font-sans">
               {filteredProjects.length === 0 ? (
                 <tr>
-                  <td colSpan={4} className="px-4 py-8 text-center text-muted-foreground font-mono text-xs">
+                  <td
+                    colSpan={6}
+                    className="px-4 py-8 text-center text-muted-foreground font-mono text-xs"
+                  >
                     No matching systems found in archive.
                   </td>
                 </tr>
@@ -166,41 +235,57 @@ export function ArchiveTable({
                       l.label.toLowerCase().includes("github") ||
                       l.label.toLowerCase().includes("source")
                   );
+                  const isTier3 = 'tier' in project && project.tier === 3;
+                  const demoLink = !isTier3
+                    ? project.links.find(
+                        (l) => l.kind === "demo" || l.label.toLowerCase().includes("demo")
+                      )
+                    : undefined;
+
+                  const keyResult =
+                    ('result' in project && project.result)
+                      ? project.result
+                      : ('metricsHighlight' in project && project.metricsHighlight)
+                        ? project.metricsHighlight
+                        : ('architecture' in project ? project.architecture : "Verified architecture & test harness");
 
                   return (
                     <tr
                       key={project.slug}
                       className="group transition-colors hover:bg-muted/40 dark:hover:bg-white/[0.02]"
                     >
-                      {/* Project Name */}
+                      {/* 1. Year */}
+                      <td className="px-4 py-3.5 font-mono text-[11px] text-muted-foreground whitespace-nowrap align-top">
+                        {project.year || "2026"}
+                      </td>
+
+                      {/* 2. System Name */}
                       <td className="px-4 py-3.5 font-sans font-bold text-foreground group-hover:text-amber-400 whitespace-nowrap align-top">
                         <button
                           onClick={() => setActiveModalProject(project)}
-                          className="hover:underline text-left"
+                          className="hover:underline text-left font-semibold"
                         >
                           {project.name}
                         </button>
                       </td>
 
-                      {/* Merged Description + Outcome (No Ellipsis Truncation) */}
-                      <td className="px-4 py-3.5 text-xs text-foreground/85 align-top">
-                        <div className="space-y-1">
-                          <div>
-                            <span className="font-mono text-[10px] text-amber-500/90 dark:text-amber-400/90 mr-1.5 font-medium">
-                              [{project.category}]
-                            </span>
-                            <span>{project.description}</span>
-                          </div>
-                          {project.result && (
-                            <div className="font-mono text-[11px] text-muted-foreground">
-                              ↳ <span className="text-amber-600 dark:text-amber-300/90">{project.result}</span>
-                            </div>
-                          )}
-                        </div>
+                      {/* 3. Engineering Focus & One-Liner */}
+                      <td className="px-4 py-3.5 text-xs text-foreground/80 max-w-xs sm:max-w-md align-top">
+                        {project.category && (
+                          <span className="font-mono text-[10px] text-amber-500/90 dark:text-amber-400/90 mr-1.5 font-semibold">
+                            [{project.category}]
+                          </span>
+                        )}
+                        <span className="leading-relaxed">{project.description}</span>
                       </td>
 
-                      {/* Tech Stack */}
-                      <td className="px-4 py-3.5 hidden md:table-cell align-top whitespace-nowrap">
+                      {/* 4. Key Result */}
+                      <td className="px-4 py-3.5 text-xs font-mono text-emerald-400 dark:text-emerald-300 hidden md:table-cell max-w-xs align-top">
+                        <span className="line-clamp-2">{keyResult}</span>
+                      </td>
+
+                      {/* 5. Core Stack */}
+                      <td className="px-4 py-3.5 hidden lg:table-cell whitespace-nowrap align-top">
                         <div className="flex flex-wrap gap-1 max-w-xs">
                           {project.technologies.slice(0, 3).map((tech) => (
                             <span
@@ -213,9 +298,21 @@ export function ArchiveTable({
                         </div>
                       </td>
 
-                      {/* Links - GitHub Source Code Only for Tier 3 */}
+                      {/* 6. Links */}
                       <td className="px-4 py-3.5 text-right whitespace-nowrap align-top">
-                        <div className="flex items-center justify-end font-mono text-xs">
+                        <div className="flex items-center justify-end gap-1.5 font-mono text-xs">
+                          {demoLink?.href && (
+                            <a
+                              href={demoLink.href}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="inline-flex items-center gap-1 rounded border border-amber-500/40 bg-amber-500/10 px-2 py-1 text-[11px] font-semibold text-amber-500 dark:text-amber-300 hover:bg-amber-500/20 hover:border-amber-400 transition-all active:scale-[0.98]"
+                              title="Open Live Deployment"
+                            >
+                              <span>DEMO</span>
+                              <ArrowUpRight className="size-2.5" />
+                            </a>
+                          )}
                           {sourceLink?.href && (
                             <a
                               href={sourceLink.href}
@@ -238,6 +335,14 @@ export function ArchiveTable({
             </tbody>
           </table>
         </div>
+
+        {/* Subtle Fade at Bottom as 'More Below' Hint (Hides on Scroll to End) */}
+        <div
+          className={`pointer-events-none absolute bottom-0 left-0 right-0 h-10 bg-gradient-to-t from-background via-background/60 to-transparent transition-opacity duration-300 ${
+            isScrolledToEnd ? "opacity-0" : "opacity-100"
+          }`}
+          aria-hidden="true"
+        />
       </div>
 
       {/* Quick View Modal */}
@@ -262,9 +367,16 @@ export function ArchiveTable({
               {/* Modal Header */}
               <div>
                 <div className="flex items-center gap-2 mb-1">
-                  <span className="rounded-md border border-amber-500/30 bg-amber-500/10 px-2 py-0.5 font-mono text-[10px] font-semibold uppercase text-amber-400">
-                    {activeModalProject.category}
-                  </span>
+                  {activeModalProject.category && (
+                    <span className="rounded-md border border-amber-500/30 bg-amber-500/10 px-2 py-0.5 font-mono text-[10px] font-semibold uppercase text-amber-400">
+                      {activeModalProject.category}
+                    </span>
+                  )}
+                  {activeModalProject.year && (
+                    <span className="font-mono text-xs text-muted-foreground">
+                      {activeModalProject.year}
+                    </span>
+                  )}
                 </div>
                 <h4 className="font-sans text-2xl font-bold text-foreground">
                   {activeModalProject.name}
@@ -282,14 +394,21 @@ export function ArchiveTable({
               </p>
 
               {/* Key Result / Benchmark */}
-              {activeModalProject.result && (
+              {('result' in activeModalProject && activeModalProject.result) ? (
                 <div className="rounded-xl border border-amber-500/30 bg-amber-500/10 p-3 font-mono text-xs text-amber-950 dark:text-amber-200">
                   <div className="font-bold text-[10px] uppercase tracking-wider text-amber-500 mb-0.5">
                     KEY OUTCOME / VERIFIABLE FACT:
                   </div>
                   {activeModalProject.result}
                 </div>
-              )}
+              ) : ('metricsHighlight' in activeModalProject && activeModalProject.metricsHighlight) ? (
+                <div className="rounded-xl border border-amber-500/30 bg-amber-500/10 p-3 font-mono text-xs text-amber-950 dark:text-amber-200">
+                  <div className="font-bold text-[10px] uppercase tracking-wider text-amber-500 mb-0.5">
+                    KEY METRIC HIGHLIGHT:
+                  </div>
+                  {activeModalProject.metricsHighlight}
+                </div>
+              ) : null}
 
               {/* Tech Stack */}
               <div>
@@ -308,23 +427,28 @@ export function ArchiveTable({
                 </div>
               </div>
 
-              {/* Modal Actions - GitHub Source Only */}
+              {/* Modal Actions */}
               <div className="pt-2 flex items-center justify-end gap-2 border-t border-border/40">
-                {activeModalProject.links
-                  .filter((l) => l.kind !== "demo")
-                  .map((link) => (
+                {activeModalProject.links.map((link) => {
+                  const isDemo = link.kind === "demo";
+                  return (
                     <a
                       key={link.label}
                       href={link.href}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center gap-2 rounded-xl border border-border/80 bg-card/80 px-4 py-2 font-mono text-xs font-semibold uppercase tracking-wider text-foreground hover:bg-muted dark:hover:bg-white/[0.06] hover:border-foreground/30 transition-all active:scale-[0.98]"
+                      className={`inline-flex items-center gap-1.5 rounded-xl border px-4 py-2 font-mono text-xs font-semibold uppercase tracking-wider transition-all active:scale-[0.98] ${
+                        isDemo
+                          ? "border-amber-500/40 bg-amber-500/15 text-amber-500 dark:text-amber-300 hover:bg-amber-500/25 hover:border-amber-400"
+                          : "border-border/80 bg-card/80 text-foreground hover:bg-muted dark:hover:bg-white/[0.06] hover:border-foreground/30"
+                      }`}
                     >
-                      <Icons.github className="size-3.5 text-muted-foreground" />
-                      <span>View GitHub Code</span>
+                      {!isDemo && <Icons.github className="size-3.5 text-muted-foreground" />}
+                      <span>{link.label}</span>
                       <ArrowUpRight className="size-3 text-muted-foreground" />
                     </a>
-                  ))}
+                  );
+                })}
               </div>
             </motion.div>
           </div>

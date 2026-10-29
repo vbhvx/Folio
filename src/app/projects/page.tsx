@@ -111,7 +111,7 @@ export default function ProjectsPage() {
       <section id="archive" className="space-y-6">
         <BlurFade delay={0.32}>
           <ArchiveTable
-            projects={PORTFOLIO.archiveProjects}
+            projects={PORTFOLIO.allProjects}
             showFilters={true}
             showSearch={true}
             title="TECHNICAL ARCHIVE & DIRECTORY"

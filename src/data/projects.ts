@@ -454,21 +454,6 @@ export const otherProjects: readonly OtherProject[] = [
       { label: "GitHub", kind: "source", href: "https://github.com/vbhvx/VibePerfume" },
     ],
   },
-  {
-    slug: "learningdashboard",
-    name: "LearningDashboard",
-    tagline: "Course progress & analytics dashboard",
-    category: "Full-Stack",
-    description:
-      "Student learning analytics dashboard with Bento grid layout, Supabase PostgreSQL data persistence, and fluid Framer Motion interactions.",
-    longDescription:
-      "Interactive learning telemetry dashboard built with Next.js Server Components and Supabase. Visualizes syllabus completion, active study streaks, and quiz benchmarks within a modular technical Bento grid.",
-    technologies: ["Next.js (App Router)", "TypeScript", "Supabase", "Tailwind CSS", "Framer Motion"],
-    image: `${BASE_PATH}/images/projects/learningdashboard.png`,
-    links: [
-      { label: "GitHub", kind: "source", href: "https://github.com/vbhvx/LearningDashboard" },
-    ],
-  },
 ] as const;
 
 export const allProjects = [...featuredProjects, ...otherProjects];

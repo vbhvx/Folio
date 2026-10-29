@@ -84,38 +84,6 @@ export default function Page() {
                     <span>VIEW PROJECTS</span>
                     <ArrowDownRight className="size-3.5" />
                   </a>
-
-                  {/* Resume PDF */}
-                  <a
-                    href={PORTFOLIO.site.resumeUrl}
-                    download="Vaibhav_Saini_Resume.pdf"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center gap-2 rounded-xl border border-border/70 bg-card/80 px-4 py-2 font-mono text-xs font-medium uppercase tracking-wider text-foreground shadow-sm transition-all hover:border-foreground/30 hover:bg-muted dark:hover:bg-white/[0.06] active:scale-[0.98]"
-                  >
-                    <FileText className="size-3.5 text-muted-foreground" />
-                    <span>RESUME</span>
-                  </a>
-
-                  {/* Email */}
-                  <a
-                    href={`mailto:${PORTFOLIO.site.email}`}
-                    className="flex items-center gap-2 rounded-xl border border-border/70 bg-card/80 px-4 py-2 font-mono text-xs font-medium uppercase tracking-wider text-foreground shadow-sm transition-all hover:border-foreground/30 hover:bg-muted dark:hover:bg-white/[0.06] active:scale-[0.98]"
-                  >
-                    <Mail className="size-3.5 text-muted-foreground" />
-                    <span>EMAIL</span>
-                  </a>
-
-                  {/* GitHub */}
-                  <a
-                    href={PORTFOLIO.socialLinks.github.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center gap-2 rounded-xl border border-border/70 bg-card/80 px-4 py-2 font-mono text-xs font-medium uppercase tracking-wider text-foreground shadow-sm transition-all hover:border-foreground/30 hover:bg-muted dark:hover:bg-white/[0.06] active:scale-[0.98]"
-                  >
-                    <Icons.github className="size-3.5 text-muted-foreground" />
-                    <span>GITHUB</span>
-                  </a>
                 </div>
               </div>
             </div>

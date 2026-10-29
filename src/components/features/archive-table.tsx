@@ -85,7 +85,7 @@ export function ArchiveTable({
 
   return (
     <div className="space-y-4">
-      {/* Section Header with 'Showing 5 of N · scroll for more' indicator */}
+      {/* Section Header */}
       {(title || subtitle) && (
         <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-3 border-b border-border/60 pb-4">
           <div>
@@ -97,18 +97,6 @@ export function ArchiveTable({
             {subtitle && (
               <p className="text-xs text-muted-foreground mt-0.5">{subtitle}</p>
             )}
-          </div>
-
-          {/* Small non-intrusive status indicator */}
-          <div className="flex items-center gap-2 font-mono text-[11px] text-muted-foreground shrink-0">
-            <span className="inline-flex items-center gap-1.5 rounded-full border border-border/60 bg-muted/40 dark:bg-white/[0.03] px-2.5 py-1 text-muted-foreground">
-              <span className="size-1.5 rounded-full bg-amber-400 animate-pulse" />
-              <span>
-                {filteredProjects.length > 5
-                  ? `Showing 5 of ${filteredProjects.length} · scroll for more`
-                  : `Showing ${filteredProjects.length} of ${filteredProjects.length}`}
-              </span>
-            </span>
           </div>
         </div>
       )}

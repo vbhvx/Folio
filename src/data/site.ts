@@ -163,11 +163,11 @@ export const proofContent: {
     },
     {
       text: "Amortized O(1) fractional indexing & type-safe tRPC client-server procedures",
-      href: "https://github.com/vbhvx/Orbit",
+      href: "https://github.com/vbhvx/Fellow",
     },
     {
       text: "Automated CI/CD with Cypress E2E, Postman Newman CLI, and axe accessibility",
-      href: "https://github.com/vbhvx/CRM_QA_Automation",
+      href: "https://github.com/vbhvx/Gatecheck",
     },
   ],
 } as const;

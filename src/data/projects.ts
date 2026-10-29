@@ -116,8 +116,8 @@ export const featuredProjects: readonly FeaturedProject[] = [
     ],
   },
   {
-    slug: "orbit",
-    name: "Orbit",
+    slug: "fellow",
+    name: "Fellow",
     tagline: "Multi-tenant collaborative workspace with amortized O(1) reordering",
     year: "2026",
     category: "Distributed Architecture",
@@ -127,7 +127,7 @@ export const featuredProjects: readonly FeaturedProject[] = [
     description:
       "A collaborative workspace platform providing strict organization-level data isolation via denormalized orgId keys, end-to-end type safety across client-server boundaries with tRPC, and amortized O(1) task reordering on Kanban boards without row rewrite cascades.",
     longDescription:
-      "Orbit is a multi-tenant project management platform engineered for strict tenant isolation and high-frequency board manipulation. Every database entity enforces organization scoping via compound indexes and query-level middleware. Rather than using naive integer ordering (which forces O(N) database UPDATE cascades whenever a card moves), Orbit implements fractional floating-point indexing with an amortized O(1) rebalancing threshold. The frontend and backend share single-source-of-truth TypeScript definitions via tRPC and Drizzle ORM.",
+      "Fellow is a multi-tenant project management platform engineered for strict tenant isolation and high-frequency board manipulation. Every database entity enforces organization scoping via compound indexes and query-level middleware. Rather than using naive integer ordering (which forces O(N) database UPDATE cascades whenever a card moves), Fellow implements fractional floating-point indexing with an amortized O(1) rebalancing threshold. The frontend and backend share single-source-of-truth TypeScript definitions via tRPC and Drizzle ORM.",
     technologies: [
       "Next.js (App Router)",
       "TypeScript",
@@ -144,10 +144,10 @@ export const featuredProjects: readonly FeaturedProject[] = [
       "Built fractional floating-point indexing for Kanban board drag-and-drop, achieving amortized O(1) updates with automated rebalance triggers.",
       "Engineered secure tenant invitation workflows with expiring cryptographic tokens and atomic role provisioning.",
     ],
-    demoUrl: "https://github.com/vbhvx/Orbit",
+    demoUrl: "https://github.com/vbhvx/Fellow",
     demoCredentials: {
       role: "Guest Demo Org",
-      email: "demo@orbit.workspace",
+      email: "demo@fellow.workspace",
       note: "Instant guest access with pre-seeded boards and team tasks",
     },
     caseStudy: {
@@ -219,18 +219,18 @@ export const featuredProjects: readonly FeaturedProject[] = [
         },
       ],
       tradeOffsAndV2:
-        "Float64 precision runs out after ~50 insertions between identical adjacent neighbors. Orbit handles this with an amortized rebalance step, but for v2, migrating to variable-length string keys (LexoRank) will provide mathematical infinite density without rebalancing pauses.",
+        "Float64 precision runs out after ~50 insertions between identical adjacent neighbors. Fellow handles this with an amortized rebalance step, but for v2, migrating to variable-length string keys (LexoRank) will provide mathematical infinite density without rebalancing pauses.",
     },
-    image: `${BASE_PATH}/images/projects/orbit.png`,
+    image: `${BASE_PATH}/images/projects/fellow.png`,
     links: [
-      { label: "Live Demo", kind: "demo", href: "https://github.com/vbhvx/Orbit" },
-      { label: "Case Study", kind: "case-study", href: "/projects/orbit" },
-      { label: "GitHub", kind: "source", href: "https://github.com/vbhvx/Orbit" },
+      { label: "Live Demo", kind: "demo", href: "https://github.com/vbhvx/Fellow" },
+      { label: "Case Study", kind: "case-study", href: "/projects/fellow" },
+      { label: "GitHub", kind: "source", href: "https://github.com/vbhvx/Fellow" },
     ],
   },
   {
-    slug: "stackaudit",
-    name: "StackAudit",
+    slug: "trim",
+    name: "Trim",
     tagline: "Rules-based SaaS audit engine with resilient 3-tier LLM fallback",
     year: "2026",
     category: "Financial Analytics & SaaS",
@@ -240,7 +240,7 @@ export const featuredProjects: readonly FeaturedProject[] = [
     description:
       "A financial intelligence tool that audits enterprise software and AI subscription spending. Combines a deterministic rules engine generating 12-15 high-confidence cost recommendations with a three-tier resilient LLM summary pipeline that degrades gracefully on provider downtime.",
     longDescription:
-      "StackAudit evaluates team tool expenditures to uncover duplicate licenses, underutilized AI subscriptions, and tier mismatches. Rather than relying on unreliable pure-LLM hallucinations for financial numbers, StackAudit utilizes a deterministic algorithmic engine to compute exact cost leaks and generate 12-15 verified recommendations. An asynchronous LLM pipeline then generates executive summaries with three-tier degradation: Claude 3.5 Sonnet → OpenAI GPT-4o-mini → structured fallback template. Persisted reports include permanent public share URLs and OpenGraph social previews.",
+      "Trim evaluates team tool expenditures to uncover duplicate licenses, underutilized AI subscriptions, and tier mismatches. Rather than relying on unreliable pure-LLM hallucinations for financial numbers, Trim utilizes a deterministic algorithmic engine to compute exact cost leaks and generate 12-15 verified recommendations. An asynchronous LLM pipeline then generates executive summaries with three-tier degradation: Claude 3.5 Sonnet → OpenAI GPT-4o-mini → structured fallback template. Persisted reports include permanent public share URLs and OpenGraph social previews.",
     technologies: [
       "Next.js (App Router)",
       "TypeScript",
@@ -256,7 +256,7 @@ export const featuredProjects: readonly FeaturedProject[] = [
       "Implemented server-generated OpenGraph card previews for public report URLs, driving social sharing and lead generation.",
       "Constructed a high-converting lead capture workflow with email collection and instant PDF report export.",
     ],
-    demoUrl: "https://github.com/vbhvx/StackAudit",
+    demoUrl: "https://github.com/vbhvx/Trim",
     demoCredentials: {
       note: "Live sample audit reports viewable publicly without authentication",
     },
@@ -330,100 +330,114 @@ export const featuredProjects: readonly FeaturedProject[] = [
       tradeOffsAndV2:
         "Currently requires manual CSV or form input of company tools. For v2, integrating Plaid and Stripe API webhooks will automatically detect recurring software charges and refresh audits continuously.",
     },
-    image: `${BASE_PATH}/images/projects/stackaudit.png`,
+    image: `${BASE_PATH}/images/projects/trim.png`,
     links: [
-      { label: "Live Demo", kind: "demo", href: "https://github.com/vbhvx/StackAudit" },
-      { label: "Case Study", kind: "case-study", href: "/projects/stackaudit" },
-      { label: "GitHub", kind: "source", href: "https://github.com/vbhvx/StackAudit" },
+      { label: "Live Demo", kind: "demo", href: "https://github.com/vbhvx/Trim" },
+      { label: "Case Study", kind: "case-study", href: "/projects/trim" },
+      { label: "GitHub", kind: "source", href: "https://github.com/vbhvx/Trim" },
     ],
   },
 ] as const;
 
 export const otherProjects: readonly OtherProject[] = [
   {
-    slug: "nexus-cms",
-    name: "Nexus CMS",
+    slug: "sortwise",
+    name: "Sortwise",
     tagline: "AI customer triage & duplicate detection",
     category: "AI Agents",
     description:
       "AI-driven complaint triage platform built with FastAPI, Celery background workers, and a LangGraph workflow for risk scoring and pgvector similarity duplicate detection.",
     longDescription:
-      "Nexus CMS automates customer incident ingestion and categorization for manufacturing and enterprise operations. Built on FastAPI, CPU-intensive vector similarity comparisons and AI evaluations are offloaded to Celery background workers over Redis. A LangGraph agent workflow extracts root causes, queries pgvector for duplicate reports within a 90-day window, and formats standard CAPA resolution recommendations.",
+      "Sortwise automates customer incident ingestion and categorization for manufacturing and enterprise operations. Built on FastAPI, CPU-intensive vector similarity comparisons and AI evaluations are offloaded to Celery background workers over Redis. A LangGraph agent workflow extracts root causes, queries pgvector for duplicate reports within a 90-day window, and formats standard CAPA resolution recommendations.",
     technologies: ["Python", "FastAPI", "Celery", "PostgreSQL (pgvector)", "Redis", "LangGraph", "Docker"],
-    image: `${BASE_PATH}/images/projects/nexus-cms.png`,
+    image: `${BASE_PATH}/images/projects/sortwise.png`,
     links: [
-      { label: "GitHub", kind: "source", href: "https://github.com/vbhvx/Nexus-CMS" },
+      { label: "GitHub", kind: "source", href: "https://github.com/vbhvx/Sortwise" },
     ],
   },
   {
-    slug: "stackauth",
-    name: "StackAuth",
+    slug: "latch",
+    name: "Latch",
     tagline: "Authentication engine built with zero ORMs",
     category: "Backend",
     description:
       "Production-ready authentication system built using raw parameterized SQL on PostgreSQL with connection pooling, JWT cookies, and strict RBAC authorization.",
     longDescription:
-      "StackAuth is a systems-level exercise in understanding the database mechanics hidden behind modern ORMs. All queries use parameterized raw SQL via the native pg driver with tuned connection pooling. Features httpOnly JWT session handling, refresh token rotation, bcrypt password hashing with salt cost tuning, role-based access control middleware, and automated schema bootstrapping with Swagger documentation.",
+      "Latch is a systems-level exercise in understanding the database mechanics hidden behind modern ORMs. All queries use parameterized raw SQL via the native pg driver with tuned connection pooling. Features httpOnly JWT session handling, refresh token rotation, bcrypt password hashing with salt cost tuning, role-based access control middleware, and automated schema bootstrapping with Swagger documentation.",
     technologies: ["Node.js", "Express.js", "PostgreSQL (Raw SQL)", "JWT", "bcrypt", "Zod", "Swagger"],
-    image: `${BASE_PATH}/images/projects/stackauth.png`,
+    image: `${BASE_PATH}/images/projects/latch.png`,
     links: [
-      { label: "GitHub", kind: "source", href: "https://github.com/vbhvx/StackAuth" },
+      { label: "GitHub", kind: "source", href: "https://github.com/vbhvx/Latch" },
     ],
   },
   {
-    slug: "growthtrack",
-    name: "GrowthTrack",
+    slug: "stride",
+    name: "Stride",
     tagline: "Cross-platform performance & promotion engine",
     category: "Full-Stack",
     description:
       "Employee growth and promotion readiness platform featuring a NestJS modular backend API, Prisma ORM, and role-based operational dashboards.",
     longDescription:
-      "GrowthTrack tracks engineer career progression against transparent organizational milestones. Implemented with a modular NestJS architecture, PostgreSQL database, and automated Promotion Readiness Score (PRS) algorithmic evaluator. Features dual role-based interfaces for individual contributors and engineering managers.",
+      "Stride tracks engineer career progression against transparent organizational milestones. Implemented with a modular NestJS architecture, PostgreSQL database, and automated Promotion Readiness Score (PRS) algorithmic evaluator. Features dual role-based interfaces for individual contributors and engineering managers.",
     technologies: ["NestJS", "TypeScript", "Prisma ORM", "PostgreSQL", "Docker", "JWT Auth"],
     links: [
-      { label: "GitHub", kind: "source", href: "https://github.com/vbhvx/GrowthTrack" },
+      { label: "GitHub", kind: "source", href: "https://github.com/vbhvx/Stride" },
     ],
   },
   {
-    slug: "notiq",
-    name: "Notiq",
+    slug: "memora",
+    name: "Memora",
     tagline: "Markdown workspace with debounced persistence",
     category: "Full-Stack",
     description:
       "Markdown knowledge workspace with 1.5s debounced persistence, public document sharing, and Gemini API integration for automated summaries.",
     longDescription:
-      "Notiq provides a distraction-free technical writing environment. Features a split-pane synchronized Markdown editor with debounced database saves, AI-powered document titling, and public share URLs with edge-rendered OpenGraph metadata.",
+      "Memora provides a distraction-free technical writing environment. Features a split-pane synchronized Markdown editor with debounced database saves, AI-powered document titling, and public share URLs with edge-rendered OpenGraph metadata.",
     technologies: ["Next.js (App Router)", "TypeScript", "Prisma ORM", "PostgreSQL", "Gemini AI"],
     links: [
-      { label: "GitHub", kind: "source", href: "https://github.com/vbhvx/Notiq" },
+      { label: "GitHub", kind: "source", href: "https://github.com/vbhvx/Memora" },
     ],
   },
   {
-    slug: "nexaapi",
-    name: "NexaAPI",
+    slug: "teamly",
+    name: "Teamly",
     tagline: "Versioned REST API with RBAC & rate limiting",
     category: "Backend",
     description:
       "Production-grade Express.js REST API featuring JWT authentication, role-based access control, sliding-window rate limiting, and interactive OpenAPI Swagger docs.",
     longDescription:
-      "NexaAPI is an Express.js backend engineered with production hygiene: token expiration policies, sliding-window IP rate limiting, bcrypt hashing, error normalization, and interactive Swagger documentation paired with automated integration tests.",
+      "Teamly is an Express.js backend engineered with production hygiene: token expiration policies, sliding-window IP rate limiting, bcrypt hashing, error normalization, and interactive Swagger documentation paired with automated integration tests.",
     technologies: ["Node.js", "Express.js", "MongoDB", "JWT", "Swagger", "Zod"],
     links: [
-      { label: "GitHub", kind: "source", href: "https://github.com/vbhvx/NexaAPI" },
+      { label: "GitHub", kind: "source", href: "https://github.com/vbhvx/Teamly" },
     ],
   },
   {
-    slug: "crm-qa-automation",
-    name: "CRM QA Automation",
-    tagline: "E2E and API test harness with CI/CD",
+    slug: "stockroom",
+    name: "Stockroom",
+    tagline: "E-commerce operations & inventory control platform",
+    category: "Full-Stack",
+    description:
+      "Secure operational core for e-commerce management. Features centralized product catalogs, multi-location inventory tracking, order reservation workflows, payment reconciliation, and auditable staff access control.",
+    longDescription:
+      "Stockroom is a full-stack e-commerce operations platform engineered for inventory accuracy and traceable fulfillment. Replaces brittle spreadsheets with state-validated order lifecycles, atomic stock reservations, payment reconciliation logs, and role-based staff permissions backed by PostgreSQL.",
+    technologies: ["Next.js (App Router)", "TypeScript", "PostgreSQL", "Prisma ORM", "Tailwind CSS"],
+    links: [
+      { label: "GitHub", kind: "source", href: "https://github.com/vbhvx/Stockroom" },
+    ],
+  },
+  {
+    slug: "gatecheck",
+    name: "Gatecheck",
+    tagline: "Automated QA & release validation for Real Estate CRM",
     category: "Testing / QA",
     description:
       "Comprehensive QA harness with Cypress E2E tests (Page Object Model), Postman Newman API regression collections, and automated GitHub Actions CI.",
     longDescription:
-      "Engineered automated test infrastructure for enterprise CRM workflows. Implements Page Object Model patterns in Cypress for maintainable E2E testing, Postman API collections executed headless via Newman CLI in GitHub Actions pipelines, and automated WCAG accessibility scans using cypress-axe.",
+      "Gatecheck engineers automated test and validation infrastructure for enterprise real estate CRM workflows. Implements Page Object Model patterns in Cypress for maintainable E2E testing, Postman API collections executed headless via Newman CLI in GitHub Actions pipelines, and automated WCAG accessibility scans using cypress-axe.",
     technologies: ["Cypress", "Postman / Newman", "GitHub Actions", "Python", "cypress-axe"],
     links: [
-      { label: "GitHub", kind: "source", href: "https://github.com/vbhvx/CRM_QA_Automation" },
+      { label: "GitHub", kind: "source", href: "https://github.com/vbhvx/Gatecheck" },
     ],
   },
   {
@@ -441,8 +455,8 @@ export const otherProjects: readonly OtherProject[] = [
     ],
   },
   {
-    slug: "next-gen-learning-dashboard",
-    name: "Learning Dashboard",
+    slug: "learningdashboard",
+    name: "LearningDashboard",
     tagline: "Course progress & analytics dashboard",
     category: "Full-Stack",
     description:
@@ -452,7 +466,7 @@ export const otherProjects: readonly OtherProject[] = [
     technologies: ["Next.js (App Router)", "TypeScript", "Supabase", "Tailwind CSS", "Framer Motion"],
     image: `${BASE_PATH}/images/projects/learningdashboard.png`,
     links: [
-      { label: "GitHub", kind: "source", href: "https://github.com/vbhvx/NextGen-Learning-Dashboard" },
+      { label: "GitHub", kind: "source", href: "https://github.com/vbhvx/LearningDashboard" },
     ],
   },
 ] as const;

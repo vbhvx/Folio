@@ -190,8 +190,8 @@ export function FlagshipCard({ project }: FlagshipCardProps) {
             {/* Measured Result Footnote */}
             <div className="text-center font-mono text-[10px] text-muted-foreground/80 pt-0.5">
               {project.slug === "shipshape" && "First-run compile rate: 94.2% • Median time to live preview: ~14s (Turbopack benchmark)"}
-              {project.slug === "orbit" && "Single-row write per reorder · Amortized O(1) complexity"}
-              {project.slug === "stackaudit" && "12-15 deterministic rules · 99.8% 3-tier delivery"}
+              {project.slug === "fellow" && "Single-row write per reorder · Amortized O(1) complexity"}
+              {project.slug === "trim" && "12-15 deterministic rules · 99.8% 3-tier delivery"}
             </div>
           </div>
         </div>

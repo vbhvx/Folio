@@ -1,6 +1,7 @@
 import BlurFade from "@/components/magicui/blur-fade";
 import { FlagshipCard } from "@/components/features/flagship-card";
-import { ProjectsFilter } from "@/components/features/projects-filter";
+import { SelectedProjectCard } from "@/components/features/selected-project-card";
+import { ArchiveTable } from "@/components/features/archive-table";
 import { PORTFOLIO } from "@/data/portfolio";
 import { ArrowLeft, Terminal, ShieldCheck } from "lucide-react";
 
@@ -8,9 +9,9 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "Projects & Engineering Systems",
+  title: "Projects & Engineering Systems | Vaibhav Saini",
   description:
-    "Systems architecture, AI agents, multi-tenant platforms, and backend infrastructure built by Vaibhav Saini.",
+    "Tiered engineering directory: Flagship systems, selected specialized architectures, and searchable archive table by Vaibhav Saini.",
 };
 
 export default function ProjectsPage() {
@@ -36,7 +37,7 @@ export default function ProjectsPage() {
           <BlurFade delay={0.08}>
             <div className="inline-flex items-center gap-2 rounded-lg border border-amber-500/40 bg-amber-500/10 px-3 py-1 font-mono text-xs uppercase tracking-wider text-amber-400">
               <Terminal className="size-3" />
-              <span>ENGINEERING INDEX · ALL SYSTEMS</span>
+              <span>BODY OF WORK · MULTI-TIER SYSTEMS DIRECTORY</span>
             </div>
           </BlurFade>
 
@@ -48,19 +49,22 @@ export default function ProjectsPage() {
 
           <BlurFade delay={0.16}>
             <p className="max-w-3xl text-base leading-relaxed text-muted-foreground sm:text-lg">
-              Each system highlights real-world technical trade-offs, architecture decisions,
-              type safety, and honest engineering across backend infrastructure, distributed data models, and AI agent platforms.
+              Structured across three visibility tiers: deep flagship architectures with live runtimes, selected specialized builds proving domain breadth, and an indexed technical archive.
             </p>
           </BlurFade>
         </div>
       </section>
 
-      {/* Flagship Projects Section */}
+      {/* Tier 1: Flagship Projects Section */}
       <section id="flagship-systems" className="space-y-6">
         <BlurFade delay={0.2}>
           <div className="border-b border-border/60 pb-4">
+            <div className="flex items-center gap-2 font-mono text-[11px] font-semibold uppercase tracking-wider text-amber-500 dark:text-amber-400 mb-1">
+              <span className="size-1.5 rounded-full bg-amber-400" />
+              <span>TIER 1 · FLAGSHIP ARCHITECTURES (DEPTH)</span>
+            </div>
             <h2 className="font-mono text-sm font-bold uppercase tracking-wider text-foreground sm:text-base">
-              FLAGSHIP ARCHITECTURES
+              FLAGSHIP SYSTEMS
             </h2>
             <p className="text-xs text-muted-foreground mt-0.5">
               Runnable demos, architecture trade-offs, and complete case studies
@@ -69,7 +73,7 @@ export default function ProjectsPage() {
         </BlurFade>
 
         <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
-          {PORTFOLIO.featuredProjects.map((project, idx) => (
+          {PORTFOLIO.flagshipProjects.map((project, idx) => (
             <BlurFade key={project.slug} delay={0.22 + idx * 0.05}>
               <FlagshipCard project={project} />
             </BlurFade>
@@ -77,25 +81,44 @@ export default function ProjectsPage() {
         </div>
       </section>
 
-      {/* Other Projects / Repositories */}
-      {PORTFOLIO.otherProjects && PORTFOLIO.otherProjects.length > 0 && (
-        <section id="all-repositories" className="space-y-6">
-          <BlurFade delay={0.28}>
-            <div className="border-b border-border/60 pb-4">
-              <h3 className="font-mono text-sm font-bold uppercase tracking-wider text-foreground sm:text-base">
-                ADDITIONAL BUILDS & SPECIALIZED SERVICES
-              </h3>
-              <p className="text-xs text-muted-foreground mt-0.5">
-                Filter by backend, AI agent, full-stack, and QA architectures
-              </p>
+      {/* Tier 2: Selected Work Section */}
+      <section id="selected-systems" className="space-y-6">
+        <BlurFade delay={0.26}>
+          <div className="border-b border-border/60 pb-4">
+            <div className="flex items-center gap-2 font-mono text-[11px] font-semibold uppercase tracking-wider text-emerald-500 dark:text-emerald-400 mb-1">
+              <span className="size-1.5 rounded-full bg-emerald-400" />
+              <span>TIER 2 · SPECIALIZED SYSTEMS (RANGE)</span>
             </div>
-          </BlurFade>
+            <h2 className="font-mono text-sm font-bold uppercase tracking-wider text-foreground sm:text-base">
+              MORE SELECTED WORK
+            </h2>
+            <p className="text-xs text-muted-foreground mt-0.5">
+              Production-oriented builds demonstrating specialized competence in AI agents, raw SQL security, and CI/CD
+            </p>
+          </div>
+        </BlurFade>
 
-          <BlurFade delay={0.3}>
-            <ProjectsFilter projects={PORTFOLIO.otherProjects} />
-          </BlurFade>
-        </section>
-      )}
+        <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
+          {PORTFOLIO.selectedProjects.map((project, idx) => (
+            <BlurFade key={project.slug} delay={0.28 + idx * 0.04}>
+              <SelectedProjectCard project={project} />
+            </BlurFade>
+          ))}
+        </div>
+      </section>
+
+      {/* Tier 3: Complete Engineering Archive Table */}
+      <section id="archive" className="space-y-6">
+        <BlurFade delay={0.32}>
+          <ArchiveTable
+            projects={PORTFOLIO.otherProjects}
+            showFilters={true}
+            showSearch={true}
+            title="TIER 3 · COMPLETE TECHNICAL ARCHIVE & DIRECTORY"
+            subtitle="Searchable, filterable index of all specialized builds, background services, and backend utilities"
+          />
+        </BlurFade>
+      </section>
 
       {/* Bottom CTA */}
       <section id="projects-cta">

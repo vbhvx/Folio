@@ -18,10 +18,11 @@ export function FlagshipCard({ project }: FlagshipCardProps) {
   const githubLink = project.links.find(
     (l) => l.kind === "source" || l.label.toLowerCase().includes("github")
   );
-  const demoLink = project.links.find((l) => l.kind === "demo") || {
-    href: project.demoUrl || githubLink?.href,
-    label: "Live Demo",
-  };
+  const demoHref =
+    project.demoUrl ||
+    project.links.find((l) => l.kind === "demo")?.href ||
+    githubLink?.href ||
+    "#";
   const caseStudyHref = `/projects/${project.slug}`;
 
   // Close lightbox on Escape key
@@ -157,7 +158,7 @@ export function FlagshipCard({ project }: FlagshipCardProps) {
             <div className="grid grid-cols-3 gap-2">
               {/* 1. Live Demo */}
               <a
-                href={demoLink.href}
+                href={demoHref}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center justify-center gap-1 rounded-lg border border-amber-500/40 bg-amber-500/10 px-2 py-2 font-mono text-[11px] font-semibold uppercase tracking-wider text-amber-500 dark:text-amber-300 transition-all hover:bg-amber-500/20 hover:border-amber-400 active:scale-[0.98]"

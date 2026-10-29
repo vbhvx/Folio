@@ -11,7 +11,16 @@ import {
   socialLinks,
   engineeringMetrics,
 } from "@/data/site";
-import { featuredProjects, otherProjects, allProjects, getProjectBySlug, getAllProjectSlugs } from "@/data/projects";
+import {
+  featuredProjects,
+  flagshipProjects,
+  selectedProjects,
+  archiveProjects,
+  otherProjects,
+  allProjects,
+  getProjectBySlug,
+  getAllProjectSlugs,
+} from "@/data/projects";
 import { skillGroups } from "@/data/skills";
 
 export const PORTFOLIO = {
@@ -23,6 +32,9 @@ export const PORTFOLIO = {
   about: aboutContent,
   projectsContent,
   featuredProjects,
+  flagshipProjects,
+  selectedProjects,
+  archiveProjects,
   otherProjects,
   allProjects,
   skillGroups,
@@ -32,4 +44,4 @@ export const PORTFOLIO = {
   socialLinks,
 } as const;
 
-export { getProjectBySlug, getAllProjectSlugs };
+export { getProjectBySlug, getAllProjectSlugs, flagshipProjects, selectedProjects, archiveProjects };

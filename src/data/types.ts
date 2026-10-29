@@ -75,6 +75,7 @@ export interface FeaturedProject {
   links: readonly ProjectLink[];
 }
 
+export type ProjectTier = 1 | 2 | 3;
 export type ProjectCategory = "Backend" | "AI Agents" | "Full-Stack" | "Testing / QA";
 
 export interface OtherProject {
@@ -88,9 +89,12 @@ export interface OtherProject {
   technologies: readonly string[];
   image?: string;
   links: readonly ProjectLink[];
+  year?: string;
+  tier?: ProjectTier;
+  result?: string;
 }
 
-interface SkillItem {
+export interface SkillItem {
   name: string;
   usedIn?: readonly string[];
 }

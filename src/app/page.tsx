@@ -1,6 +1,7 @@
 import BlurFade from "@/components/magicui/blur-fade";
 import { FlagshipCard } from "@/components/features/flagship-card";
-import { ProjectsFilter } from "@/components/features/projects-filter";
+import { SelectedProjectCard } from "@/components/features/selected-project-card";
+import { ArchiveTable } from "@/components/features/archive-table";
 import { Icons } from "@/components/icons";
 import { PORTFOLIO } from "@/data/portfolio";
 import {
@@ -143,11 +144,15 @@ export default function Page() {
       </section>
 
       {/* ========================================================
-          FLAGSHIP SHIPPED SYSTEMS
+          TIER 1: FLAGSHIP SHIPPED SYSTEMS (DEPTH)
           ======================================================== */}
       <section id="projects" className="space-y-6">
         <BlurFade delay={0.12}>
           <div className="border-b border-border/60 pb-4">
+            <div className="flex items-center gap-2 font-mono text-[11px] font-semibold uppercase tracking-wider text-amber-500 dark:text-amber-400 mb-1">
+              <span className="size-1.5 rounded-full bg-amber-400" />
+              <span>TIER 1 · FLAGSHIP ARCHITECTURES</span>
+            </div>
             <h2 className="font-mono text-sm font-bold uppercase tracking-wider text-foreground sm:text-base">
               FLAGSHIP SHIPPED SYSTEMS
             </h2>
@@ -159,12 +164,56 @@ export default function Page() {
 
         {/* 3-Column Flagship Project Grid */}
         <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
-          {PORTFOLIO.featuredProjects.map((project, idx) => (
+          {PORTFOLIO.flagshipProjects.map((project, idx) => (
             <BlurFade key={project.slug} delay={0.14 + idx * 0.05}>
               <FlagshipCard project={project} />
             </BlurFade>
           ))}
         </div>
+      </section>
+
+      {/* ========================================================
+          TIER 2: MORE SELECTED WORK (RANGE)
+          ======================================================== */}
+      <section id="selected-work" className="space-y-6">
+        <BlurFade delay={0.16}>
+          <div className="border-b border-border/60 pb-4">
+            <div className="flex items-center gap-2 font-mono text-[11px] font-semibold uppercase tracking-wider text-emerald-500 dark:text-emerald-400 mb-1">
+              <span className="size-1.5 rounded-full bg-emerald-400" />
+              <span>TIER 2 · SPECIALIZED SYSTEMS</span>
+            </div>
+            <h2 className="font-mono text-sm font-bold uppercase tracking-wider text-foreground sm:text-base">
+              MORE SELECTED WORK
+            </h2>
+            <p className="text-xs text-muted-foreground mt-0.5">
+              Targeted systems demonstrating domain range in AI triage, raw SQL security foundations, and CI/CD pipelines
+            </p>
+          </div>
+        </BlurFade>
+
+        <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
+          {PORTFOLIO.selectedProjects.map((project, idx) => (
+            <BlurFade key={project.slug} delay={0.18 + idx * 0.04}>
+              <SelectedProjectCard project={project} />
+            </BlurFade>
+          ))}
+        </div>
+      </section>
+
+      {/* ========================================================
+          TIER 3: PROJECT ARCHIVE TEASER (VOLUME & BREADTH)
+          ======================================================== */}
+      <section id="archive-preview" className="space-y-4">
+        <BlurFade delay={0.2}>
+          <ArchiveTable
+            projects={PORTFOLIO.archiveProjects}
+            limit={5}
+            showFilters={false}
+            showSearch={false}
+            title="ENGINEERING ARCHIVE & REPERTOIRE"
+            subtitle="Searchable catalog of standalone backend tools, operational services, and specialized builds"
+          />
+        </BlurFade>
       </section>
 
       {/* ========================================================
@@ -314,9 +363,15 @@ export default function Page() {
                     {group.items.map((skill) => (
                       <span
                         key={skill.name}
-                        className="rounded-lg border border-border/60 bg-muted/60 dark:bg-white/[0.03] px-2.5 py-1 font-mono text-xs text-muted-foreground transition-all duration-200 hover:border-amber-500/40 hover:bg-amber-500/10 hover:text-amber-700 dark:hover:text-amber-200"
+                        title={skill.usedIn && skill.usedIn.length > 0 ? `Used in: ${skill.usedIn.join(", ")}` : undefined}
+                        className="group/chip inline-flex items-center gap-1.5 rounded-lg border border-border/60 bg-muted/60 dark:bg-white/[0.03] px-2.5 py-1 font-mono text-xs text-muted-foreground transition-all duration-200 hover:border-amber-500/40 hover:bg-amber-500/10 hover:text-amber-700 dark:hover:text-amber-200 cursor-default"
                       >
-                        {skill.name}
+                        <span>{skill.name}</span>
+                        {skill.usedIn && skill.usedIn.length > 0 && (
+                          <span className="text-[10px] text-amber-500/80 dark:text-amber-400/70 font-semibold">
+                            · {skill.usedIn[0]}
+                          </span>
+                        )}
                       </span>
                     ))}
                   </div>
@@ -326,29 +381,6 @@ export default function Page() {
           })}
         </div>
       </section>
-
-      {/* ========================================================
-          OTHER SHIPPED SYSTEMS & REPOSITORIES (WITH FILTER)
-          ======================================================== */}
-      {PORTFOLIO.otherProjects && PORTFOLIO.otherProjects.length > 0 && (
-        <section id="repositories" className="space-y-6">
-          <BlurFade delay={0.3}>
-            <div className="border-b border-border/60 pb-4">
-              <h3 className="font-mono text-sm font-bold uppercase tracking-wider text-foreground sm:text-base">
-                OTHER SHIPPED SYSTEMS & REPOSITORIES
-              </h3>
-              <p className="text-xs text-muted-foreground mt-0.5">
-                Specialized backends, test harnesses, and infrastructure implementations
-              </p>
-            </div>
-          </BlurFade>
-
-          {/* Interactive Category Filter + Grid */}
-          <BlurFade delay={0.32}>
-            <ProjectsFilter projects={PORTFOLIO.otherProjects} />
-          </BlurFade>
-        </section>
-      )}
 
       {/* ========================================================
           ENGINEERING STANDARDS & VERIFIABLE PROOF

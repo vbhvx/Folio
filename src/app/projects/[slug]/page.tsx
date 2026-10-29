@@ -117,7 +117,7 @@ export default function ProjectDetailPage({ params }: PageProps) {
           {/* Action Links */}
           <BlurFade delay={0.2}>
             <div className="flex flex-wrap gap-2.5 lg:flex-col">
-              {project.links?.map((link) => {
+              {project.links?.filter((l) => l.kind !== "case-study" && l.href !== `/projects/${project.slug}`).map((link) => {
                 if (!link.href) return null;
                 const isGithub = link.kind === "source" || link.label.toLowerCase().includes("github");
                 const isDemo = link.kind === "demo";

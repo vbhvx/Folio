@@ -340,121 +340,153 @@ export const featuredProjects: readonly FeaturedProject[] = [
 ] as const;
 
 export const otherProjects: readonly OtherProject[] = [
+  // --- TIER 2: SELECTED WORK (PROVE RANGE) ---
   {
     slug: "sortwise",
     name: "Sortwise",
+    year: "2026",
+    tier: 2,
     tagline: "AI customer triage & duplicate detection",
     category: "AI Agents",
+    result: "FastAPI + Celery + LangGraph: pgvector 90-day deduplication window & automated CAPA resolution",
     description:
       "AI-driven complaint triage platform built with FastAPI, Celery background workers, and a LangGraph workflow for risk scoring and pgvector similarity duplicate detection.",
     longDescription:
       "Sortwise automates customer incident ingestion and categorization for manufacturing and enterprise operations. Built on FastAPI, CPU-intensive vector similarity comparisons and AI evaluations are offloaded to Celery background workers over Redis. A LangGraph agent workflow extracts root causes, queries pgvector for duplicate reports within a 90-day window, and formats standard CAPA resolution recommendations.",
-    technologies: ["Python", "FastAPI", "Celery", "PostgreSQL (pgvector)", "Redis", "LangGraph", "Docker"],
+    technologies: ["FastAPI", "LangGraph", "pgvector", "Celery", "PostgreSQL", "Redis", "Docker"],
     image: `${BASE_PATH}/images/projects/sortwise.png`,
     links: [
-      { label: "GitHub", kind: "source", href: "https://github.com/vbhvx/Sortwise" },
+      { label: "Source", kind: "source", href: "https://github.com/vbhvx/Sortwise" },
     ],
   },
   {
     slug: "latch",
     name: "Latch",
+    year: "2026",
+    tier: 2,
     tagline: "Authentication engine built with zero ORMs",
     category: "Backend",
+    result: "Raw pg driver connection pooling, httpOnly JWT rotation, tuned bcrypt, RBAC & 40+ automated tests",
     description:
       "Production-ready authentication system built using raw parameterized SQL on PostgreSQL with connection pooling, JWT cookies, and strict RBAC authorization.",
     longDescription:
       "Latch is a systems-level exercise in understanding the database mechanics hidden behind modern ORMs. All queries use parameterized raw SQL via the native pg driver with tuned connection pooling. Features httpOnly JWT session handling, refresh token rotation, bcrypt password hashing with salt cost tuning, role-based access control middleware, and automated schema bootstrapping with Swagger documentation.",
-    technologies: ["Node.js", "Express.js", "PostgreSQL (Raw SQL)", "JWT", "bcrypt", "Zod", "Swagger"],
+    technologies: ["Node.js", "PostgreSQL (Raw SQL)", "JWT & RBAC", "bcrypt", "Zod", "Swagger"],
     image: `${BASE_PATH}/images/projects/latch.png`,
     links: [
-      { label: "GitHub", kind: "source", href: "https://github.com/vbhvx/Latch" },
-    ],
-  },
-  {
-    slug: "stride",
-    name: "Stride",
-    tagline: "Cross-platform performance & promotion engine",
-    category: "Full-Stack",
-    description:
-      "Employee growth and promotion readiness platform featuring a NestJS modular backend API, Prisma ORM, and role-based operational dashboards.",
-    longDescription:
-      "Stride tracks engineer career progression against transparent organizational milestones. Implemented with a modular NestJS architecture, PostgreSQL database, and automated Promotion Readiness Score (PRS) algorithmic evaluator. Features dual role-based interfaces for individual contributors and engineering managers.",
-    technologies: ["NestJS", "TypeScript", "Prisma ORM", "PostgreSQL", "Docker", "JWT Auth"],
-    links: [
-      { label: "GitHub", kind: "source", href: "https://github.com/vbhvx/Stride" },
-    ],
-  },
-  {
-    slug: "memora",
-    name: "Memora",
-    tagline: "Markdown workspace with debounced persistence",
-    category: "Full-Stack",
-    description:
-      "Markdown knowledge workspace with 1.5s debounced persistence, public document sharing, and Gemini API integration for automated summaries.",
-    longDescription:
-      "Memora provides a distraction-free technical writing environment. Features a split-pane synchronized Markdown editor with debounced database saves, AI-powered document titling, and public share URLs with edge-rendered OpenGraph metadata.",
-    technologies: ["Next.js (App Router)", "TypeScript", "Prisma ORM", "PostgreSQL", "Gemini AI"],
-    links: [
-      { label: "GitHub", kind: "source", href: "https://github.com/vbhvx/Memora" },
-    ],
-  },
-  {
-    slug: "teamly",
-    name: "Teamly",
-    tagline: "Versioned REST API with RBAC & rate limiting",
-    category: "Backend",
-    description:
-      "Production-grade Express.js REST API featuring JWT authentication, role-based access control, sliding-window rate limiting, and interactive OpenAPI Swagger docs.",
-    longDescription:
-      "Teamly is an Express.js backend engineered with production hygiene: token expiration policies, sliding-window IP rate limiting, bcrypt hashing, error normalization, and interactive Swagger documentation paired with automated integration tests.",
-    technologies: ["Node.js", "Express.js", "MongoDB", "JWT", "Swagger", "Zod"],
-    links: [
-      { label: "GitHub", kind: "source", href: "https://github.com/vbhvx/Teamly" },
-    ],
-  },
-  {
-    slug: "stockroom",
-    name: "Stockroom",
-    tagline: "E-commerce operations & inventory control platform",
-    category: "Full-Stack",
-    description:
-      "Secure operational core for e-commerce management. Features centralized product catalogs, multi-location inventory tracking, order reservation workflows, payment reconciliation, and auditable staff access control.",
-    longDescription:
-      "Stockroom is a full-stack e-commerce operations platform engineered for inventory accuracy and traceable fulfillment. Replaces brittle spreadsheets with state-validated order lifecycles, atomic stock reservations, payment reconciliation logs, and role-based staff permissions backed by PostgreSQL.",
-    technologies: ["Next.js (App Router)", "TypeScript", "PostgreSQL", "Prisma ORM", "Tailwind CSS"],
-    links: [
-      { label: "GitHub", kind: "source", href: "https://github.com/vbhvx/Stockroom" },
+      { label: "Source", kind: "source", href: "https://github.com/vbhvx/Latch" },
     ],
   },
   {
     slug: "gatecheck",
     name: "Gatecheck",
+    year: "2026",
+    tier: 2,
     tagline: "Automated QA & release validation for Real Estate CRM",
     category: "Testing / QA",
+    result: "Cypress POM E2E + Postman Newman API regression + cypress-axe a11y running in GitHub Actions CI",
     description:
       "Comprehensive QA harness with Cypress E2E tests (Page Object Model), Postman Newman API regression collections, and automated GitHub Actions CI.",
     longDescription:
       "Gatecheck engineers automated test and validation infrastructure for enterprise real estate CRM workflows. Implements Page Object Model patterns in Cypress for maintainable E2E testing, Postman API collections executed headless via Newman CLI in GitHub Actions pipelines, and automated WCAG accessibility scans using cypress-axe.",
     technologies: ["Cypress", "Postman / Newman", "GitHub Actions", "Python", "cypress-axe"],
     links: [
-      { label: "GitHub", kind: "source", href: "https://github.com/vbhvx/Gatecheck" },
+      { label: "Source", kind: "source", href: "https://github.com/vbhvx/Gatecheck" },
     ],
   },
+
+  // --- TIER 3: ARCHIVE SYSTEMS (PROVE VOLUME & BREADTH) ---
   {
     slug: "vibeperfume",
     name: "VibePerfume",
+    year: "2026",
+    tier: 3,
     tagline: "Haute Parfumerie E-Commerce Experience & Scent Profiler",
     category: "Full-Stack",
+    result: "Zero-risk olfactory testing model with interactive 3-tier pyramid notes & client-side cart state",
     description:
-      "Luxury fragrance storefront engineered around a zero-risk \"Test First\" discovery model. Features interactive 3-tier pyramid note previews, synchronous variant price-per-ml calculations, an interactive olfactory matching quiz, and full cart & wishlist state management.",
+      "Luxury fragrance storefront engineered around a zero-risk \"Test First\" discovery model with interactive 3-tier note previews and algorithmic matching quiz.",
     longDescription:
       "VibePerfume is a luxury fragrance storefront engineered around a zero-risk 'Test First' discovery model. Features interactive 3-tier pyramid note previews, synchronous variant price-per-ml calculations, an interactive olfactory matching quiz, review distributions, and full client-side cart and wishlist state management.",
     technologies: ["React", "TypeScript", "Vite", "CSS3", "Vitest"],
     links: [
-      { label: "GitHub", kind: "source", href: "https://github.com/vbhvx/VibePerfume" },
+      { label: "Demo", kind: "demo", href: "https://vibeperfume.vaibhavdev.online/" },
+      { label: "Source", kind: "source", href: "https://github.com/vbhvx/VibePerfume" },
+    ],
+  },
+  {
+    slug: "stockroom",
+    name: "Stockroom",
+    year: "2026",
+    tier: 3,
+    tagline: "E-commerce operations & inventory control platform",
+    category: "Full-Stack",
+    result: "Multi-location inventory tracking, atomic stock reservations, and payment reconciliation logs",
+    description:
+      "Secure operational core for e-commerce management. Features centralized product catalogs, multi-location inventory tracking, order reservation workflows, and auditable staff access control.",
+    longDescription:
+      "Stockroom is a full-stack e-commerce operations platform engineered for inventory accuracy and traceable fulfillment. Replaces brittle spreadsheets with state-validated order lifecycles, atomic stock reservations, payment reconciliation logs, and role-based staff permissions backed by PostgreSQL.",
+    technologies: ["Next.js (App Router)", "TypeScript", "PostgreSQL", "Prisma ORM", "Tailwind CSS"],
+    links: [
+      { label: "Source", kind: "source", href: "https://github.com/vbhvx/Stockroom" },
+    ],
+  },
+  {
+    slug: "stride",
+    name: "Stride",
+    year: "2026",
+    tier: 3,
+    tagline: "Cross-platform performance & promotion engine",
+    category: "Full-Stack",
+    result: "Automated Promotion Readiness Score (PRS) algorithmic evaluator against historical rubric milestones",
+    description:
+      "Employee growth and promotion readiness platform featuring a NestJS modular backend API, Prisma ORM, and role-based operational dashboards.",
+    longDescription:
+      "Stride tracks engineer career progression against transparent organizational milestones. Implemented with a modular NestJS architecture, PostgreSQL database, and automated Promotion Readiness Score (PRS) algorithmic evaluator. Features dual role-based interfaces for individual contributors and engineering managers.",
+    technologies: ["NestJS", "TypeScript", "Prisma ORM", "PostgreSQL", "Docker", "JWT Auth"],
+    links: [
+      { label: "Source", kind: "source", href: "https://github.com/vbhvx/Stride" },
+    ],
+  },
+  {
+    slug: "memora",
+    name: "Memora",
+    year: "2026",
+    tier: 3,
+    tagline: "Markdown workspace with debounced persistence",
+    category: "Full-Stack",
+    result: "Synchronized split-pane Markdown editor with 1.5s debounced database saves and edge OpenGraph cards",
+    description:
+      "Markdown knowledge workspace with 1.5s debounced persistence, public document sharing, and Gemini API integration for automated summaries.",
+    longDescription:
+      "Memora provides a distraction-free technical writing environment. Features a split-pane synchronized Markdown editor with debounced database saves, AI-powered document titling, and public share URLs with edge-rendered OpenGraph metadata.",
+    technologies: ["Next.js (App Router)", "TypeScript", "Prisma ORM", "PostgreSQL", "Gemini AI"],
+    links: [
+      { label: "Source", kind: "source", href: "https://github.com/vbhvx/Memora" },
+    ],
+  },
+  {
+    slug: "teamly",
+    name: "Teamly",
+    year: "2026",
+    tier: 3,
+    tagline: "Versioned REST API with RBAC & rate limiting",
+    category: "Backend",
+    result: "Sliding-window IP rate limiting, token expiration policies, error normalization & interactive OpenAPI tests",
+    description:
+      "Production-grade Express.js REST API featuring JWT authentication, role-based access control, sliding-window rate limiting, and interactive OpenAPI Swagger docs.",
+    longDescription:
+      "Teamly is an Express.js backend engineered with production hygiene: token expiration policies, sliding-window IP rate limiting, bcrypt hashing, error normalization, and interactive Swagger documentation paired with automated integration tests.",
+    technologies: ["Node.js", "Express.js", "MongoDB", "JWT", "Swagger", "Zod"],
+    links: [
+      { label: "Source", kind: "source", href: "https://github.com/vbhvx/Teamly" },
     ],
   },
 ] as const;
+
+export const flagshipProjects = featuredProjects;
+export const selectedProjects = otherProjects.filter((p) => p.tier === 2);
+export const archiveProjects = otherProjects.filter((p) => p.tier === 3);
 
 export const allProjects = [...featuredProjects, ...otherProjects];
 

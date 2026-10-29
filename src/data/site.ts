@@ -148,7 +148,7 @@ export const aboutContent = {
     },
   ],
   whatNext:
-    "Open to software engineering internships (Remote or Delhi-based) and full-time engineering roles upon graduation in 2028.",
+    "Backend systems and AI agents built to work beyond the demo. Open to software engineering internships now (Delhi or Remote) and full-time engineering roles from 2028.",
 } as const;
 
 export const projectsContent = {

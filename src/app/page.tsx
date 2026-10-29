@@ -342,11 +342,11 @@ export default function Page() {
                 </div>
               </div>
 
-              {/* What I'm Looking For Next */}
-              <div className="rounded-xl border border-amber-500/30 bg-amber-500/10 p-4 space-y-1">
-                <div className="font-mono text-xs font-bold uppercase tracking-wider text-amber-600 dark:text-amber-400 flex items-center gap-1.5">
-                  <Sparkles className="size-3.5" />
-                  <span>WHAT I AM LOOKING FOR NEXT</span>
+              {/* The Next Chapter */}
+              <div className="rounded-xl border border-amber-500/30 bg-amber-500/10 p-4 space-y-1.5">
+                <div className="font-mono text-xs font-bold text-amber-600 dark:text-amber-400 flex items-center gap-1.5">
+                  <Sparkles className="size-3.5 shrink-0" />
+                  <span>THE NEXT CHAPTER: Let&apos;s build something that matters.</span>
                 </div>
                 <p className="text-xs leading-relaxed text-amber-950 dark:text-amber-200/90 font-medium">
                   {PORTFOLIO.about.whatNext}

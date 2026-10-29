@@ -50,16 +50,6 @@ export function FlagshipCard({ project }: FlagshipCardProps) {
           />
           <div className="absolute inset-0 bg-gradient-to-t from-background/95 via-background/20 to-transparent opacity-90 pointer-events-none" />
 
-          {/* Metric Highlight Pill */}
-          {project.metricsHighlight && (
-            <div className="absolute top-3 left-3 z-10">
-              <span className="inline-flex items-center gap-1.5 rounded-full border border-amber-500/50 bg-black/80 px-2.5 py-1 font-mono text-[10px] font-semibold text-amber-300 backdrop-blur-md shadow-lg shadow-black/40">
-                <span className="size-1.5 rounded-full bg-amber-400 animate-pulse" />
-                <span>{project.metricsHighlight}</span>
-              </span>
-            </div>
-          )}
-
           {/* Click to Zoom Hint Button */}
           <button
             onClick={() => setLightboxOpen(true)}
@@ -91,7 +81,7 @@ export function FlagshipCard({ project }: FlagshipCardProps) {
             </span>
           </div>
 
-          {/* Complete Description (No Cutoffs) */}
+          {/* Concise Description */}
           <p className="mt-3 text-xs leading-relaxed text-foreground/85">
             {project.description}
           </p>
@@ -101,7 +91,7 @@ export function FlagshipCard({ project }: FlagshipCardProps) {
             <div className="mt-4 rounded-xl border border-amber-500/30 bg-amber-500/10 p-3 text-xs">
               <div className="mb-1 flex items-center gap-1.5 font-mono text-[11px] font-bold uppercase tracking-wider text-amber-600 dark:text-amber-400">
                 <Cpu className="size-3.5 shrink-0" />
-                <span>ARCHITECTURE & TRADE-OFF</span>
+                <span>ARCHITECTURE & CORE DESIGN</span>
               </div>
               <p className="font-sans text-[11px] leading-relaxed text-amber-950 dark:text-amber-200/90 font-medium">
                 {project.architecture}
@@ -109,27 +99,12 @@ export function FlagshipCard({ project }: FlagshipCardProps) {
             </div>
           )}
 
-          {/* Seeded Demo Access Note */}
-          {project.demoCredentials && (
-            <div className="mt-3 flex items-start gap-2 rounded-lg border border-border/60 bg-muted/40 dark:bg-white/[0.02] px-2.5 py-1.5 text-[11px] text-muted-foreground font-mono">
-              <KeyRound className="size-3.5 shrink-0 text-emerald-400 mt-0.5" />
-              <div className="leading-snug">
-                {project.demoCredentials.role && (
-                  <span className="font-semibold text-foreground mr-1.5">
-                    {project.demoCredentials.role}:
-                  </span>
-                )}
-                <span>{project.demoCredentials.note || `${project.demoCredentials.email} (No signup required)`}</span>
-              </div>
-            </div>
-          )}
-
-          {/* Technical Outcomes */}
+          {/* Technical Outcomes (2 bullets max) */}
           {project.outcomes && project.outcomes.length > 0 && (
             <ul className="mt-4 flex-1 space-y-2">
-              {project.outcomes.slice(0, 3).map((outcome, idx) => (
+              {project.outcomes.slice(0, 2).map((outcome, idx) => (
                 <li key={idx} className="flex items-start gap-2 text-xs text-foreground/80">
-                  <span className="mt-1.5 size-1.5 shrink-0 rounded-full bg-emerald-400 shadow-[0_0_8px_rgba(52,211,153,0.6)]" />
+                  <span className="mt-1.5 size-1.5 shrink-0 rounded-full bg-amber-400 shadow-[0_0_6px_rgba(245,158,11,0.6)]" />
                   <span className="leading-relaxed">{outcome}</span>
                 </li>
               ))}
@@ -173,7 +148,7 @@ export function FlagshipCard({ project }: FlagshipCardProps) {
                 className="flex items-center justify-center gap-1 rounded-lg border border-border/70 bg-card/80 px-2 py-2 font-mono text-[11px] font-semibold uppercase tracking-wider text-foreground transition-all hover:bg-muted dark:hover:bg-white/[0.06] hover:border-foreground/30 active:scale-[0.98]"
               >
                 <BookOpen className="size-3 shrink-0 text-muted-foreground" />
-                <span>STUDY</span>
+                <span>CASE STUDY</span>
               </Link>
 
               {/* 3. GitHub */}
@@ -190,9 +165,9 @@ export function FlagshipCard({ project }: FlagshipCardProps) {
 
             {/* Measured Result Footnote */}
             <div className="text-center font-mono text-[10px] text-muted-foreground/80 pt-0.5">
-              {project.slug === "shipshape" && "First-run compile rate: 94.2% • Median time to live preview: ~14s (Turbopack benchmark)"}
+              {project.slug === "shipshape" && "First-run compile rate: 94.2% · Median ~14s to live preview"}
               {project.slug === "fellow" && "Single-row write per reorder · Amortized O(1) complexity"}
-              {project.slug === "trim" && "12-15 deterministic rules · 99.8% 3-tier delivery"}
+              {project.slug === "trim" && "15 deterministic rules · 99.9% 3-tier delivery uptime"}
             </div>
           </div>
         </div>

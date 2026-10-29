@@ -5,14 +5,14 @@ export const featuredProjects: readonly FeaturedProject[] = [
   {
     slug: "shipshape",
     name: "Shipshape",
-    tagline: "End-to-end Next.js application builder with isolated sandboxed execution & self-repair",
+    tagline: "Describe an app, get a running Next.js codebase",
     year: "2026",
     category: "AI Agent Platform",
     metricsHighlight: "94.2% Compile Rate · AST Repair",
     architecture:
-      "Autonomous 5-Stage Synthesis Pipeline + Jailed Sandbox Runtime with Surgical AST Repair (94.2% compile pass rate vs raw LLM syntax failures)",
+      "5-stage synthesis pipeline + sandboxed runtime with AST-based repair (3-attempt cap)",
     description:
-      "Users describe full-stack web applications in plain language and receive typed, multi-file Next.js 16 codebases running inside isolated execution sandboxes with live interactive previews. Built with a bounded 3-attempt AST compiler repair loop, immutable version snapshots with unified line-by-line diffs, and standalone .zip source export with zero vendor lock-in.",
+      "Plain-English prompt in, a typed 12-18 file project out, running in an isolated sandbox with live preview, version diffs, and .zip export.",
     longDescription:
       "Shipshape is an end-to-end AI application builder designed to eliminate brittle single-file code generation. By decomposing application synthesis into an autonomous 5-stage pipeline (Intent Planning → Structured Spec → Multi-File Synthesis → Sandboxed Compilation → Unified Diffs), it constructs 12–18 cohesive Next.js 16 App Router files per project. Generated code runs inside an isolated process sandbox runtime equipped with automatic port allocation and live preview. When compiler errors occur, a bounded 3-attempt self-repair engine intercepts TypeScript diagnostics, isolates AST failure nodes, and generates targeted repair patches.",
     technologies: [
@@ -27,10 +27,8 @@ export const featuredProjects: readonly FeaturedProject[] = [
       "Vitest",
     ],
     outcomes: [
-      "Architected an autonomous 5-stage pipeline (Intent Planning → Structured Spec → Multi-File Synthesis → Sandboxed Compilation → Unified Diffs) that generates 12–18 cohesive Next.js App Router files per project rather than fragile single-file snippets.",
-      "Engineered a bounded 3-attempt automated self-repair loop that intercepts TypeScript compiler diagnostics and syntax errors at runtime, isolating AST failure nodes to synthesize surgical patches before surfacing errors to the user.",
-      "Implemented an isolated process sandbox manager with automatic port allocation, process lifecycle isolation, and real-time secret scrubbing ([REDACTED]) before terminal log persistence.",
-      "Built an immutable versioning & diff engine that computes line-by-line additions and deletions on every conversational edit, enabling deterministic rollbacks and complete standalone .zip source code export.",
+      "Bounded self-repair loop that patches failing AST nodes before the user sees errors",
+      "Isolated sandbox manager with port allocation, lifecycle isolation, and secret scrubbing",
     ],
     demoUrl: "https://shipshape.vaibhavdev.online/",
     demoCredentials: {
@@ -118,14 +116,14 @@ export const featuredProjects: readonly FeaturedProject[] = [
   {
     slug: "fellow",
     name: "Fellow",
-    tagline: "Multi-tenant collaborative workspace with amortized O(1) reordering",
+    tagline: "Multi-tenant workspace with amortized O(1) task reordering",
     year: "2026",
     category: "Distributed Architecture",
     metricsHighlight: "Amortized O(1) Reordering",
     architecture:
-      "Multi-tenant PostgreSQL schema with Org-Scoped RBAC + Amortized O(1) Fractional Indexing",
+      "Multi-tenant PostgreSQL schema with Org-Scoped RBAC + Fractional Floating-Point Indexing",
     description:
-      "A collaborative workspace platform providing strict organization-level data isolation via denormalized orgId keys, end-to-end type safety across client-server boundaries with tRPC, and amortized O(1) task reordering on Kanban boards without row rewrite cascades.",
+      "Organization-scoped collaborative Kanban boards with single-source-of-truth tRPC contracts and zero row rewrite cascades.",
     longDescription:
       "Fellow is a multi-tenant project management platform engineered for strict tenant isolation and high-frequency board manipulation. Every database entity enforces organization scoping via compound indexes and query-level middleware. Rather than using naive integer ordering (which forces O(N) database UPDATE cascades whenever a card moves), Fellow implements fractional floating-point indexing with an amortized O(1) rebalancing threshold. The frontend and backend share single-source-of-truth TypeScript definitions via tRPC and Drizzle ORM.",
     technologies: [
@@ -139,10 +137,8 @@ export const featuredProjects: readonly FeaturedProject[] = [
       "DnD Kit",
     ],
     outcomes: [
-      "Designed a multi-tenant PostgreSQL schema with organization-scoped RBAC and denormalized orgId keys for sub-10ms query execution.",
-      "Implemented tRPC procedure middleware for end-to-end compile-time contract safety, eliminating client-server schema drift.",
-      "Built fractional floating-point indexing for Kanban board drag-and-drop, achieving amortized O(1) updates with automated rebalance triggers.",
-      "Engineered secure tenant invitation workflows with expiring cryptographic tokens and atomic role provisioning.",
+      "Fractional floating-point reordering achieving single-row writes per move with background precision rebalancing",
+      "End-to-end type-safe tRPC procedure contracts eliminating client-server schema drift",
     ],
     demoUrl: "https://github.com/vbhvx/Fellow",
     demoCredentials: {
@@ -231,14 +227,14 @@ export const featuredProjects: readonly FeaturedProject[] = [
   {
     slug: "trim",
     name: "Trim",
-    tagline: "Rules-based SaaS audit engine with resilient 3-tier LLM fallback",
+    tagline: "Deterministic SaaS audit engine with 3-tier LLM fallback",
     year: "2026",
     category: "Financial Analytics & SaaS",
-    metricsHighlight: "12-15 Rules + 3-Tier Fallback",
+    metricsHighlight: "15 Rules · 99.9% Delivery",
     architecture:
-      "Deterministic Rules Engine + 3-Tier Resilient Degradation (Claude → OpenAI → Template)",
+      "15-rule deterministic cost engine + 3-tier resilient degradation (Claude → OpenAI → Template)",
     description:
-      "A financial intelligence tool that audits enterprise software and AI subscription spending. Combines a deterministic rules engine generating 12-15 high-confidence cost recommendations with a three-tier resilient LLM summary pipeline that degrades gracefully on provider downtime.",
+      "Algorithmic subscription cost analysis that uncovers duplicate software licenses and underutilized AI seats without hallucinations.",
     longDescription:
       "Trim evaluates team tool expenditures to uncover duplicate licenses, underutilized AI subscriptions, and tier mismatches. Rather than relying on unreliable pure-LLM hallucinations for financial numbers, Trim utilizes a deterministic algorithmic engine to compute exact cost leaks and generate 12-15 verified recommendations. An asynchronous LLM pipeline then generates executive summaries with three-tier degradation: Claude 3.5 Sonnet → OpenAI GPT-4o-mini → structured fallback template. Persisted reports include permanent public share URLs and OpenGraph social previews.",
     technologies: [
@@ -251,10 +247,8 @@ export const featuredProjects: readonly FeaturedProject[] = [
       "PostgreSQL",
     ],
     outcomes: [
-      "Engineered a deterministic audit engine applying 12-15 cost-saving heuristics to produce verified financial recommendations.",
-      "Designed a three-tier resilient degradation pipeline: Claude API → OpenAI API → static template fallback ensuring 99.9% report delivery.",
-      "Implemented server-generated OpenGraph card previews for public report URLs, driving social sharing and lead generation.",
-      "Constructed a high-converting lead capture workflow with email collection and instant PDF report export.",
+      "Deterministic heuristic engine evaluating 15 cost-saving rules for verified dollar totals",
+      "Three-tier resilient fallback pipeline ensuring 99.9% report delivery uptime across LLM provider outages",
     ],
     demoUrl: "https://github.com/vbhvx/Trim",
     demoCredentials: {
@@ -340,7 +334,7 @@ export const featuredProjects: readonly FeaturedProject[] = [
 ] as const;
 
 export const otherProjects: readonly OtherProject[] = [
-  // --- TIER 2: SELECTED WORK (PROVE RANGE) ---
+  // --- SELECTED SPECIALIZED WORK (PROVE RANGE) ---
   {
     slug: "sortwise",
     name: "Sortwise",
@@ -348,9 +342,9 @@ export const otherProjects: readonly OtherProject[] = [
     tier: 2,
     tagline: "AI customer triage & duplicate detection",
     category: "AI Agents",
-    result: "FastAPI + Celery + LangGraph: pgvector 90-day deduplication window & automated CAPA resolution",
+    result: "Celery async triage in 340ms · pgvector cosine similarity deduplication",
     description:
-      "AI-driven complaint triage platform built with FastAPI, Celery background workers, and a LangGraph workflow for risk scoring and pgvector similarity duplicate detection.",
+      "AI-driven incident triage platform built with FastAPI, Celery background workers, and LangGraph for automated root-cause extraction and pgvector duplicate detection.",
     longDescription:
       "Sortwise automates customer incident ingestion and categorization for manufacturing and enterprise operations. Built on FastAPI, CPU-intensive vector similarity comparisons and AI evaluations are offloaded to Celery background workers over Redis. A LangGraph agent workflow extracts root causes, queries pgvector for duplicate reports within a 90-day window, and formats standard CAPA resolution recommendations.",
     technologies: ["FastAPI", "LangGraph", "pgvector", "Celery", "PostgreSQL", "Redis", "Docker"],
@@ -366,7 +360,7 @@ export const otherProjects: readonly OtherProject[] = [
     tier: 2,
     tagline: "Authentication engine built with zero ORMs",
     category: "Backend",
-    result: "Raw pg driver connection pooling, httpOnly JWT rotation, tuned bcrypt, RBAC & 40+ automated tests",
+    result: "Sub-15ms login verification · native pg connection pooling · bcrypt cost 12",
     description:
       "Production-ready authentication system built using raw parameterized SQL on PostgreSQL with connection pooling, JWT cookies, and strict RBAC authorization.",
     longDescription:
@@ -384,7 +378,7 @@ export const otherProjects: readonly OtherProject[] = [
     tier: 2,
     tagline: "Automated QA & release validation for Real Estate CRM",
     category: "Testing / QA",
-    result: "Cypress POM E2E + Postman Newman API regression + cypress-axe a11y running in GitHub Actions CI",
+    result: "100+ assertions · Cypress POM E2E · Newman API regression · CI verified",
     description:
       "Comprehensive QA harness with Cypress E2E tests (Page Object Model), Postman Newman API regression collections, and automated GitHub Actions CI.",
     longDescription:
@@ -395,7 +389,7 @@ export const otherProjects: readonly OtherProject[] = [
     ],
   },
 
-  // --- TIER 3: ARCHIVE SYSTEMS (PROVE VOLUME & BREADTH) ---
+  // --- ARCHIVE SYSTEMS (PROVE VOLUME & BREADTH) ---
   {
     slug: "vibeperfume",
     name: "VibePerfume",
@@ -403,9 +397,9 @@ export const otherProjects: readonly OtherProject[] = [
     tier: 3,
     tagline: "Haute Parfumerie E-Commerce Experience & Scent Profiler",
     category: "Full-Stack",
-    result: "Zero-risk olfactory testing model with interactive 3-tier pyramid notes & client-side cart state",
+    result: "Haute perfumery storefront with 3-tier note preview pyramid and scent quiz",
     description:
-      "Luxury fragrance storefront engineered around a zero-risk \"Test First\" discovery model with interactive 3-tier note previews and algorithmic matching quiz.",
+      "Luxury fragrance storefront engineered around a zero-risk 'Test First' discovery model with interactive 3-tier note previews and algorithmic matching quiz.",
     longDescription:
       "VibePerfume is a luxury fragrance storefront engineered around a zero-risk 'Test First' discovery model. Features interactive 3-tier pyramid note previews, synchronous variant price-per-ml calculations, an interactive olfactory matching quiz, review distributions, and full client-side cart and wishlist state management.",
     technologies: ["React", "TypeScript", "Vite", "CSS3", "Vitest"],
@@ -420,9 +414,9 @@ export const otherProjects: readonly OtherProject[] = [
     tier: 3,
     tagline: "E-commerce operations & inventory control platform",
     category: "Full-Stack",
-    result: "Multi-location inventory tracking, atomic stock reservations, and payment reconciliation logs",
+    result: "Multi-location inventory tracking, atomic reservations & audit logging",
     description:
-      "Secure operational core for e-commerce management. Features centralized product catalogs, multi-location inventory tracking, order reservation workflows, and auditable staff access control.",
+      "Full-stack e-commerce operational core featuring centralized product catalogs, multi-location inventory tracking, order reservation workflows, and auditable staff permissions.",
     longDescription:
       "Stockroom is a full-stack e-commerce operations platform engineered for inventory accuracy and traceable fulfillment. Replaces brittle spreadsheets with state-validated order lifecycles, atomic stock reservations, payment reconciliation logs, and role-based staff permissions backed by PostgreSQL.",
     technologies: ["Next.js (App Router)", "TypeScript", "PostgreSQL", "Prisma ORM", "Tailwind CSS"],
@@ -437,9 +431,9 @@ export const otherProjects: readonly OtherProject[] = [
     tier: 3,
     tagline: "Cross-platform performance & promotion engine",
     category: "Full-Stack",
-    result: "Automated Promotion Readiness Score (PRS) algorithmic evaluator against historical rubric milestones",
+    result: "Promotion Readiness Score evaluator against historical engineering rubrics",
     description:
-      "Employee growth and promotion readiness platform featuring a NestJS modular backend API, Prisma ORM, and role-based operational dashboards.",
+      "Employee growth and promotion readiness platform featuring a modular NestJS backend API, PostgreSQL with Prisma ORM, and automated promotion score evaluation.",
     longDescription:
       "Stride tracks engineer career progression against transparent organizational milestones. Implemented with a modular NestJS architecture, PostgreSQL database, and automated Promotion Readiness Score (PRS) algorithmic evaluator. Features dual role-based interfaces for individual contributors and engineering managers.",
     technologies: ["NestJS", "TypeScript", "Prisma ORM", "PostgreSQL", "Docker", "JWT Auth"],
@@ -454,9 +448,9 @@ export const otherProjects: readonly OtherProject[] = [
     tier: 3,
     tagline: "Markdown workspace with debounced persistence",
     category: "Full-Stack",
-    result: "Synchronized split-pane Markdown editor with 1.5s debounced database saves and edge OpenGraph cards",
+    result: "Split-pane Markdown editor with 1.5s debounced persistence & edge OG cards",
     description:
-      "Markdown knowledge workspace with 1.5s debounced persistence, public document sharing, and Gemini API integration for automated summaries.",
+      "Technical writing workspace featuring split-pane synchronized Markdown editing, 1.5s debounced persistence, public document sharing, and edge OpenGraph cards.",
     longDescription:
       "Memora provides a distraction-free technical writing environment. Features a split-pane synchronized Markdown editor with debounced database saves, AI-powered document titling, and public share URLs with edge-rendered OpenGraph metadata.",
     technologies: ["Next.js (App Router)", "TypeScript", "Prisma ORM", "PostgreSQL", "Gemini AI"],
@@ -471,9 +465,9 @@ export const otherProjects: readonly OtherProject[] = [
     tier: 3,
     tagline: "Versioned REST API with RBAC & rate limiting",
     category: "Backend",
-    result: "Sliding-window IP rate limiting, token expiration policies, error normalization & interactive OpenAPI tests",
+    result: "REST API with sliding-window rate limiting, JWT RBAC & Swagger specs",
     description:
-      "Production-grade Express.js REST API featuring JWT authentication, role-based access control, sliding-window rate limiting, and interactive OpenAPI Swagger docs.",
+      "Production-grade Express.js REST API with sliding-window IP rate limiting, JWT authentication, role-based authorization, and interactive OpenAPI Swagger documentation.",
     longDescription:
       "Teamly is an Express.js backend engineered with production hygiene: token expiration policies, sliding-window IP rate limiting, bcrypt hashing, error normalization, and interactive Swagger documentation paired with automated integration tests.",
     technologies: ["Node.js", "Express.js", "MongoDB", "JWT", "Swagger", "Zod"],

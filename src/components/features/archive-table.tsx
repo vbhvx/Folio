@@ -1,37 +1,43 @@
 "use client";
 
 import { Icons } from "@/components/icons";
-import type { OtherProject, ProjectCategory } from "@/data/types";
-import { ArrowUpRight, Search, Terminal, X, ExternalLink, ShieldCheck, Cpu, Workflow } from "lucide-react";
+import type { OtherProject } from "@/data/types";
+import { ArrowUpRight, Search, X } from "lucide-react";
 import Link from "next/link";
-import { useMemo, useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { useState, useMemo } from "react";
+import { AnimatePresence, motion } from "framer-motion";
 
 interface ArchiveTableProps {
   projects: readonly OtherProject[];
-  limit?: number;
   showFilters?: boolean;
   showSearch?: boolean;
+  limit?: number;
   title?: string;
   subtitle?: string;
 }
 
-type FilterOption = "All" | ProjectCategory;
-
 export function ArchiveTable({
   projects,
-  limit,
   showFilters = true,
   showSearch = true,
+  limit,
   title,
   subtitle,
 }: ArchiveTableProps) {
-  const [selectedFilter, setSelectedFilter] = useState<FilterOption>("All");
-  const [searchQuery, setSearchQuery] = useState("");
+  const [selectedFilter, setSelectedFilter] = useState<string>("All");
+  const [searchQuery, setSearchQuery] = useState<string>("");
   const [activeModalProject, setActiveModalProject] = useState<OtherProject | null>(null);
 
-  const categories: FilterOption[] = ["All", "AI Agents", "Backend", "Full-Stack", "Testing / QA"];
+  // Extract unique categories
+  const categories = useMemo(() => {
+    const set = new Set<string>();
+    projects.forEach((p) => {
+      if (p.category) set.add(p.category);
+    });
+    return ["All", ...Array.from(set)];
+  }, [projects]);
 
+  // Filter and search logic
   const filteredProjects = useMemo(() => {
     let list = [...projects];
 
@@ -40,13 +46,14 @@ export function ArchiveTable({
     }
 
     if (searchQuery.trim()) {
-      const q = searchQuery.toLowerCase();
+      const q = searchQuery.toLowerCase().trim();
       list = list.filter(
         (p) =>
           p.name.toLowerCase().includes(q) ||
           p.description?.toLowerCase().includes(q) ||
-          p.result?.toLowerCase().includes(q) ||
-          p.technologies.some((t) => t.toLowerCase().includes(q))
+          p.technologies.some((t) => t.toLowerCase().includes(q)) ||
+          p.category?.toLowerCase().includes(q) ||
+          p.result?.toLowerCase().includes(q)
       );
     }
 
@@ -73,12 +80,12 @@ export function ArchiveTable({
             )}
           </div>
 
-          {limit && (
+          {limit && projects.length > limit && (
             <Link
               href="/projects#archive"
               className="inline-flex items-center gap-1 font-mono text-xs uppercase tracking-wider text-amber-500 hover:text-amber-400 transition-colors"
             >
-              <span>VIEW FULL ARCHIVE ({projects.length} BUILDS)</span>
+              <span>EXPLORE ALL ARCHIVE BUILDS ({projects.length})</span>
               <ArrowUpRight className="size-3.5" />
             </Link>
           )}
@@ -138,38 +145,35 @@ export function ArchiveTable({
           <table className="w-full text-left font-mono text-xs">
             <thead>
               <tr className="border-b border-border/60 bg-muted/30 text-[11px] uppercase tracking-wider text-muted-foreground">
-                <th className="px-4 py-3 font-semibold">Year</th>
                 <th className="px-4 py-3 font-semibold">System</th>
-                <th className="px-4 py-3 font-semibold">Engineering Focus & One-Liner</th>
-                <th className="px-4 py-3 font-semibold hidden md:table-cell">Key Result / Fact</th>
-                <th className="px-4 py-3 font-semibold hidden lg:table-cell">Core Stack</th>
-                <th className="px-4 py-3 font-semibold text-right">Links</th>
+                <th className="px-4 py-3 font-semibold">Engineering Focus & Key Outcome</th>
+                <th className="px-4 py-3 font-semibold hidden md:table-cell">Core Stack</th>
+                <th className="px-4 py-3 font-semibold text-right">Source</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-border/40 font-sans">
               {filteredProjects.length === 0 ? (
                 <tr>
-                  <td colSpan={6} className="px-4 py-8 text-center text-muted-foreground font-mono text-xs">
+                  <td colSpan={4} className="px-4 py-8 text-center text-muted-foreground font-mono text-xs">
                     No matching systems found in archive.
                   </td>
                 </tr>
               ) : (
                 filteredProjects.map((project) => {
-                  const demoLink = project.links.find((l) => l.kind === "demo" || l.label.toLowerCase().includes("demo") || l.label.toLowerCase().includes("live"));
-                  const sourceLink = project.links.find((l) => l.kind === "source" || l.label.toLowerCase().includes("github") || l.label.toLowerCase().includes("source"));
+                  const sourceLink = project.links.find(
+                    (l) =>
+                      l.kind === "source" ||
+                      l.label.toLowerCase().includes("github") ||
+                      l.label.toLowerCase().includes("source")
+                  );
 
                   return (
                     <tr
                       key={project.slug}
                       className="group transition-colors hover:bg-muted/40 dark:hover:bg-white/[0.02]"
                     >
-                      {/* Year */}
-                      <td className="px-4 py-3.5 font-mono text-[11px] text-muted-foreground whitespace-nowrap">
-                        {project.year || "2026"}
-                      </td>
-
                       {/* Project Name */}
-                      <td className="px-4 py-3.5 font-sans font-bold text-foreground group-hover:text-amber-400 whitespace-nowrap">
+                      <td className="px-4 py-3.5 font-sans font-bold text-foreground group-hover:text-amber-400 whitespace-nowrap align-top">
                         <button
                           onClick={() => setActiveModalProject(project)}
                           className="hover:underline text-left"
@@ -178,21 +182,25 @@ export function ArchiveTable({
                         </button>
                       </td>
 
-                      {/* Summary & Tagline */}
-                      <td className="px-4 py-3.5 text-xs text-foreground/80 max-w-xs sm:max-w-md">
-                        <span className="font-mono text-[10px] text-amber-500/90 dark:text-amber-400/90 mr-1.5 font-medium">
-                          [{project.category}]
-                        </span>
-                        {project.description}
-                      </td>
-
-                      {/* Key Result / Fact */}
-                      <td className="px-4 py-3.5 text-xs font-mono text-emerald-400 hidden md:table-cell max-w-xs">
-                        <span className="line-clamp-2">{project.result || "Verified architecture with full test harness"}</span>
+                      {/* Merged Description + Outcome (No Ellipsis Truncation) */}
+                      <td className="px-4 py-3.5 text-xs text-foreground/85 align-top">
+                        <div className="space-y-1">
+                          <div>
+                            <span className="font-mono text-[10px] text-amber-500/90 dark:text-amber-400/90 mr-1.5 font-medium">
+                              [{project.category}]
+                            </span>
+                            <span>{project.description}</span>
+                          </div>
+                          {project.result && (
+                            <div className="font-mono text-[11px] text-muted-foreground">
+                              ↳ <span className="text-amber-600 dark:text-amber-300/90">{project.result}</span>
+                            </div>
+                          )}
+                        </div>
                       </td>
 
                       {/* Tech Stack */}
-                      <td className="px-4 py-3.5 hidden lg:table-cell">
+                      <td className="px-4 py-3.5 hidden md:table-cell align-top whitespace-nowrap">
                         <div className="flex flex-wrap gap-1 max-w-xs">
                           {project.technologies.slice(0, 3).map((tech) => (
                             <span
@@ -206,7 +214,7 @@ export function ArchiveTable({
                       </td>
 
                       {/* Links - GitHub Source Code Only for Tier 3 */}
-                      <td className="px-4 py-3.5 text-right whitespace-nowrap">
+                      <td className="px-4 py-3.5 text-right whitespace-nowrap align-top">
                         <div className="flex items-center justify-end font-mono text-xs">
                           {sourceLink?.href && (
                             <a
@@ -257,9 +265,6 @@ export function ArchiveTable({
                   <span className="rounded-md border border-amber-500/30 bg-amber-500/10 px-2 py-0.5 font-mono text-[10px] font-semibold uppercase text-amber-400">
                     {activeModalProject.category}
                   </span>
-                  <span className="font-mono text-xs text-muted-foreground">
-                    {activeModalProject.year || "2026"}
-                  </span>
                 </div>
                 <h4 className="font-sans text-2xl font-bold text-foreground">
                   {activeModalProject.name}
@@ -278,9 +283,9 @@ export function ArchiveTable({
 
               {/* Key Result / Benchmark */}
               {activeModalProject.result && (
-                <div className="rounded-xl border border-emerald-500/30 bg-emerald-500/10 p-3 font-mono text-xs text-emerald-300">
-                  <div className="font-bold text-[10px] uppercase tracking-wider text-emerald-400 mb-0.5">
-                    KEY RESULT / VERIFIABLE FACT:
+                <div className="rounded-xl border border-amber-500/30 bg-amber-500/10 p-3 font-mono text-xs text-amber-950 dark:text-amber-200">
+                  <div className="font-bold text-[10px] uppercase tracking-wider text-amber-500 mb-0.5">
+                    KEY OUTCOME / VERIFIABLE FACT:
                   </div>
                   {activeModalProject.result}
                 </div>
@@ -328,4 +333,3 @@ export function ArchiveTable({
     </div>
   );
 }
-

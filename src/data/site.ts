@@ -48,17 +48,17 @@ export const socialLinks = {
 } as const;
 
 export const navigation: readonly NavigationItem[] = [
-  { label: "About", href: "/#about" },
   { label: "Projects", href: "/#projects" },
+  { label: "About", href: "/#about" },
   { label: "Skills", href: "/#skills" },
   { label: "Standards", href: "/#standards" },
   { label: "Contact", href: "/#contact" },
 ] as const;
 
 export const heroContent = {
-  availabilityLabel: "Open to Internships & Full-time roles",
+  availabilityLabel: "Internships now (Remote/Delhi) · Full-time from 2028",
   title: "Vaibhav Saini",
-  kicker: "FULL-STACK ENGINEER · BACKEND ARCHITECTURE · AI AGENT SYSTEMS",
+  kicker: "FULL-STACK · BACKEND · AI AGENTS",
   subtitle: "Taking software apart. Building it back.",
   stack: "TypeScript · Python · Next.js · FastAPI · PostgreSQL · Inngest",
   summary:
@@ -77,13 +77,13 @@ export const engineeringMetrics: readonly EngineeringMetric[] = [
     value: "94.2%",
     prefix: "▲",
     description: "First-run compile pass rate achieved via bounded 3-attempt surgical AST repair in Shipshape",
-    highlightClass: "text-emerald-400",
+    highlightClass: "text-amber-400",
   },
   {
-    label: "INDEXING COMPLEXITY",
-    value: "Amortized O(1)",
-    description: "Floating-point fractional indexing with rebalance threshold to eliminate row rewrite cascades",
-    highlightClass: "text-sky-400",
+    label: "OPEN SOURCE IMPACT",
+    value: "10+ Merged PRs",
+    description: "Contributions across JavaScript/TypeScript open-source repositories and maintainer teams",
+    highlightClass: "text-foreground",
   },
 ] as const;
 
@@ -96,6 +96,12 @@ export const heroActions: readonly ActionLink[] = [
     variant: "outline",
     external: true,
     download: true,
+  },
+  {
+    label: "Email",
+    href: `mailto:${siteConfig.email}`,
+    variant: "outline",
+    external: true,
   },
   {
     label: "GitHub",
@@ -137,12 +143,12 @@ export const aboutContent = {
       period: "Jul 2025 — Jan 2026",
       highlights: [
         "10+ merged pull requests across JavaScript/TypeScript open source repositories.",
-        "Contributed bug fixes, type improvements, and test coverage while coordinating with maintainers.",
+        "Contributed bug fixes, type improvements, and test coverage while coordinating with maintainers (verified on github.com/vbhvx).",
       ],
     },
   ],
   whatNext:
-    "Actively seeking backend engineering, AI platform, or full-stack software engineer roles and internships. Available immediately for remote or Delhi-based on-site teams.",
+    "Open to software engineering internships (Remote or Delhi-based) and full-time engineering roles upon graduation in 2028.",
 } as const;
 
 export const projectsContent = {
@@ -186,8 +192,8 @@ export const contactContent = {
   title: "Let's Build Something Serious",
   headline: "Hiring for backend, full-stack, or AI agent systems?",
   description:
-    "I reply within 24 hours. Open to full-time software engineering roles and summer internships. Located in Delhi, India — available for local or remote teams worldwide.",
-  availability: "Open to Internships & Full-time roles",
+    "I reply within 24 hours. Open to software engineering internships and junior engineering roles. Located in Delhi, India — available for local or remote teams worldwide.",
+  availability: "Internships now (Remote/Delhi) · Full-time from 2028",
   actions: [
     {
       label: "Email Direct",

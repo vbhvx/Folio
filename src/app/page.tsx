@@ -84,6 +84,38 @@ export default function Page() {
                     <span>VIEW PROJECTS</span>
                     <ArrowDownRight className="size-3.5" />
                   </a>
+
+                  {/* Resume PDF */}
+                  <a
+                    href={PORTFOLIO.site.resumeUrl}
+                    download="Vaibhav_Saini_Resume.pdf"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-2 rounded-xl border border-border/70 bg-card/80 px-4 py-2 font-mono text-xs font-medium uppercase tracking-wider text-foreground shadow-sm transition-all hover:border-foreground/30 hover:bg-muted dark:hover:bg-white/[0.06] active:scale-[0.98]"
+                  >
+                    <FileText className="size-3.5 text-muted-foreground" />
+                    <span>RESUME</span>
+                  </a>
+
+                  {/* Email */}
+                  <a
+                    href={`mailto:${PORTFOLIO.site.email}`}
+                    className="flex items-center gap-2 rounded-xl border border-border/70 bg-card/80 px-4 py-2 font-mono text-xs font-medium uppercase tracking-wider text-foreground shadow-sm transition-all hover:border-foreground/30 hover:bg-muted dark:hover:bg-white/[0.06] active:scale-[0.98]"
+                  >
+                    <Mail className="size-3.5 text-muted-foreground" />
+                    <span>EMAIL</span>
+                  </a>
+
+                  {/* GitHub */}
+                  <a
+                    href={PORTFOLIO.socialLinks.github.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-2 rounded-xl border border-border/70 bg-card/80 px-4 py-2 font-mono text-xs font-medium uppercase tracking-wider text-foreground shadow-sm transition-all hover:border-foreground/30 hover:bg-muted dark:hover:bg-white/[0.06] active:scale-[0.98]"
+                  >
+                    <Icons.github className="size-3.5 text-muted-foreground" />
+                    <span>GITHUB</span>
+                  </a>
                 </div>
               </div>
             </div>
@@ -144,14 +176,14 @@ export default function Page() {
       </section>
 
       {/* ========================================================
-          TIER 1: FLAGSHIP SHIPPED SYSTEMS (DEPTH)
+          FLAGSHIP SHIPPED SYSTEMS (DEPTH)
           ======================================================== */}
       <section id="projects" className="space-y-6">
         <BlurFade delay={0.12}>
           <div className="border-b border-border/60 pb-4">
             <div className="flex items-center gap-2 font-mono text-[11px] font-semibold uppercase tracking-wider text-amber-500 dark:text-amber-400 mb-1">
               <span className="size-1.5 rounded-full bg-amber-400" />
-              <span>TIER 1 · FLAGSHIP ARCHITECTURES</span>
+              <span>FLAGSHIP ARCHITECTURES</span>
             </div>
             <h2 className="font-mono text-sm font-bold uppercase tracking-wider text-foreground sm:text-base">
               FLAGSHIP SHIPPED SYSTEMS
@@ -173,14 +205,14 @@ export default function Page() {
       </section>
 
       {/* ========================================================
-          TIER 2: MORE SELECTED WORK (RANGE)
+          MORE SELECTED WORK (RANGE)
           ======================================================== */}
       <section id="selected-work" className="space-y-6">
         <BlurFade delay={0.16}>
           <div className="border-b border-border/60 pb-4">
-            <div className="flex items-center gap-2 font-mono text-[11px] font-semibold uppercase tracking-wider text-emerald-500 dark:text-emerald-400 mb-1">
-              <span className="size-1.5 rounded-full bg-emerald-400" />
-              <span>TIER 2 · SPECIALIZED SYSTEMS</span>
+            <div className="flex items-center gap-2 font-mono text-[11px] font-semibold uppercase tracking-wider text-amber-500 dark:text-amber-400 mb-1">
+              <span className="size-1.5 rounded-full bg-amber-400" />
+              <span>SPECIALIZED SYSTEMS</span>
             </div>
             <h2 className="font-mono text-sm font-bold uppercase tracking-wider text-foreground sm:text-base">
               MORE SELECTED WORK
@@ -201,7 +233,7 @@ export default function Page() {
       </section>
 
       {/* ========================================================
-          TIER 3: PROJECT ARCHIVE TEASER (VOLUME & BREADTH)
+          PROJECT ARCHIVE (VOLUME & BREADTH)
           ======================================================== */}
       <section id="archive-preview" className="space-y-4">
         <BlurFade delay={0.2}>
@@ -211,7 +243,7 @@ export default function Page() {
             showFilters={false}
             showSearch={false}
             title="ENGINEERING ARCHIVE & REPERTOIRE"
-            subtitle="Searchable catalog of standalone backend tools, operational services, and specialized builds"
+            subtitle="Catalog of backend services, operational platforms, and specialized tools"
           />
         </BlurFade>
       </section>
@@ -364,14 +396,9 @@ export default function Page() {
                       <span
                         key={skill.name}
                         title={skill.usedIn && skill.usedIn.length > 0 ? `Used in: ${skill.usedIn.join(", ")}` : undefined}
-                        className="group/chip inline-flex items-center gap-1.5 rounded-lg border border-border/60 bg-muted/60 dark:bg-white/[0.03] px-2.5 py-1 font-mono text-xs text-muted-foreground transition-all duration-200 hover:border-amber-500/40 hover:bg-amber-500/10 hover:text-amber-700 dark:hover:text-amber-200 cursor-default"
+                        className="group/chip inline-flex items-center rounded-lg border border-border/60 bg-muted/60 dark:bg-white/[0.03] px-2.5 py-1 font-mono text-xs text-muted-foreground whitespace-nowrap transition-all duration-200 hover:border-amber-500/40 hover:bg-amber-500/10 hover:text-amber-700 dark:hover:text-amber-200 cursor-default"
                       >
                         <span>{skill.name}</span>
-                        {skill.usedIn && skill.usedIn.length > 0 && (
-                          <span className="text-[10px] text-amber-500/80 dark:text-amber-400/70 font-semibold">
-                            · {skill.usedIn[0]}
-                          </span>
-                        )}
                       </span>
                     ))}
                   </div>
@@ -410,7 +437,7 @@ export default function Page() {
                   <span className="text-xs leading-relaxed text-muted-foreground transition-colors group-hover:text-foreground">
                     {detail.text}
                   </span>
-                  <ArrowDownRight className="size-3.5 shrink-0 text-muted-foreground/60 transition-transform group-hover:translate-x-0.5 group-hover:translate-y-0.5 group-hover:text-amber-500 dark:group-hover:text-amber-400" />
+                  <ArrowUpRight className="size-3.5 shrink-0 text-muted-foreground/60 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-amber-500 dark:group-hover:text-amber-400" />
                 </a>
               ))}
             </div>
@@ -438,12 +465,12 @@ export default function Page() {
                 </p>
               </div>
 
-              {/* Action Buttons */}
-              <div className="flex flex-wrap items-center gap-2.5">
+              {/* Action Buttons with Balanced Grid */}
+              <div className="grid grid-cols-2 sm:flex sm:flex-wrap items-center gap-2.5">
                 {/* Email Direct */}
                 <a
                   href={`mailto:${PORTFOLIO.site.email}`}
-                  className="flex items-center gap-2 rounded-xl border border-amber-500/50 bg-amber-500/15 px-5 py-2.5 font-mono text-xs font-semibold uppercase tracking-wider text-amber-500 dark:text-amber-300 shadow-sm transition-all hover:bg-amber-500/25 hover:border-amber-400 active:scale-[0.98]"
+                  className="flex items-center justify-center gap-2 rounded-xl border border-amber-500/50 bg-amber-500/15 px-4 py-2.5 font-mono text-xs font-semibold uppercase tracking-wider text-amber-500 dark:text-amber-300 shadow-sm transition-all hover:bg-amber-500/25 hover:border-amber-400 active:scale-[0.98]"
                 >
                   <Mail className="size-3.5" />
                   <span>EMAIL DIRECT</span>
@@ -454,10 +481,10 @@ export default function Page() {
                   href={PORTFOLIO.socialLinks.cal.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center gap-2 rounded-xl border border-border/70 bg-muted/60 dark:bg-white/[0.03] px-4 py-2.5 font-mono text-xs uppercase tracking-wider text-foreground transition-all hover:border-foreground/30 hover:bg-muted dark:hover:border-white/30 dark:hover:bg-white/[0.06] active:scale-[0.98]"
+                  className="flex items-center justify-center gap-2 rounded-xl border border-border/70 bg-muted/60 dark:bg-white/[0.03] px-4 py-2.5 font-mono text-xs uppercase tracking-wider text-foreground transition-all hover:border-foreground/30 hover:bg-muted dark:hover:border-white/30 dark:hover:bg-white/[0.06] active:scale-[0.98]"
                 >
                   <Calendar className="size-3.5" />
-                  <span>BOOK 20-MIN CALL</span>
+                  <span>BOOK CALL</span>
                 </a>
 
                 {/* Resume PDF */}
@@ -466,7 +493,7 @@ export default function Page() {
                   download="Vaibhav_Saini_Resume.pdf"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center gap-2 rounded-xl border border-border/70 bg-muted/60 dark:bg-white/[0.03] px-4 py-2.5 font-mono text-xs uppercase tracking-wider text-foreground transition-all hover:border-foreground/30 hover:bg-muted dark:hover:border-white/30 dark:hover:bg-white/[0.06] active:scale-[0.98]"
+                  className="flex items-center justify-center gap-2 rounded-xl border border-border/70 bg-muted/60 dark:bg-white/[0.03] px-4 py-2.5 font-mono text-xs uppercase tracking-wider text-foreground transition-all hover:border-foreground/30 hover:bg-muted dark:hover:border-white/30 dark:hover:bg-white/[0.06] active:scale-[0.98]"
                 >
                   <FileText className="size-3.5" />
                   <span>RESUME</span>
@@ -477,7 +504,7 @@ export default function Page() {
                   href={PORTFOLIO.socialLinks.linkedin.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center gap-2 rounded-xl border border-border/70 bg-muted/60 dark:bg-white/[0.03] px-4 py-2.5 font-mono text-xs uppercase tracking-wider text-foreground transition-all hover:border-foreground/30 hover:bg-muted dark:hover:border-white/30 dark:hover:bg-white/[0.06] active:scale-[0.98]"
+                  className="flex items-center justify-center gap-2 rounded-xl border border-border/70 bg-muted/60 dark:bg-white/[0.03] px-4 py-2.5 font-mono text-xs uppercase tracking-wider text-foreground transition-all hover:border-foreground/30 hover:bg-muted dark:hover:border-white/30 dark:hover:bg-white/[0.06] active:scale-[0.98]"
                 >
                   <Icons.linkedin className="size-3.5" />
                   <span>LINKEDIN</span>
@@ -502,9 +529,9 @@ export default function Page() {
             </div>
 
             <div className="flex items-center gap-3">
-              <span className="flex items-center gap-1.5 text-[11px] text-emerald-400 font-medium">
-                <span className="size-1.5 rounded-full bg-emerald-400 shadow-[0_0_6px_rgba(52,211,153,0.8)]" />
-                ALL REPOSITORIES CI VERIFIED · CLEAN TRADEOFFS
+              <span className="flex items-center gap-1.5 text-[11px] text-muted-foreground">
+                <span className="size-1.5 rounded-full bg-emerald-400" />
+                DELHI, INDIA
               </span>
               <span>·</span>
               <a
@@ -513,7 +540,7 @@ export default function Page() {
                 rel="noopener noreferrer"
                 className="hover:text-amber-400 transition-colors uppercase tracking-wider text-[11px]"
               >
-                DELHI, INDIA · GITHUB.COM/VBHVX
+                GITHUB.COM/VBHVX
               </a>
             </div>
           </div>

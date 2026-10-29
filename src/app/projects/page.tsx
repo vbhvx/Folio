@@ -37,7 +37,7 @@ export default function ProjectsPage() {
           <BlurFade delay={0.08}>
             <div className="inline-flex items-center gap-2 rounded-lg border border-amber-500/40 bg-amber-500/10 px-3 py-1 font-mono text-xs uppercase tracking-wider text-amber-400">
               <Terminal className="size-3" />
-              <span>BODY OF WORK · MULTI-TIER SYSTEMS DIRECTORY</span>
+              <span>BODY OF WORK · SYSTEMS DIRECTORY</span>
             </div>
           </BlurFade>
 
@@ -49,19 +49,19 @@ export default function ProjectsPage() {
 
           <BlurFade delay={0.16}>
             <p className="max-w-3xl text-base leading-relaxed text-muted-foreground sm:text-lg">
-              Structured across three visibility tiers: deep flagship architectures with live runtimes, selected specialized builds proving domain breadth, and an indexed technical archive.
+              A comprehensive body of software engineering work: flagship systems with live environments, specialized builds proving architectural range, and a searchable technical archive.
             </p>
           </BlurFade>
         </div>
       </section>
 
-      {/* Tier 1: Flagship Projects Section */}
+      {/* Flagship Projects Section */}
       <section id="flagship-systems" className="space-y-6">
         <BlurFade delay={0.2}>
           <div className="border-b border-border/60 pb-4">
             <div className="flex items-center gap-2 font-mono text-[11px] font-semibold uppercase tracking-wider text-amber-500 dark:text-amber-400 mb-1">
               <span className="size-1.5 rounded-full bg-amber-400" />
-              <span>TIER 1 · FLAGSHIP ARCHITECTURES (DEPTH)</span>
+              <span>FLAGSHIP ARCHITECTURES</span>
             </div>
             <h2 className="font-mono text-sm font-bold uppercase tracking-wider text-foreground sm:text-base">
               FLAGSHIP SYSTEMS
@@ -81,13 +81,13 @@ export default function ProjectsPage() {
         </div>
       </section>
 
-      {/* Tier 2: Selected Work Section */}
+      {/* Selected Work Section */}
       <section id="selected-systems" className="space-y-6">
         <BlurFade delay={0.26}>
           <div className="border-b border-border/60 pb-4">
-            <div className="flex items-center gap-2 font-mono text-[11px] font-semibold uppercase tracking-wider text-emerald-500 dark:text-emerald-400 mb-1">
-              <span className="size-1.5 rounded-full bg-emerald-400" />
-              <span>TIER 2 · SPECIALIZED SYSTEMS (RANGE)</span>
+            <div className="flex items-center gap-2 font-mono text-[11px] font-semibold uppercase tracking-wider text-amber-500 dark:text-amber-400 mb-1">
+              <span className="size-1.5 rounded-full bg-amber-400" />
+              <span>SPECIALIZED SYSTEMS</span>
             </div>
             <h2 className="font-mono text-sm font-bold uppercase tracking-wider text-foreground sm:text-base">
               MORE SELECTED WORK
@@ -107,15 +107,15 @@ export default function ProjectsPage() {
         </div>
       </section>
 
-      {/* Tier 3: Complete Engineering Archive Table */}
+      {/* Complete Engineering Archive Table */}
       <section id="archive" className="space-y-6">
         <BlurFade delay={0.32}>
           <ArchiveTable
             projects={PORTFOLIO.archiveProjects}
             showFilters={true}
             showSearch={true}
-            title="TIER 3 · COMPLETE TECHNICAL ARCHIVE & DIRECTORY"
-            subtitle="Searchable, filterable index of all specialized builds, background services, and backend utilities"
+            title="TECHNICAL ARCHIVE & DIRECTORY"
+            subtitle="Searchable, filterable index of specialized builds, background services, and backend utilities"
           />
         </BlurFade>
       </section>

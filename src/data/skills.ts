@@ -2,19 +2,20 @@ import type { SkillGroup } from "@/data/types";
 
 export const skillGroups: readonly SkillGroup[] = [
   {
-    title: "LANGUAGES & CORE",
+    title: "FRONTEND & CLIENT",
     items: [
+      { name: "React 19", usedIn: ["Shipshape", "VibePerfume"] },
+      { name: "Next.js (App Router)", usedIn: ["Shipshape", "Fellow", "Trim"] },
+      { name: "Tailwind CSS", usedIn: ["Shipshape", "Fellow", "Trim"] },
       { name: "TypeScript", usedIn: ["Shipshape", "Fellow", "Trim"] },
-      { name: "Python", usedIn: ["Sortwise", "Gatecheck"] },
-      { name: "SQL (PostgreSQL)", usedIn: ["Latch", "Fellow", "Trim"] },
-      { name: "JavaScript (ES6+)", usedIn: ["VibePerfume", "Shipshape"] },
-      { name: "Node.js Runtime", usedIn: ["Latch", "Teamly"] },
+      { name: "Turbopack & Vite", usedIn: ["Shipshape", "VibePerfume"] },
+      { name: "HTML5 / CSS3", usedIn: ["VibePerfume", "Shipshape"] },
     ],
   },
   {
     title: "BACKEND & ARCHITECTURE",
     items: [
-      { name: "Next.js (App Router)", usedIn: ["Shipshape", "Fellow", "Trim"] },
+      { name: "Node.js Runtime", usedIn: ["Latch", "Teamly"] },
       { name: "FastAPI", usedIn: ["Sortwise"] },
       { name: "Express.js", usedIn: ["Latch", "Teamly"] },
       { name: "tRPC (Type-Safe RPC)", usedIn: ["Fellow"] },
@@ -34,15 +35,14 @@ export const skillGroups: readonly SkillGroup[] = [
     ],
   },
   {
-    title: "DATABASES & RELIABILITY",
+    title: "DATABASES & TESTING",
     items: [
       { name: "PostgreSQL (Raw SQL)", usedIn: ["Latch", "Fellow"] },
-      { name: "Drizzle ORM", usedIn: ["Fellow"] },
       { name: "Prisma ORM", usedIn: ["Shipshape", "Stockroom"] },
+      { name: "Drizzle ORM", usedIn: ["Fellow"] },
       { name: "Supabase", usedIn: ["Trim", "Fellow"] },
       { name: "Docker", usedIn: ["Sortwise", "Stride"] },
-      { name: "CI/CD & Cypress E2E", usedIn: ["Gatecheck"] },
+      { name: "Cypress E2E & Newman", usedIn: ["Gatecheck"] },
     ],
   },
 ] as const;
-

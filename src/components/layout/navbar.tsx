@@ -40,6 +40,15 @@ export default function Navbar() {
     <header className="sticky top-3 z-50 mx-auto w-full max-w-6xl px-3 sm:px-6 lg:px-8">
       <div className="glass rounded-2xl border border-border/60 bg-card/75 px-3 py-2.5 shadow-xl shadow-black/20 backdrop-blur-xl sm:px-4">
         <div className="flex items-center justify-between gap-3">
+          {/* Brand Name */}
+          <Link
+            href="/"
+            className="flex items-center gap-2 font-mono text-xs font-bold uppercase tracking-wider text-foreground transition-colors hover:text-amber-400 shrink-0"
+          >
+            <span className="size-2 rounded-full bg-amber-400" />
+            <span>VAIBHAV SAINI</span>
+          </Link>
+
           {/* Desktop Nav Links */}
           <nav className="hidden items-center gap-1 md:flex">
             {PORTFOLIO.navigation.map((item) =>

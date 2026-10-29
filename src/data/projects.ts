@@ -32,9 +32,9 @@ export const featuredProjects: readonly FeaturedProject[] = [
       "Implemented an isolated process sandbox manager with automatic port allocation, process lifecycle isolation, and real-time secret scrubbing ([REDACTED]) before terminal log persistence.",
       "Built an immutable versioning & diff engine that computes line-by-line additions and deletions on every conversational edit, enabling deterministic rollbacks and complete standalone .zip source code export.",
     ],
-    demoUrl: "https://github.com/vbhvx/Shipshape",
+    demoUrl: "https://shipshape.vaibhavdev.online/",
     demoCredentials: {
-      note: "Walkthrough video, architecture docs, and reproducible sandbox runtime setup in README",
+      note: "Live app running with interactive sandboxed code generation and live preview",
     },
     caseStudy: {
       problem:
@@ -110,7 +110,7 @@ export const featuredProjects: readonly FeaturedProject[] = [
     },
     image: `${BASE_PATH}/images/projects/shipshape.png`,
     links: [
-      { label: "Live Demo", kind: "demo", href: "https://github.com/vbhvx/Shipshape" },
+      { label: "Live Demo", kind: "demo", href: "https://shipshape.vaibhavdev.online/" },
       { label: "Case Study", kind: "case-study", href: "/projects/shipshape" },
       { label: "GitHub", kind: "source", href: "https://github.com/vbhvx/Shipshape" },
     ],

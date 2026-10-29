@@ -51,7 +51,6 @@ export default function ProjectDetailPage({ params }: PageProps) {
 
   const isFeatured = isFeaturedProject(project);
   const outcomes: readonly string[] = isFeatured ? project.outcomes : [];
-  const year: string = isFeatured ? project.year : "2026";
   const architecture = project.architecture;
   const category = project.category || "Systems Engineering";
   const caseStudy = isFeatured ? project.caseStudy : undefined;
@@ -90,9 +89,6 @@ export default function ProjectDetailPage({ params }: PageProps) {
                 <span className="inline-flex items-center gap-1.5 rounded-lg border border-amber-500/40 bg-amber-500/10 px-2.5 py-1 font-mono text-[10px] font-semibold uppercase tracking-wider text-amber-500 dark:text-amber-400">
                   <Terminal className="size-3" />
                   <span>{category}</span>
-                </span>
-                <span className="rounded-lg border border-border/60 bg-white/[0.03] px-2.5 py-1 font-mono text-[10px] uppercase tracking-wider text-muted-foreground">
-                  RELEASE: {year}
                 </span>
                 <span className="flex items-center gap-1.5 rounded-lg border border-emerald-500/30 bg-emerald-500/10 px-2.5 py-1 font-mono text-[10px] font-semibold text-emerald-400">
                   <span className="size-1.5 rounded-full bg-emerald-400 shadow-[0_0_6px_rgba(52,211,153,0.8)]" />

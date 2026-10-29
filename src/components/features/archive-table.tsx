@@ -50,14 +50,9 @@ export function ArchiveTable({
     return ["All", ...Array.from(set)];
   }, [projects]);
 
-  // Filter, search, and sort newest first
+  // Filter and search
   const filteredProjects = useMemo(() => {
-    // Sort newest first by year
-    let list = [...projects].sort((a, b) => {
-      const yearA = parseInt(a.year || "2026", 10);
-      const yearB = parseInt(b.year || "2026", 10);
-      return yearB - yearA;
-    });
+    let list = [...projects];
 
     if (selectedFilter !== "All") {
       list = list.filter((p) => p.category === selectedFilter);
@@ -183,12 +178,6 @@ export function ArchiveTable({
                   scope="col"
                   className="sticky top-0 z-10 bg-card/95 backdrop-blur-md px-4 py-3 font-semibold shadow-[0_1px_0_0_hsl(var(--border)/0.6)]"
                 >
-                  YEAR
-                </th>
-                <th
-                  scope="col"
-                  className="sticky top-0 z-10 bg-card/95 backdrop-blur-md px-4 py-3 font-semibold shadow-[0_1px_0_0_hsl(var(--border)/0.6)]"
-                >
                   SYSTEM
                 </th>
                 <th
@@ -221,7 +210,7 @@ export function ArchiveTable({
               {filteredProjects.length === 0 ? (
                 <tr>
                   <td
-                    colSpan={6}
+                    colSpan={5}
                     className="px-4 py-8 text-center text-muted-foreground font-mono text-xs"
                   >
                     No matching systems found in archive.
@@ -254,12 +243,7 @@ export function ArchiveTable({
                       key={project.slug}
                       className="group transition-colors hover:bg-muted/40 dark:hover:bg-white/[0.02]"
                     >
-                      {/* 1. Year */}
-                      <td className="px-4 py-3.5 font-mono text-[11px] text-muted-foreground whitespace-nowrap align-top">
-                        {project.year || "2026"}
-                      </td>
-
-                      {/* 2. System Name */}
+                      {/* 1. System Name */}
                       <td className="px-4 py-3.5 font-sans font-bold text-foreground group-hover:text-amber-400 whitespace-nowrap align-top">
                         <button
                           onClick={() => setActiveModalProject(project)}
@@ -370,11 +354,6 @@ export function ArchiveTable({
                   {activeModalProject.category && (
                     <span className="rounded-md border border-amber-500/30 bg-amber-500/10 px-2 py-0.5 font-mono text-[10px] font-semibold uppercase text-amber-400">
                       {activeModalProject.category}
-                    </span>
-                  )}
-                  {activeModalProject.year && (
-                    <span className="font-mono text-xs text-muted-foreground">
-                      {activeModalProject.year}
                     </span>
                   )}
                 </div>

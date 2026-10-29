@@ -63,7 +63,7 @@ export function FlagshipCard({ project }: FlagshipCardProps) {
 
         {/* Content Body */}
         <div className="flex flex-1 flex-col p-5 sm:p-6">
-          {/* Header & Year */}
+          {/* Header */}
           <div className="flex items-start justify-between gap-3">
             <div>
               <Link
@@ -76,9 +76,6 @@ export function FlagshipCard({ project }: FlagshipCardProps) {
                 {project.tagline}
               </p>
             </div>
-            <span className="shrink-0 rounded-md border border-border/70 bg-muted/60 dark:bg-white/[0.04] px-2 py-0.5 font-mono text-[11px] font-medium text-muted-foreground">
-              {project.year}
-            </span>
           </div>
 
           {/* Concise Description */}

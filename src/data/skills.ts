@@ -5,9 +5,9 @@ export const skillGroups: readonly SkillGroup[] = [
     title: "FRONTEND & CLIENT",
     items: [
       { name: "React 19", usedIn: ["Shipshape", "VibePerfume"] },
-      { name: "Next.js (App Router)", usedIn: ["Shipshape", "Fellow", "Trim"] },
-      { name: "Tailwind CSS", usedIn: ["Shipshape", "Fellow", "Trim"] },
-      { name: "TypeScript", usedIn: ["Shipshape", "Fellow", "Trim"] },
+      { name: "Next.js (App Router)", usedIn: ["Shipshape", "Fellow", "Memora"] },
+      { name: "Tailwind CSS", usedIn: ["Shipshape", "Fellow", "Memora"] },
+      { name: "TypeScript", usedIn: ["Shipshape", "Fellow", "Memora"] },
       { name: "Turbopack & Vite", usedIn: ["Shipshape", "VibePerfume"] },
       { name: "HTML5 / CSS3", usedIn: ["VibePerfume", "Shipshape"] },
     ],
@@ -38,7 +38,7 @@ export const skillGroups: readonly SkillGroup[] = [
     title: "DATABASES & TESTING",
     items: [
       { name: "PostgreSQL (Raw SQL)", usedIn: ["Latch", "Fellow"] },
-      { name: "Prisma ORM", usedIn: ["Shipshape", "Stockroom"] },
+      { name: "Prisma ORM", usedIn: ["Shipshape", "Memora", "Stockroom"] },
       { name: "Drizzle ORM", usedIn: ["Fellow"] },
       { name: "Supabase", usedIn: ["Trim", "Fellow"] },
       { name: "Docker", usedIn: ["Sortwise", "Stride"] },

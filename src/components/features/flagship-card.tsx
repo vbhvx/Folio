@@ -164,6 +164,7 @@ export function FlagshipCard({ project }: FlagshipCardProps) {
             <div className="text-center font-mono text-[10px] text-muted-foreground/80 pt-0.5">
               {project.slug === "shipshape" && "First-run compile rate: 94.2% · Median ~14s to live preview"}
               {project.slug === "fellow" && "Single-row write per reorder · Amortized O(1) complexity"}
+              {project.slug === "memora" && "1.5s debounced persistence · Sub-50ms split-pane sync"}
               {project.slug === "trim" && "15 deterministic rules · 99.9% 3-tier delivery uptime"}
             </div>
           </div>

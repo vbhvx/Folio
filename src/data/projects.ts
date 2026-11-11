@@ -13,7 +13,7 @@ export const featuredProjects: readonly FeaturedProject[] = [
     description:
       "AI app builder that turns plain-English requirements into a multi-file Next.js project, runs it in an isolated sandbox with live preview, and keeps line-by-line version diffs and a clean .zip export.",
     longDescription:
-      "Shipshape treats execution as the source of truth: a project is only marked working once it passes structural validation, TypeScript compilation, and runtime startup in an isolated sandbox. Requirements are turned into an editable, Zod-validated plan before any code is written. Generation progress streams over Server-Sent Events, failed builds go through a bounded repair loop capped at three attempts, and every change is recorded as a version with a structured diff that can be restored. Exports scrub platform secrets and ship with a README and .env.example. It works offline with a built-in engine and uses Gemini or OpenAI when keys are configured.",
+      "Shipshape treats execution as the source of truth: a project is only marked working once it passes structural validation, TypeScript compilation, and runtime startup in an isolated sandbox. Requirements are turned into an editable, Zod-validated plan before any code is written. Generation progress streams over Server-Sent Events, failed builds go through a bounded repair loop capped at three attempts, and every change is recorded as a version with a structured diff that can be restored. Exports scrub platform secrets and ship with a README and .env.example. It runs offline on deterministic fixtures and calls Gemini when an API key is configured. Generated apps are checked in a headless Playwright browser for console errors, broken interactions, and layout problems across viewports.",
     technologies: [
       "Next.js 16 (App Router)",
       "React 19",
@@ -23,7 +23,9 @@ export const featuredProjects: readonly FeaturedProject[] = [
       "Clerk",
       "Zod",
       "Server-Sent Events (SSE)",
+      "Gemini API",
       "Docker",
+      "Playwright",
       "Vitest",
     ],
     outcomes: [
@@ -59,6 +61,7 @@ export const featuredProjects: readonly FeaturedProject[] = [
       "Zod",
       "JWT (jose)",
       "Server-Sent Events (SSE)",
+      "@hello-pangea/dnd",
       "OpenAPI 3.0",
       "Vitest",
     ],
@@ -82,7 +85,7 @@ export const featuredProjects: readonly FeaturedProject[] = [
     description:
       "Notes workspace with rich-text editing, debounced autosave with conflict detection, PostgreSQL full-text search, AI title, summary, and action-item suggestions you approve, and hashed guest share links.",
     longDescription:
-      "Memora connects capturing information with acting on it. Notes autosave after a 750ms pause and use optimistic concurrency, so a stale save returns a conflict instead of silently overwriting. Search runs on a PostgreSQL GIN index with ts_rank_cd ranking and highlighted excerpts. AI suggestions are tied to a specific note version and never change a note without approval; the adapter runs offline by default and supports Gemini or OpenAI. Share links use 256-bit tokens stored only as SHA-256 hashes, with view, comment, or edit permissions, expiry, and instant revocation.",
+      "Memora connects capturing information with acting on it. Notes autosave after an 800ms pause and use optimistic concurrency, so a stale save returns a conflict instead of silently overwriting. Search runs on a PostgreSQL GIN index with ts_rank_cd ranking and highlighted excerpts. AI suggestions are tied to a specific note version and never change a note without approval; the adapter runs offline by default and supports Gemini or OpenAI. Share links use 256-bit tokens stored only as SHA-256 hashes, with view, comment, or edit permissions, expiry, and instant revocation.",
     technologies: [
       "Next.js 14 (App Router)",
       "TypeScript",
@@ -96,7 +99,7 @@ export const featuredProjects: readonly FeaturedProject[] = [
     ],
     outcomes: [
       "Native PostgreSQL full-text search with relevance ranking and highlighted excerpts, scoped per user",
-      "Guest sharing with hashed tokens, expiry, and immediate revocation (403 on revoked, 410 on expired)",
+      "Guest sharing with SHA-256-hashed tokens, view, comment, or edit access, expiry, and instant revocation",
     ],
     image: `${BASE_PATH}/images/projects/memora.png`,
     links: [
@@ -243,7 +246,7 @@ export const otherProjects: readonly OtherProject[] = [
       "Goal-driven planning platform for India that shows the formula, inflation, fees, and assumptions behind every projection, with consent controls and regulated features that stay off until approved.",
     longDescription:
       "Clearvest focuses on explaining before recommending. Goal planning, scenarios, and portfolio views run on a deterministic Decimal.js engine that exposes its formulas and assumptions. The assistant explains concepts with citations instead of doing the math. Regulated capabilities such as personalized advice and live broker orders are enforced server-side and fail closed, orders run only in a sandbox with explicit previews and confirmations, and consent follows India's DPDP Act.",
-    technologies: ["Next.js 15", "TypeScript", "PostgreSQL", "Prisma ORM", "Decimal.js", "Zod", "Vitest"],
+    technologies: ["Next.js 16", "TypeScript", "PostgreSQL", "Prisma ORM", "Decimal.js", "Zod", "Vitest"],
     links: [
       { label: "Source", kind: "source", href: "https://github.com/vbhvx/Clearvest" },
     ],
@@ -259,7 +262,7 @@ export const otherProjects: readonly OtherProject[] = [
     description:
       "Internal operations platform for online stores with an append-only inventory ledger, row-locked stock reservations, separate order, payment, and fulfillment state machines, and reconciliation reports.",
     longDescription:
-      "Stockroom replaces operational spreadsheets with a traceable core. Inventory changes are only ever recorded as ledger movements, never direct overwrites, and available stock is always on-hand minus reserved. Checkout reservations use SELECT ... FOR UPDATE so simultaneous orders cannot oversell. Order, payment, and fulfillment each have their own validated state machine, data is scoped by organization and store, and an outbox drives events and reconciliation.",
+      "Stockroom replaces operational spreadsheets with a traceable core. Inventory changes are only ever recorded as ledger movements, never direct overwrites, and available stock is always on-hand minus reserved. Checkout reservations use SELECT ... FOR UPDATE so simultaneous orders cannot oversell. Order, payment, and fulfillment each have their own validated state machine, data is scoped by organization and store, and reconciliation reports check stock and payments against their ledgers.",
     technologies: ["Next.js 14", "TypeScript", "PostgreSQL", "Drizzle ORM", "JWT (jose)", "Zod", "Vitest"],
     links: [
       { label: "Source", kind: "source", href: "https://github.com/vbhvx/Stockroom" },
@@ -311,7 +314,7 @@ export const otherProjects: readonly OtherProject[] = [
       "Fragrance e-commerce site with a 6-step scent finder that explains each match, note pyramids and price-per-ml on product pages, server-revalidated cart and checkout, order tracking, and a staff admin portal.",
     longDescription:
       "VibePerfume is a full-stack storefront built around trying before buying. A weighted, deterministic scoring model ranks fragrances against the shopper's quiz answers and explains why each one matched. Product pages show top, heart, and base notes, and up to four fragrances can be compared side by side. Checkout re-checks prices and stock on the server, creates orders idempotently, and an admin portal handles catalog, inventory adjustments, and order status.",
-    technologies: ["React", "Vite", "React Router", "Node.js", "Express", "MongoDB", "Vitest"],
+    technologies: ["React 19", "Vite", "React Router", "Node.js", "Express 5", "JSON file store", "Vitest"],
     links: [
       { label: "Source", kind: "source", href: "https://github.com/vbhvx/VibePerfume" },
     ],

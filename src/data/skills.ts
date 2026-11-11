@@ -18,7 +18,7 @@ export const skillGroups: readonly SkillGroup[] = [
       { name: "Next.js Route Handlers", usedIn: ["Fellow", "Teamly", "Stockroom", "Trim"] },
       { name: "FastAPI", usedIn: ["OverLook", "Windward"] },
       { name: "Fastify", usedIn: ["Latch"] },
-      { name: "Transactional Outbox", usedIn: ["Fellow", "Stockroom"] },
+      { name: "Transactional Outbox", usedIn: ["Fellow"] },
       { name: "Server-Sent Events (SSE)", usedIn: ["Shipshape", "Fellow"] },
       { name: "RBAC & Session Auth", usedIn: ["Latch", "Fellow", "Teamly", "Trim"] },
     ],
@@ -28,7 +28,7 @@ export const skillGroups: readonly SkillGroup[] = [
     items: [
       { name: "Bounded Agent Repair Loops", usedIn: ["Shipshape"] },
       { name: "Gemini API", usedIn: ["Shipshape", "Memora"] },
-      { name: "OpenAI API", usedIn: ["Shipshape", "Memora"] },
+      { name: "OpenAI API", usedIn: ["Memora"] },
       { name: "Provider-Agnostic AI Adapters", usedIn: ["Memora", "Stride", "Trim"] },
       { name: "pandas", usedIn: ["Windward"] },
       { name: "Decimal.js Financial Math", usedIn: ["Trim", "Penny", "Bloom"] },

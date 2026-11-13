@@ -96,18 +96,9 @@ export const aboutContent = {
       ],
     },
     {
-      role: "Independent Software Developer",
-      period: "Apr 2025 — Mar 2026",
-      highlights: [
-        "Built 15 full-stack projects from scratch across Next.js, FastAPI, PostgreSQL, Drizzle, and Prisma.",
-        "Documented technical trade-offs, schemas, and bench-tests across public GitHub repositories.",
-        "Built AI features that suggest rather than decide: sandboxed code generation with bounded repair, and reviewed note and evidence summaries.",
-      ],
-    },
-    {
       role: "Open Source Contributor",
       organization: "JavaScript / TypeScript",
-      period: "Jul 2025 — Jan 2026",
+      period: "Jul 2025 — Present",
       highlights: [
         "10+ merged pull requests across JavaScript/TypeScript open source repositories.",
         "Contributed bug fixes, type improvements, and test coverage while coordinating with maintainers (verified on github.com/vbhvx).",

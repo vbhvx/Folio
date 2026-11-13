@@ -1,6 +1,6 @@
 import { test } from "node:test";
 import assert from "node:assert";
-import { cn } from "@/lib/utils";
+import { cn } from "../src/lib/utils.ts";
 
 test("cn merges tailwind classes and resolves conflicts", () => {
   const result = cn("px-2 py-1", "px-4", undefined, false && "hidden", null);

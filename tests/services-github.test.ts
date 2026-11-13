@@ -3,7 +3,7 @@ import assert from "node:assert";
 import {
   calculateCalendarDays,
   generateEmptyCalendarDays,
-} from "@/services/github";
+} from "../src/services/github.ts";
 
 test("generateEmptyCalendarDays creates a full padded calendar for 2026", () => {
   const days = generateEmptyCalendarDays(2026);

@@ -85,8 +85,19 @@ export const aboutContent = {
   },
   experience: [
     {
+      role: "Full-Stack Developer",
+      organization: "Stealth Startup · Full-time · Remote",
+      period: "Apr 2026 — Present",
+      highlights: [
+        "Developed full-stack features in Next.js and TypeScript for a real-time sports prediction-market platform.",
+        "Integrated third-party REST APIs for live scores and match analytics with Zod-validated contracts.",
+        "Implemented payment flows with Helio and MetaMask, ensuring smooth transaction handling.",
+        "Created interactive dashboards that transformed match data into actionable insights.",
+      ],
+    },
+    {
       role: "Independent Software Developer",
-      period: "Apr 2025 — Present",
+      period: "Apr 2025 — Mar 2026",
       highlights: [
         "Built 15 full-stack projects from scratch across Next.js, FastAPI, PostgreSQL, Drizzle, and Prisma.",
         "Documented technical trade-offs, schemas, and bench-tests across public GitHub repositories.",
